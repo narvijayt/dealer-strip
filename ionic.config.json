@@ -1,0 +1,7 @@
+{
+  "name": "dealer-strip",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
