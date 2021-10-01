@@ -1,0 +1,132 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-icon (click)="backRedirect()" class="ion-padding-left" color="primary" name="arrow-back-outline"></ion-icon>
+    </ion-buttons>
+  
+    <ion-buttons slot="end">
+      <ion-icon class="ion-padding-right" color="primary" name="ellipsis-horizontal-outline"></ion-icon>      
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div>
+    <ion-row class="ion-padding-horizontal">
+      <ion-col class="ion-no-padding ion-text-center" size="3">
+        <img src="../assets/images/user-icon.png" >
+      </ion-col>
+      <ion-col class="ion-text-center">
+        <ion-row>
+          <ion-col>
+            <p>
+              <ion-text><strong>202</strong></ion-text><br/>
+              <ion-text>Vehicle</ion-text>
+            </p>
+          </ion-col>
+          <ion-col>
+            <p>
+              <ion-text><strong>09</strong></ion-text><br/>
+              <ion-text>Sold Vehicles</ion-text>
+            </p>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-button type="submit" shape="round" color="secondary">Send Message</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-padding-horizontal">
+      <ion-col>
+        <p>
+          <ion-text>Luxury Cars</ion-text><br/>
+          <ion-text class="ion-text-sm" color="dark">Member Since Jan 2015</ion-text>
+        </p>
+      </ion-col>
+    </ion-row>
+    
+    <ion-row class="ion-padding-horizontal">
+      <ion-col>
+        <ion-text>Certified and Approved used cars avialable by trusted destination to buy your preowned cars...</ion-text>
+      </ion-col>
+    </ion-row>
+
+    <ion-segment 
+    value="all" 
+    color="tertiary" 
+    scrollable="true"
+    mode="ios"
+    [(ngModel)]="segmentModel" 
+    (ionChange)="segmentChanged($event)" class="ion-no-padding ion-padding-top">
+
+      <ion-segment-button value="viso">
+        <ion-label>Viso</ion-label>
+      </ion-segment-button>
+
+      <ion-segment-button value="handholdings">
+        <ion-label>Hand Holdings</ion-label>
+      </ion-segment-button>
+
+      <ion-segment-button value="gottago">
+        <ion-label>Gotta Go</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+
+    <ion-card *ngIf="segmentModel === 'viso'" class="ion-no-padding ion-no-margin">
+      <!-- <ion-card-header>
+        <ion-card-subtitle>Segment Content</ion-card-subtitle>
+        <ion-card-title>Viso</ion-card-title>
+      </ion-card-header> -->
+    
+      <ion-card-content class="ion-no-padding">
+        <img src="../../../assets/images/profile-listing.png">
+      </ion-card-content>
+    </ion-card>
+    
+    <ion-card *ngIf="segmentModel === 'handholdings'" class="ion-no-padding ion-no-margin">    
+      <ion-card-content class="ion-no-padding">
+        <img src="../../../assets/images/profile-listing.png">
+      </ion-card-content>
+    </ion-card>
+    
+    <ion-card *ngIf="segmentModel === 'gottago'" class="ion-no-padding ion-no-margin">    
+      <ion-card-content class="ion-no-padding">
+        <img src="../../../assets/images/profile-listing.png">
+      </ion-card-content>
+    </ion-card>
+    
+  </div>
+</ion-content>
+
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button routerDirection="forward" routerLink="/dashboard">
+          <ion-icon name="person-circle-outline"></ion-icon>
+          <ion-label>Home</ion-label>
+        </ion-tab-button>
+        <ion-tab-button routerDirection="forward" routerLink="/search">
+          <ion-icon name="search-outline"></ion-icon>
+          <ion-label >Search</ion-label>
+        </ion-tab-button>
+        <ion-tab-button (click)="openVehicleForm()">
+          <ion-icon name="add-outline"></ion-icon>
+          <ion-label >New Vehicle</ion-label>
+        </ion-tab-button>
+        <ion-tab-button tab="notifications" >
+          <ion-icon name="notifications-outline"></ion-icon>
+          <ion-label>Notifications</ion-label>
+        </ion-tab-button>
+        <ion-tab-button routerDirection="forward" routerLink="/profile">
+          <ion-icon name="person-circle-outline"></ion-icon>
+          <ion-label color="secondary">Profile</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

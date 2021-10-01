@@ -1,20 +1,41 @@
-<ion-header [translucent]="true">
+<!-- <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
       Blank
     </ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+  <!-- <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Blank</ion-title>
     </ion-toolbar>
-  </ion-header>
+  </ion-header> -->
 
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <img class="logo" src="../assets/icon/icon.png">
+    
+    <div>
+      <ion-text color="primary">A new way to</ion-text>
+    </div>
+    <div>
+      <ion-text color="primary"><ion-text color="secondary">BUY</ion-text> and <ion-text color="light">SELL</ion-text> cars</ion-text>
+    </div>
+    <div>
+      <ion-text color="dark">A Dealer to Dealer networking application</ion-text>
+    </div>
+
+    <ion-button shape="round" color="secondary" (click)="openRequestedPage('login')">Login Now</ion-button>
   </div>
+
+  <div class="footer-layout">
+    <div>
+      <ion-text color="dark">Not a member?</ion-text>
+    </div>
+    <div>
+      <ion-text color="dark"><ion-text (click)="openRequestedPage('register')" color="secondary">Click here</ion-text>  to request membership </ion-text>
+    </div>
+  </div>
+
 </ion-content>

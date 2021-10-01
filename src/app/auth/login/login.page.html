@@ -1,0 +1,43 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content [fullscreen]="true">
+  <div id="container">
+    <div><ion-text color="primary">Welcome Back!</ion-text></div>
+    <div><ion-text color="dark">Login to your existing account of dealerstrip</ion-text></div>
+
+    <section>
+      <form #form="ngForm" (ngSubmit)="doLogin(form)">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-input ngModel required type="email" name="username" placeholder="Email"></ion-input>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-input ngModel required type="password" name="password" placeholder="Password"></ion-input>
+            </ion-col>
+          </ion-row>
+
+
+          <ion-row>
+            <ion-col>
+              <ion-button type="submit" [disabled]="form.invalid" shape="round" color="secondary">Login</ion-button>
+            </ion-col>
+          </ion-row>
+
+        </ion-grid>
+      </form>
+    </section>
+
+    <div class="footer-layout">
+      <div>
+        <ion-text color="dark">Don't have an account? </ion-text><ion-text (click)="openRequestedPage('register')" color="secondary">Sign Up</ion-text>
+      </div>
+    </div>
+  </div>
+</ion-content>

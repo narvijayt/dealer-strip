@@ -1,0 +1,110 @@
+<ion-header>
+  <ion-toolbar class="ion-no-padding">
+    <ion-buttons slot="start">
+      <ion-icon (click)="backRedirect()" color="primary" name="arrow-back-outline"></ion-icon>
+    </ion-buttons>
+    <ion-title class="ion-text-uppercase">2016 Ford-130</ion-title>
+  
+    <ion-buttons slot="end">
+      <ion-icon color="primary" name="ellipsis-horizontal-outline"></ion-icon>      
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <section *ngIf="ID; else noProduct">
+    <ion-row>
+      <ion-col class="ion-no-padding">
+        <img src="../assets/images/car-ex-lg.jpg" >
+      </ion-col>
+    </ion-row>
+    <ion-row class="bg-grey ion-no-padding">
+      <ion-col size="9">
+        <img src="../assets/icon/sm-icon.png"> <ion-text class="ion-text-uppercase">Tim Roseeg</ion-text>
+      </ion-col>
+      <ion-col class="ion-text-middle">
+        <ion-icon name="call-outline"></ion-icon> &nbsp;
+        <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+      </ion-col>
+    </ion-row>
+
+    <ion-card class="card ion-no-margin ion-no-radius">        
+      <ion-card-header>
+        <ion-row>
+          <ion-col class="ion-text-center">
+            <ion-text color="secondary"> Car Overview </ion-text>
+          </ion-col>
+        </ion-row>
+      </ion-card-header>
+    
+      <ion-card-content>
+        <ion-row class="ion-border-bottom border-dark">
+          <ion-col size="6" class="ion-text-start"><ion-text>Body</ion-text></ion-col>
+          <ion-col size="6" class="ion-text-end"><ion-text>Enter Value</ion-text></ion-col>
+        </ion-row>
+        <ion-row class="ion-border-bottom border-dark">
+          <ion-col size="6" class="ion-text-start"><ion-text>Year</ion-text></ion-col>
+          <ion-col size="6" class="ion-text-end"><ion-text>2018</ion-text></ion-col>
+        </ion-row>
+        <ion-row class="ion-border-bottom border-dark">
+          <ion-col size="6" class="ion-text-start"><ion-text>External Color</ion-text></ion-col>
+          <ion-col size="6" class="ion-text-end"><ion-text>Black</ion-text></ion-col>
+        </ion-row>
+        <ion-row class="ion-border-bottom border-dark">
+          <ion-col size="6" class="ion-text-start"><ion-text>Internal Color</ion-text></ion-col>
+          <ion-col size="6" class="ion-text-end"><ion-text>Brown</ion-text></ion-col>
+        </ion-row>
+        <ion-row class="ion-border-bottom border-dark">
+          <ion-col size="6" class="ion-text-start"><ion-text>Cylinder</ion-text></ion-col>
+          <ion-col size="6" class="ion-text-end"><ion-text>V6</ion-text></ion-col>
+        </ion-row>
+        <ion-row class="ion-border-bottom border-dark">
+          <ion-col size="6" class="ion-text-start"><ion-text>Transmission</ion-text></ion-col>
+          <ion-col size="6" class="ion-text-end"><ion-text>Automatic</ion-text></ion-col>
+        </ion-row>
+        <ion-row class="ion-border-bottom border-dark">
+          <ion-col size="6" class="ion-text-start"><ion-text>Mileage</ion-text></ion-col>
+          <ion-col size="6" class="ion-text-end"><ion-text>3</ion-text></ion-col>
+        </ion-row>
+        <ion-row class="ion-border-bottom border-dark">
+          <ion-col size="6" class="ion-text-start"><ion-text>Trim</ion-text></ion-col>
+          <ion-col size="6" class="ion-text-end"><ion-text> XLT SuperCrew LB 4WD </ion-text></ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </section>
+
+  <ng-template #noProduct>
+
+  </ng-template>
+</ion-content>
+
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button routerDirection="forward" routerLink="/dashboard">
+          <ion-icon name="person-circle-outline"></ion-icon>
+          <ion-label>Home</ion-label>
+        </ion-tab-button>
+        <ion-tab-button routerDirection="forward" routerLink="/search">
+          <ion-icon name="search-outline"></ion-icon>
+          <ion-label >Search</ion-label>
+        </ion-tab-button>
+        <ion-tab-button (click)="openVehicleForm()">
+          <ion-icon name="add-outline"></ion-icon>
+          <ion-label >New Vehicle</ion-label>
+        </ion-tab-button>
+        <ion-tab-button tab="notifications" >
+          <ion-icon name="notifications-outline"></ion-icon>
+          <ion-label>Notifications</ion-label>
+        </ion-tab-button>
+        <ion-tab-button routerDirection="forward" routerLink="/profile">
+          <ion-icon name="person-circle-outline"></ion-icon>
+          <ion-label>Profile</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

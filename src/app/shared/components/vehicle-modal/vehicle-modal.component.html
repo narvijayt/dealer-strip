@@ -1,0 +1,427 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons (click)="dismiss()" slot="start">
+      <ion-icon class="ion-padding-left" color="primary" name="close-outline"></ion-icon>
+      </ion-buttons>
+    <ion-title>New Vehicle</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg-grey no-padding">
+  <div>
+
+    <!-- 
+    <div class="flex justify-content-space-between ion-margin-top relative">
+      <div class="absolute full-width line"></div>
+      <div class="flex flex-column justify-content-center full-width"
+        *ngFor="let slide of slides; let index = index; let first = first; let last = last;">
+        <span [ngClass]="{ 'align-self-end': last, 'align-self-center': (!first && !last) }"
+          class="flex flex-column align-items-center justify-content-center bold text-medium radius"
+          style="width: 30px; height: 30px;"
+          [style.background]="slide === currentSlide ? 'var(--ion-color-primary)':'var(--ion-color-light-shade)'"
+          [style.color]="slide === currentSlide ? 'var(--ion-color-light)':'var(--ion-color-dark)'"
+          [ngClass]="{ 'align-self-end': last, 'align-self-center': (!first && !last) }">
+          {{ index + 1 }}
+        </span>
+        <span [style.color]="slide === currentSlide ? 'var(--ion-color-primary)':'var(--ion-color-medium)'"
+          [ngClass]="{ 'align-self-end': last, 'align-self-center': (!first && !last) }"
+          class="flex text-medium bold ion-margin-vertical">
+          {{ slide }}
+        </span>
+      </div>
+    </div>
+    -->
+
+    <ion-row class="no-padding">
+      <ion-col class="no-padding">
+        <img src="../../../assets/images/car-ex-lg.jpg" >
+      </ion-col>
+    </ion-row>
+
+    <ion-slides [options]="slidesOpts" (ionSlideDidChange)="onSlidesDidChange()"
+      (ionSlideWillChange)="onSlidesChanged()">
+      <ng-container *ngFor="let slide of slides">
+        <ion-slide>
+
+          <div class="full-width ion-text-start">
+
+            <form [formGroup]="basicInformationForm" #basicInformationFormRef="ngForm" novalidate *ngIf="slide === 'Vehicle Information'">
+
+              <ion-list-header class="ion-no-padding" style="min-height: auto;">
+                <ion-label class="ion-text-start" color="secondary">
+                  Vehicle Information
+                </ion-label>
+                <ion-text class="ion-text-end">Step 1/3</ion-text>
+              </ion-list-header>
+
+              <ion-row>
+                <ion-col>
+                  <ion-item lines="none">
+                    <ion-select formControlName="vehicle_make" class="select-input" placeholder="Select Make">
+                      <ion-select-option value="2021">2021</ion-select-option>
+                      <ion-select-option value="2020">2020</ion-select-option>
+                      <ion-select-option value="2019">2019</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                  <ion-text color="danger">
+                    <span class="text-tiny"
+                      [style.visibility]="basicVehicleMake?.errors?.required && basicInformationFormRef.submitted ? '' : 'hidden'">
+                      Field required
+                    </span>
+                  </ion-text>
+                </ion-col>
+              </ion-row>
+
+              <ion-row>
+                <ion-col>
+                  <ion-item lines="none">                    
+                    <ion-select formControlName="vehicle_model" class="select-input" placeholder="Select Model">
+                      <ion-select-option value="2021">2021</ion-select-option>
+                      <ion-select-option value="2020">2020</ion-select-option>
+                      <ion-select-option value="2019">2019</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                  <ion-text color="danger">
+                    <span class="text-tiny"
+                      [style.visibility]="basicVehicleModel?.errors?.required && basicInformationFormRef.submitted ? '' : 'hidden'">
+                      Field required
+                    </span>
+                  </ion-text>
+                </ion-col>
+              </ion-row>
+
+              <ion-row>
+                <ion-col>
+                  <ion-item lines="none">
+                    <ion-select formControlName="vehicle_year" class="select-input" placeholder="Select Year">
+                      <ion-select-option value="2021">2021</ion-select-option>
+                      <ion-select-option value="2020">2020</ion-select-option>
+                      <ion-select-option value="2019">2019</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                  <ion-text color="danger">
+                    <span class="text-tiny"
+                      [style.visibility]="vehicleYear?.errors?.required && basicInformationFormRef.submitted ? '' : 'hidden'">
+                      Field required
+                    </span>
+                  </ion-text>
+                </ion-col>
+              </ion-row>
+
+              <ion-row>
+                <ion-col>
+                  <ion-item lines="none">
+                    <ion-input type="text" placeholder="Mileage" formControlName="mileage"></ion-input>
+                  </ion-item>
+                  <ion-text color="danger">
+                    <span class="text-tiny"
+                      [style.visibility]="vehicleMileage?.errors?.required && basicInformationFormRef.submitted ? '' : 'hidden'">
+                      Field required
+                    </span>
+                  </ion-text>
+                </ion-col>
+              </ion-row>
+
+              <ion-row>
+                <ion-col>
+                  <ion-item lines="none">
+                    <ion-select formControlName="bodyStyle" class="select-input" placeholder="Body Style">
+                      <ion-select-option value="Sedan">Sedan</ion-select-option>
+                      <ion-select-option value="Hechback">Hechback</ion-select-option>
+                      <ion-select-option value="Desire">Desire</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                  <ion-text color="danger">
+                    <span class="text-tiny"
+                      [style.visibility]="vehicleBodyStyle?.errors?.required && basicInformationFormRef.submitted ? '' : 'hidden'">
+                      Field required
+                    </span>
+                  </ion-text>
+                </ion-col>
+              </ion-row>
+            </form>
+
+            <form [formGroup]="engineForm" #engineFormRef="ngForm" novalidate *ngIf="slide === 'Engine, Interior & Exterior'">
+
+              <ion-list-header class="ion-no-padding" style="min-height: auto;">
+                <ion-label class="ion-text-start" color="secondary">
+                  Engine, Interior & Exterior
+                </ion-label>
+                <ion-text class="ion-text-end">Step 2/3</ion-text>
+              </ion-list-header>
+
+              <ion-row>
+                <ion-col>
+                  <ion-item lines="none">
+                    <ion-select formControlName="exterior_color" class="select-input" placeholder="Exterior Color">
+                      <ion-select-option value="Red">Red</ion-select-option>
+                      <ion-select-option value="Blue">Blue</ion-select-option>
+                      <ion-select-option value="Black">Black</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                  <ion-text color="danger">
+                    <span class="text-tiny"
+                      [style.visibility]="engineExteriorColor?.errors?.required && engineFormRef.submitted ? '' : 'hidden'">
+                      Field required
+                    </span>
+                  </ion-text>
+                </ion-col>
+              </ion-row>
+
+              <ion-row>
+                <ion-col>
+                  <ion-item lines="none">
+                    <ion-select formControlName="interior_color" class="select-input" placeholder="Interior Color">
+                      <ion-select-option value="White">White</ion-select-option>
+                      <ion-select-option value="Grey">Grey</ion-select-option>
+                      <ion-select-option value="Black">Black</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                  <ion-text color="danger">
+                    <span class="text-tiny"
+                      [style.visibility]="engineInteriorColor?.errors?.required && engineFormRef.submitted ? '' : 'hidden'">
+                      Field required
+                    </span>
+                  </ion-text>
+                </ion-col>
+              </ion-row>
+
+              <ion-row>
+                <ion-col>
+                  <ion-item lines="none">
+                    <ion-select formControlName="vehicle_cylinder" class="select-input" placeholder="Cylinder/ Elastic">
+                      <ion-select-option value="V6">V6</ion-select-option>
+                      <ion-select-option value="V5">V5</ion-select-option>
+                      <ion-select-option value="V9">V9</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                  <ion-text color="danger">
+                    <span class="text-tiny"
+                      [style.visibility]="engineCylinder?.errors?.required && engineFormRef.submitted ? '' : 'hidden'">
+                      Field required
+                    </span>
+                  </ion-text>
+                </ion-col>
+              </ion-row>
+              
+              <ion-row>
+                <ion-col>
+                  <ion-item lines="none">
+                    <ion-select formControlName="transmission" class="select-input" placeholder="Transmission">
+                      <ion-select-option value="Manual">Manual</ion-select-option>
+                      <ion-select-option value="Automatic">Automatic</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                  <ion-text color="danger">
+                    <span class="text-tiny"
+                      [style.visibility]="engineTransmission?.errors?.required && engineFormRef.submitted ? '' : 'hidden'">
+                      Field required
+                    </span>
+                  </ion-text>
+                </ion-col>
+              </ion-row>
+              
+              <ion-row>
+                <ion-col>
+                  <ion-item lines="none">
+                    <ion-select formControlName="vehicle_keys" class="select-input" placeholder="Number of Keys">
+                      <ion-select-option value="2">2</ion-select-option>
+                      <ion-select-option value="3">3</ion-select-option>
+                      <ion-select-option value="4">4</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                  <ion-text color="danger">
+                    <span class="text-tiny"
+                      [style.visibility]="engineVehicleKeys?.errors?.required && engineFormRef.submitted ? '' : 'hidden'">
+                      Field required
+                    </span>
+                  </ion-text>
+                </ion-col>
+              </ion-row>
+
+              <!--
+              <div class="flex align-items-center full-width ion-margin-top">
+                <div class="ion-margin-end">
+                  <h5 class="text-medium bold">Upload image</h5>
+                  <ion-button strong shape="round" color="secondary" size="small">
+                    Select
+                  </ion-button>
+                </div>
+                <div>
+                  <img class="img-thumb" [src]="imagePath" *ngIf="imagePath">
+                </div>
+              </div>
+              -->
+            </form>
+            
+            <!--
+            <div [hidden]="slide !== 'Summary'">
+              <ion-list-header class="ion-no-padding" style="min-height: auto;">
+                <ion-label class="ion-text-center" color="primary">
+                  Order details
+                </ion-label>
+              </ion-list-header>
+
+              <div *ngIf="engineForm.valid">
+                <p class="text-medium bold ion-text-uppercase">
+                  Engine, Interior & Exterior
+                </p>
+                <div class="divider"></div>
+
+                <div *ngFor="let control of engineForm.controls | keyvalue: originalOrder">
+                  <p class="text-medium margin-v-sm">
+                    <span class="bold">
+                      {{ control.key.replace('_', ' ') | titlecase }}:
+                    </span>
+                    {{ control.value.value || '--' }}
+                  </p>
+                </div>
+                <p class="text-medium margin-v-sm" *ngIf="imagePath">
+                  <span class="bold">
+                    Attachment:
+                  </span>
+                  <img class="img-thumb" [src]="imagePath">
+                </p>
+              </div>
+
+              <div *ngIf="basicInformationForm.valid">
+                <div class="divider"></div>
+                <p class="text-medium bold ion-text-uppercase">
+                  Vehicle Information
+                </p>
+                <div class="divider"></div>
+                <p class="text-medium margin-v-sm"
+                  *ngFor="let control of basicInformationForm.controls | keyvalue: originalOrder">
+                  <span class="bold">
+                    {{ control.key.replace('_', ' ') | titlecase }}:
+                  </span>
+                  {{ control.value.value || '--' }}
+                </p>
+              </div>
+
+              <div class="divider"></div>
+              <p class="text-medium bold ion-text-uppercase">
+                Items
+              </p>
+              <div class="divider"></div>
+
+              <ion-list>
+                <ion-item *ngFor="let item of order?.items">
+                  <ion-label>
+                    <h2 class="text-medium bold">{{ item.name }}</h2>
+                  </ion-label>
+                  <div>
+                    <span class="text-medium">{{ item.amount | currency}}</span>
+                  </div>
+                </ion-item>
+                <ion-item>
+                  <ion-label>
+                    <h2 class="text-medium bold">Subtotal</h2>
+                  </ion-label>
+                  <div>
+                    <span class="text-medium">{{ order?.subtotal | currency}}</span>
+                  </div>
+                </ion-item>
+                <ion-item>
+                  <ion-label>
+                    <h2 class="text-medium bold">Shipping & Handling</h2>
+                  </ion-label>
+                  <div>
+                    <span class="text-medium">{{ order?.shippingFee | currency}}</span>
+                  </div>
+                </ion-item>
+                <ion-item>
+                  <ion-label>
+                    <h2 class="text-medium bold">Total</h2>
+                  </ion-label>
+                  <div>
+                    <span class="text-medium bold">{{ order?.total | currency}}</span>
+                  </div>
+                </ion-item>
+              </ion-list>
+            </div>
+            -->
+
+            <form [formGroup]="pricingForm" #pricingFormRef="ngForm" novalidate *ngIf="slide === 'Pricing & Other Info'">
+
+
+              <ion-list-header class="ion-no-padding" style="min-height: auto;">
+                <ion-label class="ion-text-start" color="secondary">
+                  Pricing & Other Info
+                </ion-label>
+                <ion-text class="ion-text-end">Step 3/3</ion-text>
+              </ion-list-header>
+
+              <ion-row>
+                <ion-col>
+                  <ion-item lines="none">
+                    <ion-input type="text" placeholder="Retail Price" formControlName="retail_price"></ion-input>
+                  </ion-item>
+                  <ion-text color="danger">
+                    <span class="text-tiny"
+                      [style.visibility]="priceRetailPrice?.errors?.required && pricingFormRef.submitted ? '' : 'hidden'">
+                      Field required
+                    </span>
+                  </ion-text>
+                </ion-col>
+              </ion-row>
+
+              <ion-row>
+                <ion-col>
+                  <ion-item lines="none">
+                    <ion-label position="stacked">Tool Kit</ion-label>
+                    <ion-toggle checked formControlName="toolkit"></ion-toggle>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+              
+              <ion-row>
+                <ion-col>
+                  <ion-item lines="none">
+                    <ion-label position="stacked">Any previous Damage to vehicle</ion-label>
+                    <ion-toggle formControlName="damaged_vehicle"></ion-toggle>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+              
+              <ion-row>
+                <ion-col>
+                  <ion-item lines="none">
+                    <ion-label position="stacked">Call for Price</ion-label>
+                    <ion-toggle checked formControlName="price_call"></ion-toggle>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+              
+              <ion-row>
+                <ion-col>
+                  <ion-item lines="none">
+                    <ion-label position="stacked">Owners Manual Present</ion-label>
+                    <ion-toggle checked formControlName="owner_manual"></ion-toggle>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+
+            </form>
+          </div>
+        </ion-slide>
+      </ng-container>
+    </ion-slides>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <div class="full-width flex align-items-center justify-content-space-between">
+      <ion-button style="width: 120px;" strong shape="round" color="dark"
+        [style.visibility]="(isBeginning) ? 'hidden' : ''" (click)="onBackButtonTouched()">
+        <span>Back</span>
+        <ion-icon slot="start" name="chevron-back"></ion-icon>
+      </ion-button>
+      <ion-button style="width: 120px;" strong shape="round" color="secondary"
+        (click)="onNextButtonTouched()" >
+        <span>{{ isEnd ? 'Submit' : 'Next' }}</span>
+      </ion-button>
+    </div>
+  </ion-toolbar>
+</ion-footer>

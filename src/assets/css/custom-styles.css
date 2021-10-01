@@ -1,0 +1,24 @@
+#container {text-align: center;padding-top: 25%;}
+#container strong {font-size: 20px;line-height: 26px;}
+#container p {font-size: 16px;line-height: 22px;margin: 0;}
+#container a {text-decoration: none;}
+
+input.native-input.sc-ion-input-md{border-radius: 15px;border: 2px solid #f6f6f6;padding: 10px 20px;margin-bottom: 15px;}
+
+
+/************* Custom Global Styles **************/
+.search-container{ padding: 15px 20px; background: #343434;}
+.select-input{ border-color: #ffffff;}
+.ion-border-bottom{border-bottom: 1px solid;}
+.border-primary{ border-color: #ffffff;}
+.border-secondary{ border-color: #ee2489;}
+.border-light{ border-color: #e88441;}
+.border-dark{ border-color: #7f7f7f;}
+
+.card{ background: #ffffff;}
+.bg-primary{ --background:#ffffff; background: #ffffff;}
+.bg-dark{ --background: #1b1b1b; background: #1b1b1b;}
+.bg-grey{ --background: #343434; background: #343434;}
+.bg-white{ --background: #ffffff; background: #ffffff;}
+
+.ion-no-radius{ border-radius: 0;}

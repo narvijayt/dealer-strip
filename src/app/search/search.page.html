@@ -1,0 +1,133 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar slot="top">
+        <ion-tab-button tab="viso">
+          <ion-label color="primary">Viso</ion-label>
+        </ion-tab-button>
+    
+        <ion-tab-button tab="number-now">
+          <ion-label color="primary">Number Now</ion-label>
+        </ion-tab-button>
+    
+        <ion-tab-button tab="gotta-go">
+          <ion-label color="primary">Gotta Go</ion-label>
+        </ion-tab-button>
+    
+        <ion-tab-button tab="saved">
+          <ion-label color="primary">Saved</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="search-container">
+    <ion-text color="secondary" class="color-secondary ion-text-uppercase ion-text-center">Search Available Vehicle Inventory</ion-text>
+    <div class="search-form-section">
+      <form #form="ngForm">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-input required type="text" name="s" placeholder="Search by name"></ion-input>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-select class="select-input" placeholder="Year">
+                <ion-select-option value="2021">2021</ion-select-option>
+                <ion-select-option value="2020">2020</ion-select-option>
+                <ion-select-option value="2019">2019</ion-select-option>
+              </ion-select>
+            </ion-col>
+            <ion-col>
+              <ion-select class="select-input" placeholder="Make">
+                <ion-select-option value="">Make</ion-select-option>
+              </ion-select>
+            </ion-col>
+            <ion-col>
+              <ion-select class="select-input" placeholder="Model">
+                <ion-select-option value="">Model</ion-select-option>
+              </ion-select>
+            </ion-col>
+            <ion-col>
+              <ion-button type="submit" shape="round" color="secondary">Search</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </form>
+    </div>
+  </div>
+
+  <div class="content-view-options">
+    <ion-row class="ion-text-center ion-border-bottom border-primary">
+      <ion-col class="ion-padding">
+        <ion-text color="primary">Grid View</ion-text>
+      </ion-col>
+      <ion-col class="ion-border-bottom border-secondary ion-padding">
+        <ion-text color="secondary">List View</ion-text>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <div class="content-container">
+    <ion-card *ngFor="let item of items" class="card">
+      <ion-row>
+        <ion-col class="ion-no-padding" size="3">
+          <ion-thumbnail>
+            <img [routerLink]="['/','car-details', item.ID]" src="../assets/images/car-1.png" width="100%">
+          </ion-thumbnail>
+        </ion-col>
+        <ion-col class="ion-no-padding" size="9">
+          <ion-card-header>
+            <ion-card-title>$110,500</ion-card-title>
+          </ion-card-header>
+        
+          <ion-card-content>
+            <ion-card-subtitle>Dodge Challenge SRT</ion-card-subtitle>
+            <ion-card-subtitle>2012 - 52,300 km</ion-card-subtitle>
+            <ion-row>
+              <ion-col class="ion-no-padding" size="9">
+                <ion-icon name="location-outline"></ion-icon> 5600 W Sahara Ave
+              </ion-col>
+              <ion-col class="ion-no-padding ion-text-end" size="3">
+                03 Apr
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </div>
+</ion-content>
+
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button routerDirection="forward" routerLink="/dashboard">
+          <ion-icon name="person-circle-outline"></ion-icon>
+          <ion-label>Home</ion-label>
+        </ion-tab-button>
+        <ion-tab-button routerDirection="forward" routerLink="/search">
+          <ion-icon name="search-outline"></ion-icon>
+          <ion-label color="secondary">Search</ion-label>
+        </ion-tab-button>
+        <ion-tab-button (click)="openVehicleForm()">
+          <ion-icon name="add-outline"></ion-icon>
+          <ion-label >New Vehicle</ion-label>
+        </ion-tab-button>
+        <ion-tab-button tab="notifications" >
+          <ion-icon name="notifications-outline"></ion-icon>
+          <ion-label>Notifications</ion-label>
+        </ion-tab-button>
+        <ion-tab-button routerDirection="forward" routerLink="/profile">
+          <ion-icon name="person-circle-outline"></ion-icon>
+          <ion-label>Profile</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

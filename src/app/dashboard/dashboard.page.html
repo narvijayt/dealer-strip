@@ -1,0 +1,89 @@
+<ion-header>
+  <ion-row class="bg-dark ion-padding-horizontal border-primary">
+    <ion-col size="9">
+      <img src="../assets/icon/sm-icon.png"> <ion-text class="ion-text-uppercase" color="primary">Dealer Strip</ion-text>
+    </ion-col>
+    <ion-col class="ion-text-end">
+      <ion-icon color="primary" name="chatbubble-ellipses-outline"></ion-icon>
+    </ion-col>
+  </ion-row>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  
+  <div class="bg-grey content-container">
+    <ion-card *ngFor="let item of items" class="card ion-no-margin ion-no-radius">        
+      <ion-card-header class="ion-no-padding ion-padding-horizontal">
+        <ion-row>
+          <ion-col size="9">
+            <img src="../assets/icon/sm-icon.png"> <ion-text class="ion-text-uppercase">Luxury Cars</ion-text>
+          </ion-col>
+          <ion-col class="ion-text-end">
+            <ion-icon name="ellipsis-horizontal-outline"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-card-header>
+    
+      <ion-card-content class="ion-no-padding">
+        <ion-row>
+          <ion-col class="ion-no-padding">
+            <img [routerLink]="['/','car-details', item.ID]" src="../assets/images/car-lg.png">
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-padding-horizontal">
+          <ion-col class="ion-no-padding" size="8">
+            <ion-card-title>$110,500</ion-card-title>
+          </ion-col>
+          <ion-col class="ion-no-padding ion-text-end" size="4">
+            <ion-card-subtitle>2012 - 52,300 km</ion-card-subtitle>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="ion-padding-horizontal">
+          <ion-col class="ion-no-padding">
+            <ion-card-subtitle>Dodge Challenge SRT</ion-card-subtitle>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-padding-horizontal ion-padding-bottom">
+          <ion-col class="ion-no-padding" size="8">
+            <ion-icon name="location-outline"></ion-icon> 5600 W Sahara Ave
+          </ion-col>
+          <ion-col class="ion-no-padding ion-text-end" size="4">
+            <ion-text>03 Apr</ion-text>
+          </ion-col>
+        </ion-row>
+        
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
+
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-tabs>
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button routerDirection="forward" routerLink="/dashboard">
+          <ion-icon name="person-circle-outline"></ion-icon>
+          <ion-label color="secondary">Home</ion-label>
+        </ion-tab-button>
+        <ion-tab-button routerDirection="forward" routerLink="/search">
+          <ion-icon name="search-outline"></ion-icon>
+          <ion-label >Search</ion-label>
+        </ion-tab-button>
+        <ion-tab-button (click)="openVehicleForm()">
+          <ion-icon name="add-outline"></ion-icon>
+          <ion-label >New Vehicle</ion-label>
+        </ion-tab-button>
+        <ion-tab-button tab="notifications" >
+          <ion-icon name="notifications-outline"></ion-icon>
+          <ion-label>Notifications</ion-label>
+        </ion-tab-button>
+        <ion-tab-button routerDirection="forward" routerLink="/profile">
+          <ion-icon name="person-circle-outline"></ion-icon>
+          <ion-label>Profile</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+</ion-footer>

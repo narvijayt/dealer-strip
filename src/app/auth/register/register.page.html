@@ -1,0 +1,67 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>register</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content [fullscreen]="true">
+  <div id="container">
+    
+    <div><ion-text color="primary">Let's get started!</ion-text></div>
+    <div><ion-text color="dark">Create and account</ion-text></div>
+
+    <section>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-input type="text" name="business_name" placeholder="Business Name"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-input type="text" name="user_name" placeholder="Name"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-input type="email" name="user_email" placeholder="Email"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-input type="text" name="user_phone" placeholder="Phone"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-input type="text" name="city" placeholder="City"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-input type="text" name="state" placeholder="State"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-input type="text" name="zipcode" placeholder="Zip Code"></ion-input>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <ion-button shape="round" color="secondary" (click)="openRequestedPage('brands')">Create</ion-button>
+          </ion-col>
+        </ion-row>
+
+      </ion-grid>
+    </section>
+  </div>
+
+
+  <div class="footer-layout">
+    <div>
+      <ion-text color="dark">Already have an account? </ion-text><ion-text (click)="openRequestedPage('login')" color="secondary">Login here</ion-text>
+    </div>
+  </div>
+</ion-content>

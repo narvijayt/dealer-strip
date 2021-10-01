@@ -1,0 +1,30 @@
+<ion-content class="ion-padding">
+  <ion-row>
+    <ion-col class="ion-text-end">
+      <ion-text color="dark" (click)="openRequestedPage('dashboard')"> Skip <ion-icon class="ion-padding-right" color="dark" name="arrow-forward-outline"></ion-icon></ion-text>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="ion-pading ion-text-center">
+    <ion-col size="8" offset="2">
+      <p><ion-text><h4>Which <ion-text color="secondary">Brands</ion-text> you are interested in?</h4></ion-text>
+        <br/>
+        <ion-text class="ion-text-sm" color="dark">You can chose one or more</ion-text>
+      </p>
+    </ion-col>
+  </ion-row>
+
+  <ion-row lass="ion-pading ion-text-center">
+    <ion-col>
+      <div *ngFor="let brand of brands" class="brand-outer">
+        <ion-text class="brand-title" [innerHTML]="brand"></ion-text>
+      </div>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="ion-padding">
+    <ion-col size="6" offset="3">
+      <ion-button type="submit" (click)="openRequestedPage('dashboard')" expand="block" shape="round" color="secondary">Submit</ion-button>
+    </ion-col>
+  </ion-row>
+</ion-content>
