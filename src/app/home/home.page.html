@@ -26,7 +26,7 @@
       <ion-text color="dark">A Dealer to Dealer networking application</ion-text>
     </div>
 
-    <ion-button shape="round" color="secondary" (click)="openRequestedPage('login')">Login Now</ion-button>
+    <ion-button shape="round" color="secondary" routerDirection="forward" routerLink="/login">Login Now</ion-button>
   </div>
 
   <div class="footer-layout">
@@ -34,7 +34,7 @@
       <ion-text color="dark">Not a member?</ion-text>
     </div>
     <div>
-      <ion-text color="dark"><ion-text (click)="openRequestedPage('register')" color="secondary">Click here</ion-text>  to request membership </ion-text>
+      <ion-text color="dark"><ion-text routerDirection="forward" routerLink="/register" color="secondary">Click here</ion-text>  to request membership </ion-text>
     </div>
   </div>
 

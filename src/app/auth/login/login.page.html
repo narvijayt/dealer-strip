@@ -10,23 +10,23 @@
     <div><ion-text color="dark">Login to your existing account of dealerstrip</ion-text></div>
 
     <section>
-      <form #form="ngForm" (ngSubmit)="doLogin(form)">
+      <form>
         <ion-grid>
           <ion-row>
             <ion-col>
-              <ion-input ngModel required type="email" name="username" placeholder="Email"></ion-input>
+              <ion-input [(ngModel)]="postData.username" required autocomplete="off" type="email" name="username" placeholder="Email"></ion-input>
             </ion-col>
           </ion-row>
           <ion-row>
             <ion-col>
-              <ion-input ngModel required type="password" name="password" placeholder="Password"></ion-input>
+              <ion-input [(ngModel)]="postData.password" required autocomplete="off" type="password" name="password" placeholder="Password"></ion-input>
             </ion-col>
           </ion-row>
 
 
           <ion-row>
             <ion-col>
-              <ion-button type="submit" [disabled]="form.invalid" shape="round" color="secondary">Login</ion-button>
+              <ion-button (click)="loginAction()" shape="round" color="secondary">Login</ion-button>
             </ion-col>
           </ion-row>
 
@@ -36,7 +36,7 @@
 
     <div class="footer-layout">
       <div>
-        <ion-text color="dark">Don't have an account? </ion-text><ion-text (click)="openRequestedPage('register')" color="secondary">Sign Up</ion-text>
+        <ion-text color="dark">Don't have an account? </ion-text><ion-text routerDirection="forward" routerLink="/register" color="secondary">Sign Up</ion-text>
       </div>
     </div>
   </div>

@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { ModalService } from '../shared/services/modal.service';
+import { AuthConstants } from '../../../auth-constants';
+import { StorageService } from './../shared/services/storage.service';
 
 @Component({
   selector: 'app-search',
@@ -17,8 +21,16 @@ export class SearchPage implements OnInit {
     {ID:6},
   ];
   constructor(
-    private _modalService: ModalService
-  ) { }
+    public router: Router,
+    private _modalService: ModalService,
+    private storageService: StorageService,
+  ) { 
+    this.storageService.get(AuthConstants.AUTH).then( user => {
+      if(!user){
+        this.router.navigate(['/login']);
+      }
+    });
+  }
 
   openVehicleForm(): void {
     this._modalService.openVehicleForm();

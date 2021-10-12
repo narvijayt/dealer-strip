@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ModalService } from './services/modal.service';
+import { AuthService } from './services/auth.service';
+import { HttpService } from './services/http.service';
+import { StorageService } from './services/storage.service';
+import { ToastService } from './services/toast.service';
 import { IonicModule } from '@ionic/angular';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -11,7 +15,7 @@ import { VehicleModalComponent } from './components/vehicle-modal/vehicle-modal.
 @NgModule({
   declarations: [ModalComponent, VehicleModalComponent],
   entryComponents: [ModalComponent, VehicleModalComponent],
-  providers: [ModalService],
+  providers: [ModalService, AuthService, HttpService, StorageService, ToastService],
   imports: [
     CommonModule,
     IonicModule,

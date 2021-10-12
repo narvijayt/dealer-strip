@@ -14,43 +14,48 @@
       <ion-grid>
         <ion-row>
           <ion-col>
-            <ion-input type="text" name="business_name" placeholder="Business Name"></ion-input>
+            <ion-input [(ngModel)]="postData.business_name" required type="text" autocomplete="off" name="business_name" placeholder="Business Name"></ion-input>
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col>
-            <ion-input type="text" name="user_name" placeholder="Name"></ion-input>
+            <ion-input [(ngModel)]="postData.user_name" required type="text" autocomplete="off" name="username" placeholder="Name"></ion-input>
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col>
-            <ion-input type="email" name="user_email" placeholder="Email"></ion-input>
+            <ion-input [(ngModel)]="postData.user_email" required type="email" autocomplete="off" name="user_email" placeholder="Email"></ion-input>
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col>
-            <ion-input type="text" name="user_phone" placeholder="Phone"></ion-input>
+            <ion-input [(ngModel)]="postData.password" required type="password" autocomplete="off" name="password" placeholder="********"></ion-input>
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col>
-            <ion-input type="text" name="city" placeholder="City"></ion-input>
+            <ion-input [(ngModel)]="postData.user_phone" required type="text" autocomplete="off" name="user_phone" placeholder="Phone"></ion-input>
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col>
-            <ion-input type="text" name="state" placeholder="State"></ion-input>
+            <ion-input [(ngModel)]="postData.city" required type="text" autocomplete="off" name="city" placeholder="City"></ion-input>
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col>
-            <ion-input type="text" name="zipcode" placeholder="Zip Code"></ion-input>
+            <ion-input [(ngModel)]="postData.state" required type="text" autocomplete="off" name="state" placeholder="State"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-input [(ngModel)]="postData.zipcode" required type="text" autocomplete="off" name="zipcode" placeholder="Zip Code"></ion-input>
           </ion-col>
         </ion-row>
 
         <ion-row>
           <ion-col>
-            <ion-button shape="round" color="secondary" (click)="openRequestedPage('brands')">Create</ion-button>
+            <ion-button shape="round" autocomplete="off" color="secondary" (click)="signAction()">Create</ion-button>
           </ion-col>
         </ion-row>
 
@@ -61,7 +66,7 @@
 
   <div class="footer-layout">
     <div>
-      <ion-text color="dark">Already have an account? </ion-text><ion-text (click)="openRequestedPage('login')" color="secondary">Login here</ion-text>
+      <ion-text color="dark">Already have an account? </ion-text><ion-text routerDirection="forward" routerLink="/login" color="secondary">Login here</ion-text>
     </div>
   </div>
 </ion-content>

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+
+import { AuthConstants } from '../../../auth-constants';
+import { StorageService } from './../shared/services/storage.service';
 import { ModalService } from '../shared/services/modal.service';
 
 @Component({
@@ -18,9 +21,16 @@ export class DashboardPage implements OnInit {
     {ID:6},
   ];
   constructor(
-    public Router: Router,
-    private _modalService: ModalService
-  ) { }
+    public router: Router,
+    private storageService: StorageService,
+    private _modalService: ModalService,
+  ) { 
+    this.storageService.get(AuthConstants.AUTH).then( user => {
+      if(!user){
+        this.router.navigate(['/login']);
+      }
+    });
+  }
   
   openVehicleForm(): void {
     this._modalService.openVehicleForm();

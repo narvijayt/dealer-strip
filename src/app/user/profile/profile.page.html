@@ -5,13 +5,13 @@
     </ion-buttons>
   
     <ion-buttons slot="end">
-      <ion-icon class="ion-padding-right" color="primary" name="ellipsis-horizontal-outline"></ion-icon>      
+      <ion-icon (click)="openActionSheetController()" class="ion-padding-right" color="primary" name="ellipsis-horizontal-outline"></ion-icon>      
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div>
+  <div *ngIf="userData">
     <ion-row class="ion-padding-horizontal">
       <ion-col class="ion-no-padding ion-text-center" size="3">
         <img src="../assets/images/user-icon.png" >
@@ -42,7 +42,7 @@
     <ion-row class="ion-padding-horizontal">
       <ion-col>
         <p>
-          <ion-text>Luxury Cars</ion-text><br/>
+          <ion-text>{{ userData.user_name }}</ion-text><br/>
           <ion-text class="ion-text-sm" color="dark">Member Since Jan 2015</ion-text>
         </p>
       </ion-col>

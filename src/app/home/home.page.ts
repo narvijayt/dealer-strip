@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { Platform, NavController } from '@ionic/angular';
+import { Router } from '@angular/router';
+
+import { AuthConstants } from '../../../auth-constants';
+import { StorageService } from './../shared/services/storage.service';
 
 @Component({
   selector: 'app-home',
@@ -9,11 +12,14 @@ import { Platform, NavController } from '@ionic/angular';
 export class HomePage {
 
   constructor(
-    private platform: Platform,
-    public navCtrl: NavController
-  ) {}
-
-  openRequestedPage(pageLink){
-    this.navCtrl.navigateForward(pageLink);
+    private storageService: StorageService,
+    public router: Router,
+  ) {
+    this.storageService.get(AuthConstants.AUTH).then( user => {
+      if(user){
+        this.router.navigate(['/dashboard']);
+      }
+    });
   }
+
 }
