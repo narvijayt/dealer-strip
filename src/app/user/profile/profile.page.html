@@ -43,7 +43,7 @@
       <ion-col>
         <p>
           <ion-text>{{ userData.user_name }}</ion-text><br/>
-          <ion-text class="ion-text-sm" color="dark">Member Since Jan 2015</ion-text>
+          <ion-text class="ion-text-sm" color="dark">Member Since <ion-datetime displayFormat="MMM YYYY" [value]="userData.created_at"></ion-datetime></ion-text>
         </p>
       </ion-col>
     </ion-row>
