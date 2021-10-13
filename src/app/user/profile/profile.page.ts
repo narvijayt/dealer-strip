@@ -48,7 +48,7 @@ export class ProfilePage implements OnInit {
 
   async openActionSheetController(){
     const actionSheet = await this.actionSheetController.create({
-      header: 'Setting',
+      // header: 'Setting',
       cssClass: 'profile-actions',
       buttons: [
         {
