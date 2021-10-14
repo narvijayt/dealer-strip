@@ -45,7 +45,7 @@
 
           <div class="full-width ion-text-start">
 
-            <form [formGroup]="basicInformationForm" #basicInformationFormRef="ngForm" novalidate *ngIf="slide === 'Vehicle Information'">
+            <form novalidate *ngIf="slide === 'Vehicle Information'">
 
               <ion-list-header class="ion-no-padding" style="min-height: auto;">
                 <ion-label class="ion-text-start" color="secondary">
@@ -57,10 +57,8 @@
               <ion-row>
                 <ion-col>
                   <ion-item lines="none">
-                    <ion-select formControlName="vehicle_make" class="select-input" placeholder="Select Make">
-                      <ion-select-option value="2021">2021</ion-select-option>
-                      <ion-select-option value="2020">2020</ion-select-option>
-                      <ion-select-option value="2019">2019</ion-select-option>
+                    <ion-select *ngIf="vehicleMake" [(ngModel)]="postData.vehicle_make_id" name="vehicle_make_id" class="select-input" placeholder="Select Make" (ionChange)="vehicleModels()">
+                      <ion-select-option *ngFor="let make of vehicleMake" [value]="make.make_id"> {{make.make_title}}</ion-select-option>
                     </ion-select>
                   </ion-item>
                   <ion-text color="danger">
@@ -75,10 +73,8 @@
               <ion-row>
                 <ion-col>
                   <ion-item lines="none">                    
-                    <ion-select formControlName="vehicle_model" class="select-input" placeholder="Select Model">
-                      <ion-select-option value="2021">2021</ion-select-option>
-                      <ion-select-option value="2020">2020</ion-select-option>
-                      <ion-select-option value="2019">2019</ion-select-option>
+                    <ion-select *ngIf="vehicleModel" [(ngModel)]="postData.vehicle_model_id" name="vehicle_model_id" class="select-input" placeholder="Select Model">
+                      <ion-select-option *ngFor="let model of vehicleModel" [value]="model.model_id"> {{model.model_title}}</ion-select-option>
                     </ion-select>
                   </ion-item>
                   <ion-text color="danger">
@@ -93,7 +89,7 @@
               <ion-row>
                 <ion-col>
                   <ion-item lines="none">
-                    <ion-select formControlName="vehicle_year" class="select-input" placeholder="Select Year">
+                    <ion-select [(ngModel)]="postData.vehicle_make_year" name="vehicle_make_year" class="select-input" placeholder="Select Year">
                       <ion-select-option value="2021">2021</ion-select-option>
                       <ion-select-option value="2020">2020</ion-select-option>
                       <ion-select-option value="2019">2019</ion-select-option>
@@ -111,7 +107,7 @@
               <ion-row>
                 <ion-col>
                   <ion-item lines="none">
-                    <ion-input type="text" placeholder="Mileage" formControlName="mileage"></ion-input>
+                    <ion-input type="text" placeholder="Mileage" [(ngModel)]="postData.vehicle_mileage" name="vehicle_mileage"></ion-input>
                   </ion-item>
                   <ion-text color="danger">
                     <span class="text-tiny"
@@ -125,10 +121,8 @@
               <ion-row>
                 <ion-col>
                   <ion-item lines="none">
-                    <ion-select formControlName="bodyStyle" class="select-input" placeholder="Body Style">
-                      <ion-select-option value="Sedan">Sedan</ion-select-option>
-                      <ion-select-option value="Hechback">Hechback</ion-select-option>
-                      <ion-select-option value="Desire">Desire</ion-select-option>
+                    <ion-select *ngIf="bodyStyles" [(ngModel)]="postData.vehicle_bodystyle_id" name="vehicle_bodystyle_id" class="select-input" placeholder="Body Style">
+                      <ion-select-option *ngFor="let body of bodyStyles" [value]="body.body_id"> {{body.body_title}}</ion-select-option>
                     </ion-select>
                   </ion-item>
                   <ion-text color="danger">
@@ -141,7 +135,7 @@
               </ion-row>
             </form>
 
-            <form [formGroup]="engineForm" #engineFormRef="ngForm" novalidate *ngIf="slide === 'Engine, Interior & Exterior'">
+            <form novalidate *ngIf="slide === 'Engine, Interior & Exterior'">
 
               <ion-list-header class="ion-no-padding" style="min-height: auto;">
                 <ion-label class="ion-text-start" color="secondary">
@@ -153,10 +147,8 @@
               <ion-row>
                 <ion-col>
                   <ion-item lines="none">
-                    <ion-select formControlName="exterior_color" class="select-input" placeholder="Exterior Color">
-                      <ion-select-option value="Red">Red</ion-select-option>
-                      <ion-select-option value="Blue">Blue</ion-select-option>
-                      <ion-select-option value="Black">Black</ion-select-option>
+                    <ion-select *ngIf="exteriorColors" [(ngModel)]="postData.exterior_color_id" name="exterior_color_id" class="select-input" placeholder="Exterior Color">
+                      <ion-select-option *ngFor="let color of exteriorColors" [value]="color.color_id"> {{color.color_title}}</ion-select-option>
                     </ion-select>
                   </ion-item>
                   <ion-text color="danger">
@@ -171,10 +163,8 @@
               <ion-row>
                 <ion-col>
                   <ion-item lines="none">
-                    <ion-select formControlName="interior_color" class="select-input" placeholder="Interior Color">
-                      <ion-select-option value="White">White</ion-select-option>
-                      <ion-select-option value="Grey">Grey</ion-select-option>
-                      <ion-select-option value="Black">Black</ion-select-option>
+                    <ion-select *ngIf="interiorColors" [(ngModel)]="postData.interior_color_id" name="interior_color_id" class="select-input" placeholder="Interior Color">
+                      <ion-select-option *ngFor="let color of interiorColors" [value]="color.color_id"> {{color.color_title}}</ion-select-option>
                     </ion-select>
                   </ion-item>
                   <ion-text color="danger">
@@ -189,10 +179,8 @@
               <ion-row>
                 <ion-col>
                   <ion-item lines="none">
-                    <ion-select formControlName="vehicle_cylinder" class="select-input" placeholder="Cylinder/ Elastic">
-                      <ion-select-option value="V6">V6</ion-select-option>
-                      <ion-select-option value="V5">V5</ion-select-option>
-                      <ion-select-option value="V9">V9</ion-select-option>
+                    <ion-select *ngIf="vehicleTypes" [(ngModel)]="postData.vehicle_type_id" name="vehicle_type_id" class="select-input" placeholder="Cylinder/ Elastic">
+                      <ion-select-option *ngFor="let type of vehicleTypes" [value]="type.type_id"> {{type.type_title}}</ion-select-option>
                     </ion-select>
                   </ion-item>
                   <ion-text color="danger">
@@ -207,9 +195,8 @@
               <ion-row>
                 <ion-col>
                   <ion-item lines="none">
-                    <ion-select formControlName="transmission" class="select-input" placeholder="Transmission">
-                      <ion-select-option value="Manual">Manual</ion-select-option>
-                      <ion-select-option value="Automatic">Automatic</ion-select-option>
+                    <ion-select *ngIf="transmissions" [(ngModel)]="postData.vehicle_transmission_id" name="vehicle_transmission_id" class="select-input" placeholder="Transmission">
+                      <ion-select-option *ngFor="let transmission of transmissions" [value]="transmission.transmission_id"> {{transmission.transmission_title}}</ion-select-option>
                     </ion-select>
                   </ion-item>
                   <ion-text color="danger">
@@ -224,7 +211,7 @@
               <ion-row>
                 <ion-col>
                   <ion-item lines="none">
-                    <ion-select formControlName="vehicle_keys" class="select-input" placeholder="Number of Keys">
+                    <ion-select [(ngModel)]="postData.vehicle_keys" name="vehicle_keys" class="select-input" placeholder="Number of Keys">
                       <ion-select-option value="2">2</ion-select-option>
                       <ion-select-option value="3">3</ion-select-option>
                       <ion-select-option value="4">4</ion-select-option>
@@ -342,7 +329,7 @@
             </div>
             -->
 
-            <form [formGroup]="pricingForm" #pricingFormRef="ngForm" novalidate *ngIf="slide === 'Pricing & Other Info'">
+            <form novalidate *ngIf="slide === 'Pricing & Other Info'">
 
 
               <ion-list-header class="ion-no-padding" style="min-height: auto;">
@@ -355,7 +342,7 @@
               <ion-row>
                 <ion-col>
                   <ion-item lines="none">
-                    <ion-input type="text" placeholder="Retail Price" formControlName="retail_price"></ion-input>
+                    <ion-input type="text" placeholder="Retail Price" name="retail_price" [(ngModel)]="postData.retail_price"></ion-input>
                   </ion-item>
                   <ion-text color="danger">
                     <span class="text-tiny"
@@ -370,7 +357,7 @@
                 <ion-col>
                   <ion-item lines="none">
                     <ion-label position="stacked">Tool Kit</ion-label>
-                    <ion-toggle checked formControlName="toolkit"></ion-toggle>
+                    <ion-toggle checked [(ngModel)]="postData.vehicle_toolkit" name="vehicle_toolkit" value="1"></ion-toggle>
                   </ion-item>
                 </ion-col>
               </ion-row>
@@ -379,7 +366,7 @@
                 <ion-col>
                   <ion-item lines="none">
                     <ion-label position="stacked">Any previous Damage to vehicle</ion-label>
-                    <ion-toggle formControlName="damaged_vehicle"></ion-toggle>
+                    <ion-toggle [(ngModel)]="postData.vehicle_damaged" name="vehicle_damaged" value="1"></ion-toggle>
                   </ion-item>
                 </ion-col>
               </ion-row>
@@ -388,7 +375,7 @@
                 <ion-col>
                   <ion-item lines="none">
                     <ion-label position="stacked">Call for Price</ion-label>
-                    <ion-toggle checked formControlName="price_call"></ion-toggle>
+                    <ion-toggle checked [(ngModel)]="postData.call_for_price" name="call_for_price" value="1"></ion-toggle>
                   </ion-item>
                 </ion-col>
               </ion-row>
@@ -397,7 +384,15 @@
                 <ion-col>
                   <ion-item lines="none">
                     <ion-label position="stacked">Owners Manual Present</ion-label>
-                    <ion-toggle checked formControlName="owner_manual"></ion-toggle>
+                    <ion-toggle checked [(ngModel)]="postData.vehicle_owner_manual" name="vehicle_owner_manual" value="1"></ion-toggle>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+
+              <ion-row>
+                <ion-col>
+                  <ion-item lines="none">
+                    <ion-input type="text" placeholder="VIN" name="vehicle_vin" [(ngModel)]="postData.vehicle_vin"></ion-input>
                   </ion-item>
                 </ion-col>
               </ion-row>
