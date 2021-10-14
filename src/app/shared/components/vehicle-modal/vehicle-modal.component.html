@@ -357,7 +357,7 @@
                 <ion-col>
                   <ion-item lines="none">
                     <ion-label position="stacked">Tool Kit</ion-label>
-                    <ion-toggle checked [(ngModel)]="postData.vehicle_toolkit" name="vehicle_toolkit" value="1"></ion-toggle>
+                    <ion-toggle checked [(ngModel)]="toolkit_flag" name="toolkit_flag" value="1" (ionChange)="toggleOption('toolkit_flag')"></ion-toggle>
                   </ion-item>
                 </ion-col>
               </ion-row>
@@ -366,7 +366,7 @@
                 <ion-col>
                   <ion-item lines="none">
                     <ion-label position="stacked">Any previous Damage to vehicle</ion-label>
-                    <ion-toggle [(ngModel)]="postData.vehicle_damaged" name="vehicle_damaged" value="1"></ion-toggle>
+                    <ion-toggle [(ngModel)]="damaged_flag" name="damaged_flag" value="1" (ionChange)="toggleOption('damaged_flag')"></ion-toggle>
                   </ion-item>
                 </ion-col>
               </ion-row>
@@ -375,7 +375,7 @@
                 <ion-col>
                   <ion-item lines="none">
                     <ion-label position="stacked">Call for Price</ion-label>
-                    <ion-toggle checked [(ngModel)]="postData.call_for_price" name="call_for_price" value="1"></ion-toggle>
+                    <ion-toggle checked [(ngModel)]="call_flag" name="call_flag" value="1" (ionChange)="toggleOption('call_flag')"></ion-toggle>
                   </ion-item>
                 </ion-col>
               </ion-row>
@@ -384,7 +384,7 @@
                 <ion-col>
                   <ion-item lines="none">
                     <ion-label position="stacked">Owners Manual Present</ion-label>
-                    <ion-toggle checked [(ngModel)]="postData.vehicle_owner_manual" name="vehicle_owner_manual" value="1"></ion-toggle>
+                    <ion-toggle checked [(ngModel)]="manual_flag" name="manual_flag" value="1" (ionChange)="toggleOption('manual_flag')"></ion-toggle>
                   </ion-item>
                 </ion-col>
               </ion-row>
@@ -408,13 +408,11 @@
 <ion-footer>
   <ion-toolbar>
     <div class="full-width flex align-items-center justify-content-space-between">
-      <ion-button style="width: 120px;" strong shape="round" color="dark"
-        [style.visibility]="(isBeginning) ? 'hidden' : ''" (click)="onBackButtonTouched()">
+      <ion-button strong shape="round" color="dark" [style.visibility]="(isBeginning) ? 'hidden' : ''" (click)="onBackButtonTouched()">
         <span>Back</span>
         <ion-icon slot="start" name="chevron-back"></ion-icon>
       </ion-button>
-      <ion-button style="width: 120px;" strong shape="round" color="secondary"
-        (click)="onNextButtonTouched()" >
+      <ion-button [class]="(isBeginning) ? 'primary-button' : 'primary-button step-button'" strong shape="round" color="secondary" (click)="onNextButtonTouched()" >
         <span>{{ isEnd ? 'Submit' : 'Next' }}</span>
       </ion-button>
     </div>

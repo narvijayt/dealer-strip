@@ -33,7 +33,7 @@ export class VehicleModalComponent implements OnInit {
   public isBeginning: boolean = true;
   public isEnd: boolean = false;
 
-  postData = {
+  postData: any = {
     user_id: '',
     vehicle_make_id: '',
     vehicle_model_id: '',
@@ -52,6 +52,11 @@ export class VehicleModalComponent implements OnInit {
     vehicle_owner_manual: '',
     vehicle_vin: '',
   };
+  public toolkit_flag:boolean;
+  public damaged_flag:boolean;
+  public call_flag:boolean;
+  public manual_flag:boolean;
+
   public vehicleMake:any;
   public vehicleModel:any;
   public bodyStyles:any;
@@ -77,6 +82,10 @@ export class VehicleModalComponent implements OnInit {
           this.postData.user_id = user.ID;
         }
       });
+      this.toolkit_flag = false;
+      this.damaged_flag = false;
+      this.call_flag = false;
+      this.manual_flag = false;
   }
 
   ngOnInit() {
@@ -140,6 +149,22 @@ export class VehicleModalComponent implements OnInit {
     })
   }
 
+  toggleOption(toggleType){
+    if(toggleType == "toolkit_flag"){
+      this.toolkit_flag;
+      // console.log("toolkit_flag Toggle ", this.toolkit_flag);
+    }else if(toggleType == "damaged_flag"){
+      this.damaged_flag;
+      // console.log("damaged_flag Toggle ", this.damaged_flag);
+    }else if(toggleType == "call_flag"){
+      this.call_flag;
+      // console.log("call_flag Toggle ", this.call_flag);
+    }else if(toggleType == "manual_flag"){
+      this.manual_flag;
+      // console.log("manual_flag Toggle ", this.manual_flag);
+    }
+  }
+
   async onSlidesChanged() {
     const index = await this.ionSlides.getActiveIndex();
     this.currentSlide = this.slides[index];
@@ -165,9 +190,16 @@ export class VehicleModalComponent implements OnInit {
         this.ionSlides.slideNext();
         this.ionContent.scrollToTop();
     } else if (this.currentSlide === 'Pricing & Other Info') {
-      console.log(this.postData);
-      /*this.VehicleService.insertVehicle(this.postData).subscribe((result) => {
-        console.log(result);
+      
+      // console.log(this.toolkit_flag);
+      this.postData.vehicle_toolkit = (this.toolkit_flag === false) ? 0 : 1;
+      this.postData.vehicle_damaged = (this.damaged_flag === false) ? 0 : 1;
+      this.postData.call_for_price = (this.call_flag === false) ? 0 : 1;
+      this.postData.vehicle_owner_manual = (this.manual_flag === false) ? 0 : 1;
+      
+
+      this.VehicleService.insertVehicle(this.postData).subscribe((result) => {
+        // console.log(result);
         if(result.data){          
           this.dismiss();
           this.navCtrl.navigateRoot('/car-details/'+result.data, {
@@ -183,7 +215,7 @@ export class VehicleModalComponent implements OnInit {
         }else{
           this.toastService.presentToast(error.message);
         }
-      });*/
+      });
     }  else {
 
       this.ionSlides.slideNext();

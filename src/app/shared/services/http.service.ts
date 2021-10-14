@@ -23,6 +23,7 @@ export class HttpService {
 
   get(serviceName: string) {
     let url = environment.apiUrl + serviceName;
+    console.log("Endpoint URL ", url);
     return this.http.get(url, this.httpOptions);
   }
 

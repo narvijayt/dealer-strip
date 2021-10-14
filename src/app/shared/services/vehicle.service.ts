@@ -23,6 +23,10 @@ export class VehicleService {
     }
   }
 
+  getVehicleByID(postData: any): Observable<any> {
+    return this.httpService.get('vehicles/'+postData);
+  }
+
   insertVehicle(postData: any): Observable<any> {
     return this.httpService.post('vehicles', postData);
   }
