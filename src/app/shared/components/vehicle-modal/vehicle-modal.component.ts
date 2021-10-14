@@ -6,6 +6,12 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 // import { Plugins, CameraResultType, CameraSource } from '@capacitor/core';
 // const { Camera } = Plugins;
 
+import { Router } from '@angular/router';
+import { VehicleService } from '../../services/vehicle.service';
+import { AuthConstants } from '../../../../../auth-constants';
+import { StorageService } from '../../../shared/services/storage.service';
+import { ToastService } from '../../../shared/services/toast.service';
+
 @Component({
   selector: 'app-vehicle-modal',
   templateUrl: './vehicle-modal.component.html',
@@ -15,37 +21,8 @@ export class VehicleModalComponent implements OnInit {
 
   @ViewChild(IonContent, { static: true }) ionContent: IonContent;
   @ViewChild(IonSlides, { static: false }) ionSlides: IonSlides;
-  @ViewChild('basicInformationFormRef', { static: false }) basicInformationFormRef: NgForm;
-  @ViewChild('engineFormRef', { static: false }) engineFormRef: NgForm;
-  @ViewChild('pricingFormRef', { static: false }) pricingFormRef: NgForm;
-
-  public order: any = {
-    id: 1,
-    items: [{
-      id: 1,
-      name: 'Denim T-Shirt',
-      amount: 15.00,
-    }, {
-      id: 1,
-      name: 'Denim Pants',
-      amount: 5.00,
-    }, {
-      id: 1,
-      name: 'Black T-Shirt',
-      amount: 5.00,
-    }],
-    subtotal: 25.00,
-    shippingFee: 5.00,
-    total: 30.00, 
-  };
-
-  public basicInformationForm: FormGroup;
-  public pricingForm: FormGroup;
-  public engineForm: FormGroup;
 
   public imagePath: SafeResourceUrl;
-
-
   public slidesOpts = {
     allowTouchMove: false,
     autoHeight: true,
@@ -56,67 +33,50 @@ export class VehicleModalComponent implements OnInit {
   public isBeginning: boolean = true;
   public isEnd: boolean = false;
 
-  get basicVehicleMake(): AbstractControl {
-    return this.basicInformationForm.get('vehicle_make');
-  }
+  postData = {
+    user_id: '',
+    vehicle_make_id: '',
+    vehicle_model_id: '',
+    vehicle_make_year: '',
+    vehicle_mileage: '',
+    vehicle_bodystyle_id: '',
+    exterior_color_id: '',
+    interior_color_id: '',
+    vehicle_type_id: '',
+    vehicle_transmission_id: '',
+    vehicle_keys: '',
+    retail_price: '',
+    vehicle_toolkit:'',
+    vehicle_damaged: '',
+    call_for_price: '',
+    vehicle_owner_manual: '',
+    vehicle_vin: '',
+  };
+  public vehicleMake:any;
+  public vehicleModel:any;
+  public bodyStyles:any;
+  public interiorColors:any;
+  public exteriorColors:any;
+  public vehicleTypes:any;
+  public transmissions:any;
 
-  get basicVehicleModel(): AbstractControl {
-    return this.basicInformationForm.get('vehicle_model');
-  }
-
-  get vehicleYear(): AbstractControl {
-    return this.basicInformationForm.get('vehicle_year');
-  }
-
-  get vehicleMileage(): AbstractControl {
-    return this.basicInformationForm.get('mileage');
-  }
-
-  get vehicleBodyStyle(): AbstractControl {
-    return this.basicInformationForm.get('bodyStyle');
-  }
-
-  /*get billingState(): AbstractControl {
-    return this.basicInformationForm.get('state');
-  }
-
-  get billingZip(): AbstractControl {
-    return this.basicInformationForm.get('zip');
-  }
-
-  get billingCountryCode(): AbstractControl {
-    return this.basicInformationForm.get('country_code');
-  }*/
-
-  get engineExteriorColor(): AbstractControl {
-    return this.engineForm.get('exterior_color');
-  }
-  
-  get engineInteriorColor(): AbstractControl {
-    return this.engineForm.get('interior_color');
-  }
-
-  get engineCylinder(): AbstractControl {
-    return this.engineForm.get('vehicle_cylinder');
-  }
-
-  get engineTransmission(): AbstractControl {
-    return this.engineForm.get('transmission');
-  }
-  
-  get engineVehicleKeys(): AbstractControl {
-    return this.engineForm.get('vehicle_keys');
-  }
-
-  get priceRetailPrice(): AbstractControl {
-    return this.pricingForm.get('retail_price');
-  }
-
-  constructor(private actionSheetCtrl: ActionSheetController,
+  constructor(
+    public router: Router,
+    private actionSheetCtrl: ActionSheetController,
     private navCtrl: NavController,
     private sanitizer: DomSanitizer,
-    public modalController : ModalController
+    public modalController : ModalController,
+    public VehicleService: VehicleService,
+    private storageService: StorageService,
+    private toastService: ToastService
     ) {
+      this.storageService.get(AuthConstants.AUTH).then( user => {
+        if(!user){
+          this.router.navigate(['/login']);
+        }else{
+          this.postData.user_id = user.ID;
+        }
+      });
   }
 
   ngOnInit() {
@@ -135,29 +95,49 @@ export class VehicleModalComponent implements OnInit {
   }
 
   setupForm() {
-    this.basicInformationForm = new FormGroup({
-      vehicle_make: new FormControl('2021', Validators.required),
-      vehicle_model: new FormControl('2020', Validators.required),
-      vehicle_year: new FormControl('2019', Validators.required),
-      mileage: new FormControl('20', Validators.required),
-      bodyStyle: new FormControl('Sedan', Validators.required),
-    });
+    this.VehicleService.getVehiclesMakeList().subscribe((result) => {
+      if(result.data)
+        this.vehicleMake = result.data;
+    })
 
-    this.engineForm = new FormGroup({
-      exterior_color: new FormControl('Black', Validators.required),
-      interior_color: new FormControl('White', Validators.required),
-      vehicle_cylinder: new FormControl('V6', Validators.required),
-      transmission: new FormControl('Automatic', Validators.required),
-      vehicle_keys: new FormControl('2', Validators.required),
-    });
+    this.VehicleService.getVehiclesBodyStyleList().subscribe((result) => {
+      if(result.data)
+        this.bodyStyles = result.data;
+    })
 
-    this.pricingForm = new FormGroup({
-      retail_price: new FormControl('', Validators.required),
-      toolkit:  new FormControl(''),
-      damaged_vehicle:  new FormControl(''),
-      price_call:  new FormControl(''),
-      owner_manual:  new FormControl(''),
-    });
+    let exteriorParams = new URLSearchParams();
+    exteriorParams.append('color_type', 'Exterior');
+    this.VehicleService.getVehiclesColorsList(exteriorParams).subscribe((result) => {
+      if(result.data)
+        this.exteriorColors = result.data;
+    })
+
+    let interiorParams = new URLSearchParams();
+    interiorParams.append('color_type', 'Interior');
+    this.VehicleService.getVehiclesColorsList(interiorParams).subscribe((result) => {
+      if(result.data)
+        this.interiorColors = result.data;
+    })
+    
+    this.VehicleService.getVehiclesTypesList().subscribe((result) => {
+      if(result.data)
+        this.vehicleTypes = result.data;
+    })
+    
+    this.VehicleService.getTransmissionsList().subscribe((result) => {
+      if(result.data)
+        this.transmissions = result.data;
+    })
+  }
+
+  vehicleModels(){
+    this.postData.vehicle_model_id = null;
+    let modelParams = new URLSearchParams();
+    modelParams.append('model_make_id', this.postData.vehicle_make_id);
+    this.VehicleService.getVehiclesModelList(modelParams).subscribe((result) => {
+      if(result.data)
+        this.vehicleModel = result.data;
+    })
   }
 
   async onSlidesChanged() {
@@ -179,35 +159,31 @@ export class VehicleModalComponent implements OnInit {
   onNextButtonTouched() {
     
     if (this.currentSlide === 'Vehicle Information') {
-
-      this.basicInformationFormRef.onSubmit(undefined);
-
-      if (this.basicInformationForm.valid) {
         this.ionSlides.slideNext();
         this.ionContent.scrollToTop();
-      }
-
-    } else if (this.currentSlide === 'Engine, Interior & Exterior') {
-      
-      this.engineFormRef.onSubmit(undefined);
-
-      if (this.engineForm.valid) {
+    } else if (this.currentSlide === 'Engine, Interior & Exterior') {      
         this.ionSlides.slideNext();
         this.ionContent.scrollToTop();
-      }
-
     } else if (this.currentSlide === 'Pricing & Other Info') {
-
-      this.pricingFormRef.onSubmit(undefined);
-
-      if (this.pricingForm.valid) {
-        this.dismiss();
-        this.navCtrl.navigateRoot('profile', {
-          animated: true,
-          animationDirection: 'forward',
-        });
-      }
-
+      console.log(this.postData);
+      /*this.VehicleService.insertVehicle(this.postData).subscribe((result) => {
+        console.log(result);
+        if(result.data){          
+          this.dismiss();
+          this.navCtrl.navigateRoot('/car-details/'+result.data, {
+            animated: true,
+            animationDirection: 'forward',
+          });
+        }else{
+          this.toastService.presentToast(result.message);
+        }          
+      },(error: any) => {
+        if(error.error){
+          this.toastService.presentToast(error.error.message);
+        }else{
+          this.toastService.presentToast(error.message);
+        }
+      });*/
     }  else {
 
       this.ionSlides.slideNext();
@@ -215,14 +191,14 @@ export class VehicleModalComponent implements OnInit {
     }
   }
 
-  convertBlobToBase64 = (blob: Blob) => new Promise((resolve, reject) => {
+  /*convertBlobToBase64 = (blob: Blob) => new Promise((resolve, reject) => {
     const reader = new FileReader;
     reader.onerror = reject;
     reader.onload = () => resolve(reader.result);
     reader.readAsDataURL(blob);
   });
 
-  /*async chooseImage(source: CameraSource) {
+  async chooseImage(source: CameraSource) {
 
     try {
 
