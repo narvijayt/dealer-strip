@@ -5,68 +5,94 @@
 </ion-header> -->
 
 <ion-content [fullscreen]="true">
+  <div class="register">
   <div id="container">
-    
-    <div><ion-text color="primary">Let's get started!</ion-text></div>
-    <div><ion-text color="dark">Create and account</ion-text></div>
-
+    <ion-col class="ion-padding-bottom">
+   <div><ion-text color="primary"><h1>Let's get started!</h1></ion-text></div>
+    <div><ion-text color="dark"><p>Create and account</p></ion-text></div>
+  </ion-col>
     <section>
       <ion-grid>
         <ion-row>
           <ion-col>
-            <ion-input [(ngModel)]="postData.business_name" required type="text" autocomplete="off" name="business_name" placeholder="Business Name"></ion-input>
+            <div class="input-icon">
+              <ion-icon name="briefcase-outline" color="dark"></ion-icon>
+              </div>
+            <ion-input class="pl" [(ngModel)]="postData.business_name" required type="text" autocomplete="off" name="business_name" placeholder="Business Name"></ion-input>
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col>
-            <ion-input [(ngModel)]="postData.user_name" required type="text" autocomplete="off" name="username" placeholder="Name"></ion-input>
+            <div class="input-icon">
+              <ion-icon name="person-outline" color="dark"></ion-icon>
+              </div>
+            <ion-input class="pl" [(ngModel)]="postData.user_name" required type="text" autocomplete="off" name="username" placeholder="Name"></ion-input>
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col>
-            <ion-input [(ngModel)]="postData.user_email" required type="email" autocomplete="off" name="user_email" placeholder="Email"></ion-input>
+            <div class="input-icon">
+              <ion-icon name="mail-outline" color="dark"></ion-icon>
+              </div>
+            <ion-input class="pl" [(ngModel)]="postData.user_email" required type="email" autocomplete="off" name="user_email" placeholder="Email"></ion-input>
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col>
-            <ion-input [(ngModel)]="postData.password" required type="password" autocomplete="off" name="password" placeholder="********"></ion-input>
+            <div class="input-icon">
+              <ion-icon name="lock-closed-outline" color="dark"></ion-icon>
+              </div>
+            <ion-input class="pl" [(ngModel)]="postData.password" required type="password" autocomplete="off" name="password" placeholder="********"></ion-input>
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col>
-            <ion-input [(ngModel)]="postData.user_phone" required type="text" autocomplete="off" name="user_phone" placeholder="Phone"></ion-input>
+            <div class="input-icon">
+              <ion-icon name="phone-portrait-outline" color="dark"></ion-icon>
+            </div>
+            <ion-input class="pl" [(ngModel)]="postData.user_phone" required type="text" autocomplete="off" name="user_phone" placeholder="Phone"></ion-input>
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col>
-            <ion-input [(ngModel)]="postData.city" required type="text" autocomplete="off" name="city" placeholder="City"></ion-input>
+            <div class="input-icon">
+              <ion-icon name="location-outline" color="dark"></ion-icon>
+            </div>
+            <ion-input class="pl" [(ngModel)]="postData.city" required type="text" autocomplete="off" name="city" placeholder="City"></ion-input>
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col>
-            <ion-input [(ngModel)]="postData.state" required type="text" autocomplete="off" name="state" placeholder="State"></ion-input>
+            <div class="input-icon">
+              <ion-icon name="location-outline" color="dark"></ion-icon>
+            </div>
+            <ion-input class="pl" [(ngModel)]="postData.state" required type="text" autocomplete="off" name="state" placeholder="State"></ion-input>
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col>
-            <ion-input [(ngModel)]="postData.zipcode" required type="text" autocomplete="off" name="zipcode" placeholder="Zip Code"></ion-input>
+            <div class="input-icon">
+              <ion-icon name="lock-closed-outline" color="dark"></ion-icon>
+            </div>
+            <ion-input class="pl" [(ngModel)]="postData.zipcode" required type="text" autocomplete="off" name="zipcode" placeholder="Zip Code"></ion-input>
           </ion-col>
         </ion-row>
 
         <ion-row>
           <ion-col>
-            <ion-button shape="round" autocomplete="off" color="secondary" (click)="signAction()">Create</ion-button>
+            <ion-button class="primary-button" shape="round" expand="full" autocomplete="off" (click)="signAction()">Create</ion-button>
           </ion-col>
         </ion-row>
 
       </ion-grid>
     </section>
   </div>
+</div>
 
 
   <div class="footer-layout">
     <div>
-      <ion-text color="dark">Already have an account? </ion-text><ion-text routerDirection="forward" routerLink="/login" color="secondary">Login here</ion-text>
+      <p><ion-text color="dark">Already have an account? </ion-text><ion-text routerDirection="forward" routerLink="/login" color="secondary">Login here</ion-text></p>
     </div>
   </div>
 </ion-content>

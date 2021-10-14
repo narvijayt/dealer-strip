@@ -12,29 +12,34 @@
       <ion-title size="large">Blank</ion-title>
     </ion-toolbar>
   </ion-header> -->
-
+<div class="home">
   <div id="container">
-    <img class="logo" src="../assets/icon/icon.png">
-    
     <div>
-      <ion-text color="primary">A new way to</ion-text>
-    </div>
-    <div>
-      <ion-text color="primary"><ion-text color="secondary">BUY</ion-text> and <ion-text color="light">SELL</ion-text> cars</ion-text>
-    </div>
-    <div>
-      <ion-text color="dark">A Dealer to Dealer networking application</ion-text>
-    </div>
-
-    <ion-button shape="round" color="secondary" routerDirection="forward" routerLink="/login">Login Now</ion-button>
+    <img class="logo" src="../assets/icon/logo.png">
   </div>
+    <ion-col class="ion-margin-top">
+    <div>
+  <ion-text color="primary"><h1 class="custom-font mt-t">A new way to</h1></ion-text>
+    </div>
+  <div>
+      <ion-text color="primary"><h1><ion-text color="secondary">BUY</ion-text> & <ion-text color="light">SELL</ion-text> cars</h1></ion-text>
+    </div>
+    <div>
+      <ion-text color="dark"><p class="pt">A Dealer to Dealer networking application</p></ion-text>
+    </div>
+  </ion-col>
+    
+
+    <ion-button class="primary-button" shape="round" expand="full" routerDirection="forward" routerLink="/login">Login Now</ion-button>
+  </div>
+</div>
 
   <div class="footer-layout">
     <div>
-      <ion-text color="dark">Not a member?</ion-text>
+      <ion-text color="dark p-0"><p>Not a member?</p></ion-text>
     </div>
     <div>
-      <ion-text color="dark"><ion-text routerDirection="forward" routerLink="/register" color="secondary">Click here</ion-text>  to request membership </ion-text>
+      <p class="p-0"><ion-text color="dark"><ion-text routerDirection="forward" routerLink="/register" color="secondary">Click here</ion-text>  to request membership </ion-text></p>
     </div>
   </div>
 

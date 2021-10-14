@@ -1,25 +1,36 @@
 <ion-header>
   <ion-row class="bg-dark ion-padding-horizontal border-primary">
-    <ion-col size="9">
-      <img src="../assets/icon/sm-icon.png"> <ion-text class="ion-text-uppercase" color="primary">Dealer Strip</ion-text>
+    <ion-col class="header-logo" size="9">
+    
+      <img src="../assets/icon/sm-icon.png"> 
+      <ion-text class="ion-text-uppercase" color="primary"><h6>Dealer Strip</h6></ion-text>
+    
     </ion-col>
-    <ion-col class="ion-text-end">
+    <ion-col class="ion-text-end chat-icon">
       <ion-icon color="primary" name="chatbubble-ellipses-outline"></ion-icon>
+      <div class="chat-number bg-gradient">
+        <p class="text-color fs-6">23</p>
+      </div>
     </ion-col>
   </ion-row>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   
-  <div class="bg-grey content-container">
+  <div class="bg-grey content-container dashboard">
     <ion-card *ngFor="let item of items" class="card ion-no-margin ion-no-radius">        
       <ion-card-header class="ion-no-padding ion-padding-horizontal">
         <ion-row>
-          <ion-col size="9">
-            <img src="../assets/icon/sm-icon.png"> <ion-text class="ion-text-uppercase">Luxury Cars</ion-text>
+          
+          <ion-col class="avatar-box ion-d-flex" size="9">
+            <div class="avatar-img">
+            <img src="../assets/icon/sm-icon.png"> 
+            </div>
+            <ion-text class="ion-text-uppercase">Luxury Cars</ion-text>
+          
           </ion-col>
-          <ion-col class="ion-text-end">
-            <ion-icon name="ellipsis-horizontal-outline"></ion-icon>
+          <ion-col class="ion-text-end ellipsis-icon">
+            <ion-icon name="ellipsis-horizontal-outline" class="color-black"></ion-icon>
           </ion-col>
         </ion-row>
       </ion-card-header>
@@ -27,29 +38,35 @@
       <ion-card-content class="ion-no-padding">
         <ion-row>
           <ion-col class="ion-no-padding">
+            <div class="bookmark-box">
+              <span class="bookmark-text">Gotta Go</span>
+              <div class="bookmark-icon">
+              <ion-icon name="bookmark"></ion-icon>
+            </div>
+            </div>
             <img [routerLink]="['/','car-details', item.ID]" src="../assets/images/car-lg.png">
           </ion-col>
         </ion-row>
-        <ion-row class="ion-padding-horizontal">
-          <ion-col class="ion-no-padding" size="8">
-            <ion-card-title>$110,500</ion-card-title>
+        <ion-row class="ion-padding-horizontal card-box">
+          <ion-col class="ion-no-padding" size="7">
+            <ion-card-title class="color-black"><h2>$110,500</h2></ion-card-title>
           </ion-col>
-          <ion-col class="ion-no-padding ion-text-end" size="4">
-            <ion-card-subtitle>2012 - 52,300 km</ion-card-subtitle>
+          <ion-col class="ion-no-padding ion-text-end" size="5">
+            <ion-card-subtitle class="color-black"><p>2012 - 52,300 km</p></ion-card-subtitle>
           </ion-col>
         </ion-row>
 
         <ion-row class="ion-padding-horizontal">
           <ion-col class="ion-no-padding">
-            <ion-card-subtitle>Dodge Challenge SRT</ion-card-subtitle>
+            <ion-card-subtitle><h5>Dodge Challenge SRT</h5></ion-card-subtitle>
           </ion-col>
         </ion-row>
         <ion-row class="ion-padding-horizontal ion-padding-bottom">
-          <ion-col class="ion-no-padding" size="8">
-            <ion-icon name="location-outline"></ion-icon> 5600 W Sahara Ave
+          <ion-col class="ion-no-padding card-location" size="8">
+            <ion-icon name="location-outline" color="color-black"></ion-icon> <p>5600 W Sahara Ave</p>
           </ion-col>
           <ion-col class="ion-no-padding ion-text-end" size="4">
-            <ion-text>03 Apr</ion-text>
+            <ion-text><p>03 Apr</p></ion-text>
           </ion-col>
         </ion-row>
         
@@ -71,7 +88,7 @@
           <ion-icon name="search-outline"></ion-icon>
           <ion-label >Search</ion-label>
         </ion-tab-button>
-        <ion-tab-button (click)="openVehicleForm()">
+        <ion-tab-button class="vehicle-icon" (click)="openVehicleForm()">
           <ion-icon name="add-outline"></ion-icon>
           <ion-label >New Vehicle</ion-label>
         </ion-tab-button>

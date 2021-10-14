@@ -5,28 +5,36 @@
 </ion-header> -->
 
 <ion-content [fullscreen]="true">
+  <div class="login-screen">
   <div id="container">
-    <div><ion-text color="primary">Welcome Back!</ion-text></div>
-    <div><ion-text color="dark">Login to your existing account of dealerstrip</ion-text></div>
-
+    <ion-col class="ion-padding-bottom">
+    <div><ion-text color="primary"><h1>Welcome Back!</h1></ion-text></div>
+   <div><ion-text color="dark"><p>Login to your existing account of dealerstrip</p></ion-text></div>
+  </ion-col>
     <section>
       <form>
         <ion-grid>
           <ion-row>
             <ion-col>
-              <ion-input [(ngModel)]="postData.username" required autocomplete="off" type="email" name="username" placeholder="Email"></ion-input>
+              <div class="input-icon">
+                <ion-icon name="person-outline" color="dark"></ion-icon>
+              </div>
+              <ion-input class="pl" [(ngModel)]="postData.username" required autocomplete="off" type="email" name="username" placeholder="Email"></ion-input>
             </ion-col>
           </ion-row>
           <ion-row>
             <ion-col>
-              <ion-input [(ngModel)]="postData.password" required autocomplete="off" type="password" name="password" placeholder="Password"></ion-input>
+              <div class="input-icon">
+                <ion-icon name="lock-closed-outline" color="dark"></ion-icon>
+                </div>
+              <ion-input class="pl" [(ngModel)]="postData.password" required autocomplete="off" type="password" name="password" placeholder="Password"></ion-input>
             </ion-col>
           </ion-row>
 
 
           <ion-row>
             <ion-col>
-              <ion-button (click)="loginAction()" shape="round" color="secondary">Login</ion-button>
+              <ion-button (click)="loginAction()" class="primary-button" shape="round" expand="full">Login</ion-button>
             </ion-col>
           </ion-row>
 
@@ -36,8 +44,9 @@
 
     <div class="footer-layout">
       <div>
-        <ion-text color="dark">Don't have an account? </ion-text><ion-text routerDirection="forward" routerLink="/register" color="secondary">Sign Up</ion-text>
+       <p> <ion-text color="dark">Don't have an account? </ion-text><ion-text routerDirection="forward" routerLink="/register" color="secondary">Sign Up</ion-text></p>
       </div>
     </div>
   </div>
+</div>
 </ion-content>
