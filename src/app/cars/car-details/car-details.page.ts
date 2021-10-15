@@ -38,7 +38,7 @@ export class CarDetailsPage implements OnInit {
     this.VehicleService.getVehicleByID(this.ID).subscribe((result) => {
       if(result.data){
         this.vehicle = result.data;
-        this.vehicleImage = 'data:image/jpeg;base64,' + this.vehicle.vehicle_image;
+        this.vehicleImage = (this.vehicle.vehicle_image) ? 'data:image/jpeg;base64,' + this.vehicle.vehicle_image : '';
         // console.log(this.vehicleImage);
       }else{
         this.toastService.presentToast(result.message);

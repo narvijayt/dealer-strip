@@ -52,7 +52,7 @@
             <ion-card-title><h2>${{ vehicle.retail_price }}</h2></ion-card-title>
           </ion-col>
           <ion-col class="ion-no-padding ion-text-end" size="5">
-            <ion-card-subtitle color="primary"><p>{{ vehicle.vehicle_make_year }} - 52,300 km</p></ion-card-subtitle>
+            <ion-card-subtitle color="primary"><p>{{ vehicle.vehicle_make_year }}{{ (vehicle.vehicle_travelled) ? " - "+vehicle.vehicle_travelled + " KM" : "" }}</p></ion-card-subtitle>
           </ion-col>
         </ion-row>
 
@@ -63,7 +63,7 @@
         </ion-row>
         <ion-row class="ion-padding-horizontal ion-padding-bottom">
           <ion-col class="ion-no-padding card-location" size="8">
-            <ion-icon name="location-outline" ></ion-icon> <p>5600 W Sahara Ave</p>
+            <ion-icon *ngIf="vehicle.vehicle_location" name="location-outline" ></ion-icon> <p>{{ vehicle.vehicle_location }}</p>
           </ion-col>
           <ion-col class="ion-no-padding ion-text-end" size="4">
             <ion-datetime color="color-black" displayFormat="DD MMM" [value]="vehicle.created_at"></ion-datetime>

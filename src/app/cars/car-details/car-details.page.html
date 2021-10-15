@@ -20,7 +20,7 @@
           <div class="bookmark-box">
             <div class="bookmark-icon"><ion-icon name="bookmark"></ion-icon></div>
           </div>
-          <img [src]="vehicleImage" >
+          <img [src]="(vehicleImage) ? vehicleImage : '../assets/images/car-ex-lg.jpg' " >
         </ion-col>
       </ion-row>
       <div class="car-price">

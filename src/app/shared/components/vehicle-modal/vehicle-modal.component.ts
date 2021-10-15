@@ -54,6 +54,8 @@ export class VehicleModalComponent implements OnInit {
     vehicle_owner_manual: '',
     vehicle_vin: '',
     vehicleImage:'',
+    vehicle_travelled:'',
+    vehicle_location:'',
   };
   public toolkit_flag:boolean;
   public damaged_flag:boolean;
