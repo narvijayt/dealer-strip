@@ -17,17 +17,15 @@
 
 <ion-content [fullscreen]="true">
   
-  <div class="bg-grey content-container dashboard">
-    <ion-card *ngFor="let item of items" class="card ion-no-margin ion-no-radius">        
+  <div *ngIf="vehicles" class="bg-grey content-container dashboard">
+    <ion-card *ngFor="let vehicle of vehicles" class="card ion-no-margin ion-no-radius">        
       <ion-card-header class="ion-no-padding ion-padding-horizontal">
         <ion-row>
-          
           <ion-col class="avatar-box ion-d-flex" size="9">
             <div class="avatar-img">
-            <img src="../assets/icon/sm-icon.png"> 
-            </div>
-            <ion-text class="ion-text-uppercase" color="primary">Luxury Cars</ion-text>
-          
+              <img src="../assets/icon/sm-icon.png">
+            </div> 
+            <ion-text class="ion-text-uppercase" color="primary">{{ vehicle.user.business_name }}</ion-text>
           </ion-col>
           <ion-col class="ion-text-end ellipsis-icon">
             <ion-icon name="ellipsis-horizontal-outline" color="primary"></ion-icon>
@@ -40,33 +38,35 @@
           <ion-col class="ion-no-padding">
             <div class="bookmark-box">
               <span class="bookmark-text">Gotta Go</span>
-              <div class="bookmark-icon">
-              <ion-icon name="bookmark"></ion-icon>
+              <div class="bookmark-icon"><ion-icon name="bookmark"></ion-icon></div>
             </div>
-            </div>
-            <img [routerLink]="['/','car-details', item.ID]" src="../assets/images/car-lg.png">
+            <img *ngIf="vehicle.vehicle_image else placeholderImage" [routerLink]="['/','car-details', vehicle.vehicle_id]" src="{{'data:image/jpeg;base64,' + vehicle.vehicle_image}}">
+
+            <ng-template #placeholderImage>
+              <img [routerLink]="['/','car-details', vehicle.vehicle_id]" src="../assets/images/car-lg.png">
+            </ng-template>
           </ion-col>
         </ion-row>
         <ion-row class="ion-padding-horizontal card-box">
           <ion-col class="ion-no-padding" size="7">
-            <ion-card-title color="primary"><h2>$110,500</h2></ion-card-title>
+            <ion-card-title><h2>${{ vehicle.retail_price }}</h2></ion-card-title>
           </ion-col>
           <ion-col class="ion-no-padding ion-text-end" size="5">
-            <ion-card-subtitle color="primary"><p>2012 - 52,300 km</p></ion-card-subtitle>
+            <ion-card-subtitle color="primary"><p>{{ vehicle.vehicle_make_year }}{{ (vehicle.vehicle_travelled) ? " - "+vehicle.vehicle_travelled + " KM" : "" }}</p></ion-card-subtitle>
           </ion-col>
         </ion-row>
 
         <ion-row class="ion-padding-horizontal">
           <ion-col class="ion-no-padding">
-            <ion-card-subtitle  color="primary" ><h5>Dodge Challenge SRT</h5></ion-card-subtitle>
+            <ion-card-subtitle color="primary" ><h5>{{ vehicle.model.model_title }}</h5></ion-card-subtitle>
           </ion-col>
         </ion-row>
         <ion-row class="ion-padding-horizontal ion-padding-bottom">
           <ion-col class="ion-no-padding card-location" size="8">
-            <ion-icon name="location-outline" ></ion-icon> <p>5600 W Sahara Ave</p>
+            <ion-icon *ngIf="vehicle.vehicle_location" name="location-outline" ></ion-icon> <p>{{ vehicle.vehicle_location }}</p>
           </ion-col>
           <ion-col class="ion-no-padding ion-text-end" size="4">
-            <ion-text color="color-black" ><p>03 Apr</p></ion-text>
+            <ion-datetime color="color-black" displayFormat="DD MMM" [value]="vehicle.created_at"></ion-datetime>
           </ion-col>
         </ion-row>
         

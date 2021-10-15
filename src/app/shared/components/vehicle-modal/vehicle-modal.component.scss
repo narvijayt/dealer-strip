@@ -62,8 +62,8 @@ ion-item {
   }
   
   .img-thumb {
-    width: 45px;
-    height: 55px;
+    width: 100%;
+    height: auto;
     object-fit: cover;
     display: block;
   }

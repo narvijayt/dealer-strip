@@ -10,32 +10,15 @@
 
 <ion-content class="bg-grey no-padding">
   <div>
-
-    <!-- 
-    <div class="flex justify-content-space-between ion-margin-top relative">
-      <div class="absolute full-width line"></div>
-      <div class="flex flex-column justify-content-center full-width"
-        *ngFor="let slide of slides; let index = index; let first = first; let last = last;">
-        <span [ngClass]="{ 'align-self-end': last, 'align-self-center': (!first && !last) }"
-          class="flex flex-column align-items-center justify-content-center bold text-medium radius"
-          style="width: 30px; height: 30px;"
-          [style.background]="slide === currentSlide ? 'var(--ion-color-primary)':'var(--ion-color-light-shade)'"
-          [style.color]="slide === currentSlide ? 'var(--ion-color-light)':'var(--ion-color-dark)'"
-          [ngClass]="{ 'align-self-end': last, 'align-self-center': (!first && !last) }">
-          {{ index + 1 }}
-        </span>
-        <span [style.color]="slide === currentSlide ? 'var(--ion-color-primary)':'var(--ion-color-medium)'"
-          [ngClass]="{ 'align-self-end': last, 'align-self-center': (!first && !last) }"
-          class="flex text-medium bold ion-margin-vertical">
-          {{ slide }}
-        </span>
-      </div>
-    </div>
-    -->
-
     <ion-row class="no-padding">
       <ion-col class="no-padding">
-        <img src="../../../assets/images/car-ex-lg.jpg" >
+        <div (click)="presentActionSheet()"><ion-icon name="camera-outline"></ion-icon></div>
+        <div>
+          <img class="img-thumb" [src]="imagePath" *ngIf="imagePath else placeholderImage">
+          <ng-template #placeholderImage>
+            <img src="../../../assets/images/car-ex-lg.jpg" >
+          </ng-template>
+        </div>
       </ion-col>
     </ion-row>
 
@@ -43,11 +26,8 @@
       (ionSlideWillChange)="onSlidesChanged()">
       <ng-container *ngFor="let slide of slides">
         <ion-slide>
-
           <div class="full-width ion-text-start">
-
             <form novalidate *ngIf="slide === 'Vehicle Information'">
-
               <ion-list-header class="ion-no-padding step-header" style="min-height: auto;">
                 <ion-label class="ion-text-start ion-no-margin" color="primary">
                   <h6>Vehicle Information</h6>
@@ -58,8 +38,8 @@
               <ion-row>
                 <ion-col>
                   <ion-select *ngIf="vehicleMake" [(ngModel)]="postData.vehicle_make_id" name="vehicle_make_id" class="select-input" placeholder="Select Make" (ionChange)="vehicleModels()">
-                      <ion-select-option *ngFor="let make of vehicleMake" [value]="make.make_id"> {{make.make_title}}</ion-select-option>
-                    </ion-select>
+                    <ion-select-option *ngFor="let make of vehicleMake" [value]="make.make_id"> {{make.make_title}}</ion-select-option>
+                  </ion-select>
                  
                   <ion-text color="danger">
                     <span class="text-tiny"
@@ -93,10 +73,10 @@
               <ion-row>
                 <ion-col>
                   <ion-select [(ngModel)]="postData.vehicle_make_year" name="vehicle_make_year" class="select-input" placeholder="Select Year">
-                      <ion-select-option value="2021">2021</ion-select-option>
-                      <ion-select-option value="2020">2020</ion-select-option>
-                      <ion-select-option value="2019">2019</ion-select-option>
-                    </ion-select>
+                    <ion-select-option value="2021">2021</ion-select-option>
+                    <ion-select-option value="2020">2020</ion-select-option>
+                    <ion-select-option value="2019">2019</ion-select-option>
+                  </ion-select>
                   
                   <ion-text color="danger">
                     <span class="text-tiny"
@@ -110,7 +90,7 @@
               <ion-row>
                 <ion-col class="mt-0">
                   <ion-input type="text" placeholder="Mileage" [(ngModel)]="postData.vehicle_mileage" name="vehicle_mileage"></ion-input>
-                 <ion-text color="danger">
+                  <ion-text color="danger">
                     <span class="text-tiny"
                       [style.visibility]="vehicleMileage?.errors?.required && basicInformationFormRef.submitted ? '' : 'hidden'">
                       Field required
@@ -120,12 +100,23 @@
               </ion-row>
 
               <ion-row>
-                <ion-col>
-                  
-                    <ion-select *ngIf="bodyStyles" [(ngModel)]="postData.vehicle_bodystyle_id" name="vehicle_bodystyle_id" class="select-input" placeholder="Body Style">
-                      <ion-select-option *ngFor="let body of bodyStyles" [value]="body.body_id"> {{body.body_title}}</ion-select-option>
-                    </ion-select>
-               <ion-text color="danger">
+                <ion-col class="mt-0">
+                  <ion-input type="text" placeholder="Travelled" [(ngModel)]="postData.vehicle_travelled" name="vehicle_travelled"></ion-input>
+                  <ion-text color="danger">
+                    <span class="text-tiny"
+                      [style.visibility]="vehicleTravelled?.errors?.required && basicInformationFormRef.submitted ? '' : 'hidden'">
+                      Field required
+                    </span>
+                  </ion-text>
+                </ion-col>
+              </ion-row>
+
+              <ion-row>
+                <ion-col>                  
+                  <ion-select *ngIf="bodyStyles" [(ngModel)]="postData.vehicle_bodystyle_id" name="vehicle_bodystyle_id" class="select-input" placeholder="Body Style">
+                    <ion-select-option *ngFor="let body of bodyStyles" [value]="body.body_id"> {{body.body_title}}</ion-select-option>
+                  </ion-select>
+                  <ion-text color="danger">
                     <span class="text-tiny"
                       [style.visibility]="vehicleBodyStyle?.errors?.required && basicInformationFormRef.submitted ? '' : 'hidden'">
                       Field required
@@ -136,7 +127,6 @@
             </form>
 
             <form novalidate *ngIf="slide === 'Engine, Interior & Exterior'">
-
               <ion-list-header class="ion-no-padding step-header" style="min-height: auto;">
                 <ion-label class="ion-text-start ion-no-margin " color="primary">
                   <h6>Engine, Interior & Exterior</h6>
@@ -147,8 +137,8 @@
               <ion-row>
                 <ion-col>
                   <ion-select *ngIf="exteriorColors" [(ngModel)]="postData.exterior_color_id" name="exterior_color_id" class="select-input" placeholder="Exterior Color">
-                      <ion-select-option *ngFor="let color of exteriorColors" [value]="color.color_id"> {{color.color_title}}</ion-select-option>
-                    </ion-select>
+                    <ion-select-option *ngFor="let color of exteriorColors" [value]="color.color_id"> {{color.color_title}}</ion-select-option>
+                  </ion-select>
                   <ion-text color="danger">
                     <span class="text-tiny"
                       [style.visibility]="engineExteriorColor?.errors?.required && engineFormRef.submitted ? '' : 'hidden'">
@@ -162,7 +152,7 @@
                 <ion-col>
                   <ion-select *ngIf="interiorColors" [(ngModel)]="postData.interior_color_id" name="interior_color_id" class="select-input" placeholder="Interior Color">
                       <ion-select-option *ngFor="let color of interiorColors" [value]="color.color_id"> {{color.color_title}}</ion-select-option>
-                    </ion-select>
+                  </ion-select>
                   <ion-text color="danger">
                     <span class="text-tiny"
                       [style.visibility]="engineInteriorColor?.errors?.required && engineFormRef.submitted ? '' : 'hidden'">
@@ -217,112 +207,20 @@
                 </ion-col>
               </ion-row>
 
-              <!--
-              <div class="flex align-items-center full-width ion-margin-top">
-                <div class="ion-margin-end">
-                  <h5 class="text-medium bold">Upload image</h5>
-                  <ion-button strong shape="round" color="secondary" size="small">
-                    Select
-                  </ion-button>
-                </div>
-                <div>
-                  <img class="img-thumb" [src]="imagePath" *ngIf="imagePath">
-                </div>
-              </div>
-              -->
-            </form>
-            
-            <!--
-            <div [hidden]="slide !== 'Summary'">
-              <ion-list-header class="ion-no-padding" style="min-height: auto;">
-                <ion-label class="ion-text-center" color="primary">
-                  Order details
-                </ion-label>
-              </ion-list-header>
-
-              <div *ngIf="engineForm.valid">
-                <p class="text-medium bold ion-text-uppercase">
-                  Engine, Interior & Exterior
-                </p>
-                <div class="divider"></div>
-
-                <div *ngFor="let control of engineForm.controls | keyvalue: originalOrder">
-                  <p class="text-medium margin-v-sm">
-                    <span class="bold">
-                      {{ control.key.replace('_', ' ') | titlecase }}:
+              <ion-row>
+                <ion-col class="mt-0">
+                  <ion-input type="text" placeholder="Enter Address" [(ngModel)]="postData.vehicle_location" name="vehicle_location"></ion-input>
+                  <ion-text color="danger">
+                    <span class="text-tiny"
+                      [style.visibility]="vehicleLocation?.errors?.required && basicInformationFormRef.submitted ? '' : 'hidden'">
+                      Field required
                     </span>
-                    {{ control.value.value || '--' }}
-                  </p>
-                </div>
-                <p class="text-medium margin-v-sm" *ngIf="imagePath">
-                  <span class="bold">
-                    Attachment:
-                  </span>
-                  <img class="img-thumb" [src]="imagePath">
-                </p>
-              </div>
-
-              <div *ngIf="basicInformationForm.valid">
-                <div class="divider"></div>
-                <p class="text-medium bold ion-text-uppercase">
-                  Vehicle Information
-                </p>
-                <div class="divider"></div>
-                <p class="text-medium margin-v-sm"
-                  *ngFor="let control of basicInformationForm.controls | keyvalue: originalOrder">
-                  <span class="bold">
-                    {{ control.key.replace('_', ' ') | titlecase }}:
-                  </span>
-                  {{ control.value.value || '--' }}
-                </p>
-              </div>
-
-              <div class="divider"></div>
-              <p class="text-medium bold ion-text-uppercase">
-                Items
-              </p>
-              <div class="divider"></div>
-
-              <ion-list>
-                <ion-item *ngFor="let item of order?.items">
-                  <ion-label>
-                    <h2 class="text-medium bold">{{ item.name }}</h2>
-                  </ion-label>
-                  <div>
-                    <span class="text-medium">{{ item.amount | currency}}</span>
-                  </div>
-                </ion-item>
-                <ion-item>
-                  <ion-label>
-                    <h2 class="text-medium bold">Subtotal</h2>
-                  </ion-label>
-                  <div>
-                    <span class="text-medium">{{ order?.subtotal | currency}}</span>
-                  </div>
-                </ion-item>
-                <ion-item>
-                  <ion-label>
-                    <h2 class="text-medium bold">Shipping & Handling</h2>
-                  </ion-label>
-                  <div>
-                    <span class="text-medium">{{ order?.shippingFee | currency}}</span>
-                  </div>
-                </ion-item>
-                <ion-item>
-                  <ion-label>
-                    <h2 class="text-medium bold">Total</h2>
-                  </ion-label>
-                  <div>
-                    <span class="text-medium bold">{{ order?.total | currency}}</span>
-                  </div>
-                </ion-item>
-              </ion-list>
-            </div>
-            -->
+                  </ion-text>
+                </ion-col>
+              </ion-row>
+            </form>
 
             <form novalidate *ngIf="slide === 'Pricing & Other Info'">
-
-
               <ion-list-header class="ion-no-padding step-header" style="min-height: auto;">
                 <ion-label class="ion-text-start ion-no-margin" color="primary">
                    <h6>Pricing & Other Info</h6>
@@ -343,32 +241,32 @@
               </ion-row>
 
               <ion-row>
-                <ion-col class="tool-list">
+                <ion-col class="tool-list">                  
                   <ion-label position="stacked"><h5>Tool Kit</h5></ion-label>
-                    <ion-toggle checked [(ngModel)]="postData.vehicle_toolkit" name="vehicle_toolkit" value="1"></ion-toggle>
-                 </ion-col>
+                  <ion-toggle checked [(ngModel)]="toolkit_flag" name="toolkit_flag" value="1" (ionChange)="toggleOption('toolkit_flag')"></ion-toggle>                  
+                </ion-col>
               </ion-row>
               
               <ion-row>
-                <ion-col class="tool-list">
-                 <ion-label position="stacked"><h5>Any previous Damage to vehicle</h5></ion-label>
-                    <ion-toggle [(ngModel)]="postData.vehicle_damaged" name="vehicle_damaged" value="1"></ion-toggle>
-                  </ion-col>
+                <ion-col class="tool-list">                  
+                  <ion-label position="stacked"><h5>Any previous Damage to vehicle</h5></ion-label>
+                  <ion-toggle [(ngModel)]="damaged_flag" name="damaged_flag" value="1" (ionChange)="toggleOption('damaged_flag')"></ion-toggle>
+                </ion-col>
               </ion-row>
               
               <ion-row>
-                <ion-col class="tool-list">
-                 <ion-label position="stacked"><h5>Call for PriceM</h5></ion-label>
-                    <ion-toggle checked [(ngModel)]="postData.call_for_price" name="call_for_price" value="1"></ion-toggle>
-              </ion-col>
+                <ion-col class="tool-list">                  
+                  <ion-label position="stacked"><h5>Call for Price</h5></ion-label>
+                  <ion-toggle checked [(ngModel)]="call_flag" name="call_flag" value="1" (ionChange)="toggleOption('call_flag')"></ion-toggle>
+                </ion-col>
               </ion-row>
               
               <ion-row>
-                <ion-col class="tool-list">
-                 <ion-label position="stacked"><h5>Owners Manual Present</h5></ion-label>
-                    <ion-toggle checked [(ngModel)]="postData.vehicle_owner_manual" name="vehicle_owner_manual" value="1"></ion-toggle>
-                  </ion-col>
-              </ion-row>
+                <ion-col class="tool-list">                  
+                  <ion-label position="stacked"><h5>Owners Manual Present</h5></ion-label>
+                  <ion-toggle checked [(ngModel)]="manual_flag" name="manual_flag" value="1" (ionChange)="toggleOption('manual_flag')"></ion-toggle>
+                </ion-col>
+              </ion-row>              
 
               <ion-row>
                 <ion-col class="vin-input">

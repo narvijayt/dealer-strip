@@ -4,7 +4,7 @@
     <ion-buttons slot="start">
       <ion-icon class="ion-padding-left primary close-icon" (click)="backRedirect()" color="primary" name="arrow-back-outline"></ion-icon>
     </ion-buttons>
-    <h5>2016 Ford-130</h5>
+    <h5 *ngIf="vehicle" class="ion-text-uppercase">{{ vehicle.make.make_title }} {{ vehicle.model.model_title }}</h5>
   
     <ion-buttons slot="end">
       <ion-icon class="ellipsis-icon" color="primary" name="ellipsis-horizontal-outline"></ion-icon>      
@@ -13,25 +13,23 @@
 </ion-header>
 
 <ion-content class="bg-grey" [fullscreen]="true">
-  <section *ngIf="ID; else noProduct">
+  <section *ngIf="vehicle; else noProduct">
     <div class="top-banner">
-    <ion-row>
-      <ion-col class="ion-no-padding">
-        <div class="bookmark-box">
-           <div class="bookmark-icon">
-          <ion-icon name="bookmark"></ion-icon>
-        </div>
-        </div>
-        <img src="../assets/images/ford-car-02.png" >
-      </ion-col>
+      <ion-row>
+        <ion-col class="ion-no-padding">
+          <div class="bookmark-box">
+            <div class="bookmark-icon"><ion-icon name="bookmark"></ion-icon></div>
+          </div>
+          <img [src]="(vehicleImage) ? vehicleImage : '../assets/images/car-ex-lg.jpg' " >
+        </ion-col>
       </ion-row>
       <div class="car-price">
         <ion-row class="ion-padding-horizontal">
           <ion-col class="ion-no-padding" size="8">
             <ion-card-subtitle><h5>2016 FORD F-150</h5></ion-card-subtitle>
             <div class="location-text">
-            <ion-icon name="location-outline" color="color-black">
-             </ion-icon> <p>4980 Vanderbilt St, Ontario, CA 91761 </p>
+              <ion-icon name="location-outline" color="color-black"></ion-icon> 
+              <p>4980 Vanderbilt St, Ontario, CA 91761 </p>
             </div>
           </ion-col>
           <ion-col class="ion-no-padding ion-text-end" size="4">
@@ -40,15 +38,15 @@
           </ion-col>
         </ion-row>
        
-        </div>
       </div>
-    
+    </div>
+
     <ion-row class="bg-dark ion-no-padding py-2">
       <ion-col class="avatar-box" size="9">
         <div class="avatar-img">
           <img src="../assets/icon/sm-icon.png"> 
         </div>
-        <ion-text class="ion-text-uppercase">Tim Roseeg</ion-text>
+        <ion-text class="ion-text-uppercase">{{ vehicle.user.business_name }}</ion-text>
       </ion-col>
       <ion-col class="ion-text-middle icon-rt">
         <div class="icon-outer-bg ">
@@ -72,31 +70,31 @@
       <ion-card-content class="details-list">
         <ion-row class="ion-border-bottom border-dark ">
           <ion-col size="6" class="ion-text-start"><ion-text>Body</ion-text></ion-col>
-          <ion-col size="6" class="ion-text-end text-bold"><ion-text>Enter Value</ion-text></ion-col>
+          <ion-col size="6" class="ion-text-end text-bold"><ion-text>{{ vehicle.body.body_title }}</ion-text></ion-col>
         </ion-row>
         <ion-row class="ion-border-bottom border-dark">
           <ion-col size="6" class="ion-text-start"><ion-text>Year</ion-text></ion-col>
-          <ion-col size="6" class="ion-text-end text-bold"><ion-text>2018</ion-text></ion-col>
+          <ion-col size="6" class="ion-text-end text-bold"><ion-text>{{ vehicle.vehicle_make_year }}</ion-text></ion-col>
         </ion-row>
         <ion-row class="ion-border-bottom border-dark">
           <ion-col size="6" class="ion-text-start"><ion-text>External Color</ion-text></ion-col>
-          <ion-col size="6" class="ion-text-end text-bold"><ion-text>Black</ion-text></ion-col>
+          <ion-col size="6" class="ion-text-end text-bold"><ion-text>{{ vehicle.exterior.color_title }}</ion-text></ion-col>
         </ion-row>
         <ion-row class="ion-border-bottom border-dark">
           <ion-col size="6" class="ion-text-start"><ion-text>Internal Color</ion-text></ion-col>
-          <ion-col size="6" class="ion-text-end text-bold"><ion-text>Brown</ion-text></ion-col>
+          <ion-col size="6" class="ion-text-end text-bold"><ion-text>{{ vehicle.interior.color_title }}</ion-text></ion-col>
         </ion-row>
         <ion-row class="ion-border-bottom border-dark">
           <ion-col size="6" class="ion-text-start"><ion-text>Cylinder</ion-text></ion-col>
-          <ion-col size="6" class="ion-text-end text-bold"><ion-text>V6</ion-text></ion-col>
+          <ion-col size="6" class="ion-text-end text-bold"><ion-text>{{ vehicle.type.type_title }}</ion-text></ion-col>
         </ion-row>
         <ion-row class="ion-border-bottom border-dark">
           <ion-col size="6" class="ion-text-start"><ion-text>Transmission</ion-text></ion-col>
-          <ion-col size="6" class="ion-text-end text-bold"><ion-text>Automatic</ion-text></ion-col>
+          <ion-col size="6" class="ion-text-end text-bold"><ion-text>{{ vehicle.transmission.transmission_title }}</ion-text></ion-col>
         </ion-row>
         <ion-row class="ion-border-bottom border-dark">
           <ion-col size="6" class="ion-text-start"><ion-text>Mileage</ion-text></ion-col>
-          <ion-col size="6" class="ion-text-end text-bold"><ion-text>3</ion-text></ion-col>
+          <ion-col size="6" class="ion-text-end text-bold"><ion-text>{{ vehicle.vehicle_mileage }}</ion-text></ion-col>
         </ion-row>
         <ion-row class="ion-border-bottom border-dark">
           <ion-col size="6" class="ion-text-start"><ion-text>Trim</ion-text></ion-col>
