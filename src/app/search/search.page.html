@@ -1,3 +1,4 @@
+<div class="search-outer">
 <ion-header>
   <ion-toolbar>
     <ion-tabs>
@@ -74,14 +75,15 @@
   <div class="content-container">
     <ion-card *ngFor="let item of items" class="card">
       <ion-row>
-        <ion-col class="ion-no-padding" size="3">
+        <ion-col class="ion-no-padding" size="4">
           <ion-thumbnail>
-            <img [routerLink]="['/','car-details', item.ID]" src="../assets/images/car-1.png" width="100%">
+            <img [routerLink]="['/','car-details', item.ID]" src="../assets/images/car-01.png" width="100%">
           </ion-thumbnail>
         </ion-col>
-        <ion-col class="ion-no-padding" size="9">
-          <ion-card-header>
-            <ion-card-title>$110,500</ion-card-title>
+        <ion-col class="ion-no-padding" size="8">
+          <ion-card-header class="ion-no-padding" >
+            <ion-card-title class="color-black"><h2>$110,500</h2></ion-card-title>
+            
           </ion-card-header>
         
           <ion-card-content>
@@ -101,7 +103,7 @@
     </ion-card>
   </div>
 </ion-content>
-
+</div>
 
 <ion-footer>
   <ion-toolbar>

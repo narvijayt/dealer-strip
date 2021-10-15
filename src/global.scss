@@ -25,6 +25,25 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
+
+/* Import Custom Fonts */
+@font-face {   
+  font-family: 'Montserrat-Black';    //This is what we are going to call
+  src: url('./assets/fonts/Montserrat-Black.ttf');
+}
+@font-face {   
+  font-family: 'Montserrat-Bold';    //This is what we are going to call
+  src: url('./assets/fonts/Montserrat-Bold.ttf');
+}
+@font-face {   
+  font-family: 'Montserrat-Medium';    //This is what we are going to call
+  src: url('./assets/fonts/Montserrat-Medium.ttf');
+}
+@font-face {   
+  font-family: 'Montserrat-SemiBold';    //This is what we are going to call
+  src: url('./assets/fonts/Montserrat-SemiBold.ttf');
+}
+
 :root {
     --ion-background-color: #1b1b1b;
     --ion-background-color-rgb: 255,255,255;
@@ -44,6 +63,8 @@
     
     --ion-color-dark: #7f7f7f;
     --ion-color-dark-rgb: 127,127,127;
+    --ion-color-btn:-webkit-linear-gradient(top right, #ee2489 0%, #e88442 100%, #e88442 100%, #e88442 100%);
+  
     
   
     --ion-color-step-50: #f2f2f2;
@@ -65,6 +86,15 @@
     --ion-color-step-850: #262626;
     --ion-color-step-900: #191919;
     --ion-color-step-950: #0d0d0d;
+    h1{font-size: 1.25rem;  margin: 0px;font-family: 'Montserrat-Bold';}
+    ion-button.primary-button.button-solid.button-strong.ion-activatable.ion-focusable{
+      --background-activated: #e03174;
+      --background-focused: #ee2489;
+      --background-hover: #ee2489;
+      --background-activated-opacity: 1;
+      --background-focused-opacity: 1;
+      --background-hover-opacity: 1;
   }
+    }
 
 

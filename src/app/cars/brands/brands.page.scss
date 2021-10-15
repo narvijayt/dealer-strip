@@ -7,3 +7,11 @@
     margin: 0 10px 15px 0;
 }
 .brand-title{ color: #adadad; font-size: 15px;}
+.brands .skip-arrow{}
+.brands .skip-arrow{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    font-size: 14px;
+    font-family: 'Montserrat-Medium';
+}

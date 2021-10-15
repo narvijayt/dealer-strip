@@ -1,0 +1,51 @@
+.inner-header h5 {
+    margin: 0px;
+    font-size: 0.938rem;
+    padding-left: 10px;
+    font-family: "Montserrat-SemiBold";
+}
+.inner-header.py-2 ion-toolbar{padding: 0px 0.813rem;}
+.car-details .avatar-box{ font-size: 0.875rem;}
+.car-details .avatar-img img{width: 2.313rem;}
+.car-details .avatar-img{width: 2.313rem;  height: 2.313rem;}
+.car-details .bg-dark.py-2 {padding: 0rem 0.75rem;padding-bottom: 0.313rem;display: flex;
+    align-items: center;}
+.icon-outer-bg {background: linear-gradient( 90deg, #ee2b86 0%, #e88145 78%);
+    border-radius: 100%;width: 1.938rem;height: 1.938rem;line-height: 2.25rem; text-align: center;font-size: 1.188rem;}
+.icon-rt {display: flex; gap: 10px;}
+.car-details  .card {background: transparent;}
+.details-list ion-col.text-bold{font-family: 'Montserrat-SemiBold'; }
+.details-list ion-col {color: #fff;font-size: 14px;padding: 9px;font-family: 'Montserrat-Medium';}
+.list-outer  h4{ text-transform: uppercase;font-family: 'Montserrat-Medium'; position: relative; font-size: 18px;}
+.list-outer h4:after {
+    content: "";width: 43px; height: 3px; background: linear-gradient( 90deg, #ee2b86 0%, #e88145 78%);
+    position: absolute;left: 0px;right: 0px; margin: 0 auto;bottom: -11px; border-radius: 15px;
+}
+.list-outer .border-dark {border-color: #4e4d4d;}
+
+.car-details  .bookmark-box{ display: flex; justify-content: end; padding: 0px 14px; position: absolute;
+    width: 100%;top: 16px;color: #fff; align-items: center;}
+    .car-details  .bookmark-icon{
+    background: linear-gradient(
+90deg, #ee2b86 0%, #e88145 78%); border-radius: 100%; width: 1.938rem; height: 1.938rem;
+    line-height: 2.25rem;text-align: center; font-size: 1.188rem;}
+    .top-banner{ position: relative;}
+    .car-price {
+        position: absolute;
+        bottom: 0;
+        padding: 17px 0px;
+        width: 100%;
+    }
+    .car-price  h5 {
+        color: #fff;
+        font-family: 'Montserrat-Medium';
+        margin: 0px; 
+        font-size: 16px;
+    }
+    .car-price p{font-size: 10px;}
+    .location-text {
+        display: flex;
+      align-items: center;
+      color: #ea6658;
+    }
+    .location-text p{ font-size: 10px;}
