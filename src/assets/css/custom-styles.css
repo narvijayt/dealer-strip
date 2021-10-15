@@ -18,7 +18,7 @@ input.native-input.sc-ion-input-md{border-radius: 15px;border: 2px solid #f6f6f6
 .color-black{color:#000000;}
 .border-light{ border-color: #e88441;}
 .border-dark{ border-color: #7f7f7f;}
-.bg-gradient{ background: -webkit-linear-gradient(top right, #ee2489 0%, #ee2489 51%, #e88442 100%);;}
+.bg-gradient{ background: -webkit-linear-gradient(top right, #ee2489 0%, #ee2489 51%, #e88442 100%);}
 
 .card{ background: #ffffff;}
 .bg-primary{ --background:#ffffff; background: #ffffff;}
@@ -36,3 +36,23 @@ p{font-size:0.813rem;font-family: Montserrat-Medium;color: #999999;margin: 0px;}
  .pl .native-input.sc-ion-input-ios{ padding-left: 40px !important;} 
  p.text-color{color: #fff;}
  .fs-6{ font-size: 11px;}
+ .mt-0 .native-input.sc-ion-input-ios{margin-top: 0rem;}
+ .alert-wrapper.sc-ion-alert-ios{background: #1b1b1b;font-family: 'Montserrat-Medium';    font-size: 14px;}
+ .header-ios ion-toolbar:last-of-type{--border-width:0px;}
+ .footer-ios ion-toolbar:first-of-type { --border-width: 0px;}
+ ion-toggle {
+    --background: #dfe1e6;
+    --background-checked: -webkit-linear-gradient(top right, #ee2489 0%, #ee2489 51%, #e88442 100%);
+  
+    --handle-background: #fff;
+    --handle-background-checked: #fff;
+  }
+  ion-toggle { width: 60px;height: 30px;}
+  .vin-input .native-input.sc-ion-input-ios{margin-top: 0rem;}
+  .ellipsis-icon{font-size: 1.875rem;}
+  .avatar-img{  width: 1.875rem; height: 1.875rem;border-radius: 100%;
+    margin-right: 0.625rem; font-family: "Montserrat-SemiBold";}
+    .avatar-img img{ object-fit: cover;object-position: center;width: 1.875rem;
+        height: 100%;border-radius: 100%;}
+        .avatar-box{display: flex;align-items: center;  color: #fff; font-size: 11px;font-weight: 500;}
+ 
