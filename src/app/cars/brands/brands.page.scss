@@ -7,7 +7,7 @@
     margin: 0 10px 15px 0;
 }
 .brand-title{ color: #adadad; font-size: 15px;}
-.brands .skip-arrow{}
+ 
 .brands .skip-arrow{
     display: flex;
     align-items: center;
@@ -15,3 +15,20 @@
     font-size: 14px;
     font-family: 'Montserrat-Medium';
 }
+
+
+.brands .item-checkbox-checked ion-label{
+    border-radius: 30px !important;
+    padding: 14px 24px;
+    text-align: center;
+    color:#fff; background: linear-gradient(90deg, hsla(332, 85%, 55%, 1) 0%, hsla(22, 78%, 59%, 1) 78%); border-radius: 100%;
+} 
+
+.brands ion-label{background:#999; border-radius: 30px;padding: 14px 24px;text-align: center;}
+.brands  ion-checkbox{position: absolute;
+    opacity: 0;    width: 100%;}
+.brands-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+.brands-list .item-inner{ border-color: transparent;}
