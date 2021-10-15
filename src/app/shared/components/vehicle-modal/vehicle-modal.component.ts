@@ -5,6 +5,8 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 // import { Plugins, CameraResultType, CameraSource } from '@capacitor/core';
 // const { Camera } = Plugins;
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { File } from '@ionic-native/file/ngx';
 
 import { Router } from '@angular/router';
 import { VehicleService } from '../../services/vehicle.service';
@@ -51,6 +53,7 @@ export class VehicleModalComponent implements OnInit {
     call_for_price: '',
     vehicle_owner_manual: '',
     vehicle_vin: '',
+    vehicleImage:'',
   };
   public toolkit_flag:boolean;
   public damaged_flag:boolean;
@@ -73,7 +76,9 @@ export class VehicleModalComponent implements OnInit {
     public modalController : ModalController,
     public VehicleService: VehicleService,
     private storageService: StorageService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private camera: Camera,
+    private file: File
     ) {
       this.storageService.get(AuthConstants.AUTH).then( user => {
         if(!user){
@@ -196,7 +201,7 @@ export class VehicleModalComponent implements OnInit {
       this.postData.vehicle_damaged = (this.damaged_flag === false) ? 0 : 1;
       this.postData.call_for_price = (this.call_flag === false) ? 0 : 1;
       this.postData.vehicle_owner_manual = (this.manual_flag === false) ? 0 : 1;
-      
+      console.log(this.postData);
 
       this.VehicleService.insertVehicle(this.postData).subscribe((result) => {
         // console.log(result);
@@ -223,37 +228,31 @@ export class VehicleModalComponent implements OnInit {
     }
   }
 
-  /*convertBlobToBase64 = (blob: Blob) => new Promise((resolve, reject) => {
+  convertBlobToBase64 = (blob: Blob) => new Promise((resolve, reject) => {
     const reader = new FileReader;
     reader.onerror = reject;
     reader.onload = () => resolve(reader.result);
     reader.readAsDataURL(blob);
   });
 
-  async chooseImage(source: CameraSource) {
-
+  async chooseImage(sourceType) {
     try {
+      const options: CameraOptions = {
+        quality: 60,
+        sourceType: sourceType,
+        destinationType: this.camera.DestinationType.DATA_URL,
+        encodingType: this.camera.EncodingType.JPEG,
+        mediaType: this.camera.MediaType.PICTURE
+      }
 
-      const image = await Camera.getPhoto({
-        quality: 70,
-        width: 600,
-        height: 600,
-        preserveAspectRatio: true,
-        allowEditing: true,
-        correctOrientation: true,
-        source: source,
-        resultType: CameraResultType.Uri,
+      this.camera.getPicture(options).then((imageData) => {
+        // imageData is either a base64 encoded string or a file URI
+        this.postData.vehicleImage = imageData;
+        this.imagePath = 'data:image/jpeg;base64,' + this.postData.vehicleImage;
+      }, (err) => {
+        // Handle error
+        console.warn(err);
       });
-
-      const safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(image.webPath);
-      this.imagePath = safeUrl;
-
-      const response = await fetch(image.webPath);
-      const blob = await response.blob();
-
-      const base64 = await this.convertBlobToBase64(blob) as string;
-
-      // Send encoded string to server...
 
     } catch (error) {
       console.warn(error);
@@ -262,18 +261,17 @@ export class VehicleModalComponent implements OnInit {
   }
 
   async presentActionSheet() {
-
     const actionSheet = await this.actionSheetCtrl.create({
       header: 'Choose an option',
       buttons: [{
         text: 'Photo Library',
         handler: () => {
-          this.chooseImage(CameraSource.Photos);
+          this.chooseImage(this.camera.PictureSourceType.PHOTOLIBRARY);
         }
       }, {
         text: 'Camera',
         handler: () => {
-          this.chooseImage(CameraSource.Camera);
+          this.chooseImage(this.camera.PictureSourceType.CAMERA);
         }
       }, {
         text: 'Cancel',
@@ -282,7 +280,8 @@ export class VehicleModalComponent implements OnInit {
     });
 
     return await actionSheet.present();
-  }*/
+  }
+
   
   originalOrder = (): number => {
     return 0;

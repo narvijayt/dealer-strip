@@ -34,7 +34,13 @@
 
     <ion-row class="no-padding">
       <ion-col class="no-padding">
-        <img src="../../../assets/images/car-ex-lg.jpg" >
+        <div (click)="presentActionSheet()"><ion-icon name="camera-outline"></ion-icon></div>
+        <div>
+          <img class="img-thumb" [src]="imagePath" *ngIf="imagePath else placeholderImage">
+          <ng-template #placeholderImage>
+            <img src="../../../assets/images/car-ex-lg.jpg" >
+          </ng-template>
+        </div>
       </ion-col>
     </ion-row>
 

@@ -27,7 +27,11 @@
       <ion-card-content class="ion-no-padding">
         <ion-row>
           <ion-col class="ion-no-padding">
-            <img [routerLink]="['/','car-details', vehicle.vehicle_id]" src="../assets/images/car-lg.png">
+            <img *ngIf="vehicle.vehicle_image else placeholderImage" [routerLink]="['/','car-details', vehicle.vehicle_id]" src="{{'data:image/jpeg;base64,' + vehicle.vehicle_image}}">
+
+            <ng-template #placeholderImage>
+              <img [routerLink]="['/','car-details', vehicle.vehicle_id]" src="../assets/images/car-lg.png">
+            </ng-template>
           </ion-col>
         </ion-row>
         <ion-row class="ion-padding-horizontal">

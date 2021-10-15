@@ -15,7 +15,8 @@
   <section *ngIf="vehicle; else noProduct">
     <ion-row>
       <ion-col class="ion-no-padding">
-        <img src="../assets/images/car-ex-lg.jpg" >
+        <!-- <img src="../assets/images/car-ex-lg.jpg" > -->
+        <img [src]="vehicleImage" >
       </ion-col>
     </ion-row>
     <ion-row class="bg-grey ion-no-padding">

@@ -14,6 +14,8 @@ import { ToastService } from '../../shared/services/toast.service';
 export class CarDetailsPage implements OnInit {
   ID:any;
   vehicle:any;
+  vehicleImage: any;
+
   constructor(
     private route : ActivatedRoute, 
     private router : Router,
@@ -36,7 +38,8 @@ export class CarDetailsPage implements OnInit {
     this.VehicleService.getVehicleByID(this.ID).subscribe((result) => {
       if(result.data){
         this.vehicle = result.data;
-        // console.log(this.vehicle);
+        this.vehicleImage = 'data:image/jpeg;base64,' + this.vehicle.vehicle_image;
+        // console.log(this.vehicleImage);
       }else{
         this.toastService.presentToast(result.message);
       }
