@@ -105,4 +105,29 @@ ion-icon.close-icon {
     font-family: 'Montserrat-Medium';margin-bottom: 1.25rem;}
     .sc-ion-label-ios-s h5{font-size: 0.75rem;}
     .tool-list h5{color:#999999;}
-   
+  
+  .vehicle-modal .bookmark-icon{
+    background: linear-gradient(
+90deg, #ee2b86 0%, #e88145 78%);
+    border-radius: 100%;
+    width: 1.938rem;
+    height: 1.938rem;
+    line-height: 2.25rem;
+    text-align: center;
+    font-size: 1.188rem;
+}
+.vehicle-modal .bookmark-box{
+  display: flex;
+  justify-content: end;
+  padding: 0px 14px;
+  position: absolute;
+  width: 100%;
+  top: 16px;
+  color: #fff;
+  align-items: center;
+} 
+
+.action-sheet-group.sc-ion-action-sheet-ios{ background: #1b1b1b; color:#fff}
+.vehicle-modal {
+  padding-bottom: 1.25rem;
+}

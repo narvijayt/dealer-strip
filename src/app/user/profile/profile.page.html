@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar class="bg-dark px-2" >
     <ion-buttons slot="start">
       <ion-icon (click)="backRedirect()" class="ion-padding-left" color="primary" name="arrow-back-outline"></ion-icon>
     </ion-buttons>
@@ -10,30 +10,34 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content class=" bg-grey" [fullscreen]="true">
+  <div class="user-profile">
   <div *ngIf="userData">
     <ion-row class="ion-padding-horizontal">
       <ion-col class="ion-no-padding ion-text-center" size="3">
-        <img src="../assets/images/user-icon.png" >
+        <div class="user-img">
+          <img src="../assets/images/user-icon.png" >
+        </div>
+        
       </ion-col>
       <ion-col class="ion-text-center">
         <ion-row>
-          <ion-col>
+          <ion-col class="ion-no-padding border-right">
             <p>
-              <ion-text><strong>202</strong></ion-text><br/>
-              <ion-text>Vehicle</ion-text>
+              <ion-text><strong><h6>202</h6></strong></ion-text>
+              <ion-text><p>Vehicle</p></ion-text>
             </p>
           </ion-col>
-          <ion-col>
+          <ion-col class="ion-no-padding">
             <p>
-              <ion-text><strong>09</strong></ion-text><br/>
-              <ion-text>Sold Vehicles</ion-text>
+              <ion-text><strong><h6>09</h6></strong></ion-text>
+              <ion-text><p>Sold Vehicles</p></ion-text>
             </p>
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col>
-            <ion-button type="submit" shape="round" color="secondary">Send Message</ion-button>
+            <ion-button type="submit" shape="round" class="primary-button"expand="full" >Send Message</ion-button>
           </ion-col>
         </ion-row>
       </ion-col>
@@ -41,16 +45,18 @@
 
     <ion-row class="ion-padding-horizontal">
       <ion-col>
-        <p>
-          <ion-text>{{ userData.user_name }}</ion-text><br/>
-          <ion-text class="ion-text-sm" color="dark">Member Since <ion-datetime displayFormat="MMM YYYY" [value]="userData.created_at"></ion-datetime></ion-text>
+        <h2><ion-text>{{ userData.user_name }}</ion-text></h2>
+          <div class="profile-date">
+        <p>Member Since </p>
+          <p><ion-datetime displayFormat="MMM YYYY" [value]="userData.created_at"></ion-datetime>
         </p>
+        </div>
       </ion-col>
     </ion-row>
     
-    <ion-row class="ion-padding-horizontal">
+    <ion-row class="ion-padding-horizontal profile-read-more">
       <ion-col>
-        <ion-text>Certified and Approved used cars avialable by trusted destination to buy your preowned cars...</ion-text>
+        <ion-text><p>Certified and Approved used cars avialable by trusted destination to buy your preowned cars...</p></ion-text>
       </ion-col>
     </ion-row>
 
@@ -60,7 +66,7 @@
     scrollable="true"
     mode="ios"
     [(ngModel)]="segmentModel" 
-    (ionChange)="segmentChanged($event)" class="ion-no-padding ion-padding-top">
+    (ionChange)="segmentChanged($event)" class="ion-no-padding ion-padding-top segment-tab bg-dark">
 
       <ion-segment-button value="viso">
         <ion-label>Viso</ion-label>
@@ -99,7 +105,9 @@
     </ion-card>
     
   </div>
+</div>
 </ion-content>
+
 
 
 <ion-footer>

@@ -1,7 +1,7 @@
-<div class="search-outer">
-<ion-header>
+
+<ion-header class="search-header">
   <ion-toolbar>
-    <ion-tabs>
+    <ion-tabs class="top-tab">
       <ion-tab-bar slot="top">
         <ion-tab-button tab="viso">
           <ion-label color="primary">Viso</ion-label>
@@ -24,17 +24,19 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <div class="search-outer">
   <div class="search-container">
-    <ion-text color="secondary" class="color-secondary ion-text-uppercase ion-text-center">Search Available Vehicle Inventory</ion-text>
+    <ion-text color="primary" class="color-secondary ion-text-uppercase ion-text-center"><h6>Search Available Vehicle Inventory</h6></ion-text>
     <div class="search-form-section">
       <form #form="ngForm">
         <ion-grid>
           <ion-row>
-            <ion-col>
-              <ion-input required type="text" name="s" placeholder="Search by name"></ion-input>
+            <ion-col class="search-top">
+              <ion-icon class="search-icon" color="dark" name="search-outline"></ion-icon>
+              <ion-input class="pl" required type="text" name="s" placeholder="Search by name"></ion-input>
             </ion-col>
           </ion-row>
-          <ion-row>
+          <ion-row class="select-outer-box">
             <ion-col>
               <ion-select class="select-input" placeholder="Year">
                 <ion-select-option value="2021">2021</ion-select-option>
@@ -53,7 +55,7 @@
               </ion-select>
             </ion-col>
             <ion-col>
-              <ion-button type="submit" shape="round" color="secondary">Search</ion-button>
+              <ion-button type="submit" class="primary-button"shape="round" >Search</ion-button>
             </ion-col>
           </ion-row>
         </ion-grid>
@@ -62,48 +64,84 @@
   </div>
 
   <div class="content-view-options">
-    <ion-row class="ion-text-center ion-border-bottom border-primary">
+    <ion-row class="ion-text-center ion-border-bottom border-primary list-view">
       <ion-col class="ion-padding">
-        <ion-text color="primary">Grid View</ion-text>
+        <ion-text color="primary"><h5>Grid View</h5></ion-text>
       </ion-col>
       <ion-col class="ion-border-bottom border-secondary ion-padding">
-        <ion-text color="secondary">List View</ion-text>
+        <ion-text color="secondary"><h5>List View</h5></ion-text>
       </ion-col>
     </ion-row>
   </div>
+  <!-- <div class="content-container">
 
-  <div class="content-container">
-    <ion-card *ngFor="let item of items" class="card">
-      <ion-row>
+    <div class="grid-list">
+      <ion-row >
+       <ion-col class="ion-no-padding">
+          <div class="list-bookmark">
+             <ion-icon name="bookmark"></ion-icon>
+          </div>
+           <ion-thumbnail>
+              <img [routerLink]="['/','car-details', item.ID]" src="../assets/images/car-01.png" width="100%">
+            </ion-thumbnail>
+            <div class="list-title">
+              <h6>2012 dodge</h6>
+            </div>
+         </ion-col>
+
+         <ion-col class="ion-no-padding">
+          <div class="list-bookmark">
+             <ion-icon name="bookmark"></ion-icon>
+          </div>
+           <ion-thumbnail>
+              <img [routerLink]="['/','car-details', item.ID]" src="../assets/images/car-01.png" width="100%">
+            </ion-thumbnail>
+            <div class="list-title">
+              <h6>2012 dodge</h6>
+            </div>
+         </ion-col>
+   </ion-row>
+    </div>
+  </div>  -->
+
+<div class="content-container">
+   
+   <ion-card *ngFor="let item of items" class="card">
+      <ion-row class="search-list">
         <ion-col class="ion-no-padding" size="4">
+          <div class="bookmark-box">
+            <span class="bookmark-text">featured</span>
+         
+          </div>
           <ion-thumbnail>
             <img [routerLink]="['/','car-details', item.ID]" src="../assets/images/car-01.png" width="100%">
           </ion-thumbnail>
         </ion-col>
-        <ion-col class="ion-no-padding" size="8">
+        <ion-col class="ion-no-padding list-text" size="8">
           <ion-card-header class="ion-no-padding" >
             <ion-card-title class="color-black"><h2>$110,500</h2></ion-card-title>
             
           </ion-card-header>
         
           <ion-card-content>
-            <ion-card-subtitle>Dodge Challenge SRT</ion-card-subtitle>
-            <ion-card-subtitle>2012 - 52,300 km</ion-card-subtitle>
-            <ion-row>
-              <ion-col class="ion-no-padding" size="9">
-                <ion-icon name="location-outline"></ion-icon> 5600 W Sahara Ave
+            <ion-card-subtitle><p>Dodge Challenge SRT</p></ion-card-subtitle>
+            <ion-card-subtitle><p>2012 - 52,300 km</p></ion-card-subtitle>
+            <ion-row class="search-location">
+              <ion-col class="ion-no-padding search-address" size="9">
+                <ion-icon name="location-outline"></ion-icon><p>5600 W Sahara Ave</p> 
               </ion-col>
-              <ion-col class="ion-no-padding ion-text-end" size="3">
+              <ion-col class="ion-no-padding ion-text-end search-date" size="3">
                 03 Apr
               </ion-col>
             </ion-row>
           </ion-card-content>
         </ion-col>
       </ion-row>
-    </ion-card>
-  </div>
-</ion-content>
+    </ion-card> 
+  </div> 
 </div>
+</ion-content>
+
 
 <ion-footer>
   <ion-toolbar>

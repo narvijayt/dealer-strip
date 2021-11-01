@@ -60,7 +60,10 @@
     
     --ion-color-light: #e88441;
     --ion-color-light-rgb: 232,132,65;
-    
+
+    --ion-color-black: #000000;
+    --ion-color-dark-rgb: 127,127,127;
+
     --ion-color-dark: #7f7f7f;
     --ion-color-dark-rgb: 127,127,127;
     --ion-color-btn:-webkit-linear-gradient(top right, #ee2489 0%, #e88442 100%, #e88442 100%, #e88442 100%);
@@ -94,6 +97,23 @@
       --background-activated-opacity: 1;
       --background-focused-opacity: 1;
       --background-hover-opacity: 1;
+  }
+  ion-button.primary-button.ios.button.button-full.button-round.button-solid.ion-activatable.ion-focusable{
+    --background-activated: #e03174 !important;
+    --background-focused: #ee2489  !important;
+    --background-hover: #ee2489  !important;
+    --background-activated-opacity: 1;
+    --background-focused-opacity: 1;
+    --background-hover-opacity: 1; 
+  }
+  ion-button.primary-button.ios.button.button-round.button-solid.ion-activatable.ion-focusable
+  {
+    --background-activated: #e03174 !important;
+    --background-focused: #ee2489  !important;
+    --background-hover: #ee2489  !important;
+    --background-activated-opacity: 1;
+    --background-focused-opacity: 1;
+    --background-hover-opacity: 1; 
   }
     }
 

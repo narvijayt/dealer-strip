@@ -9,10 +9,16 @@
 </ion-header>
 
 <ion-content class="bg-grey no-padding">
-  <div>
+  <div class="vehicle-modal">
     <ion-row class="no-padding">
       <ion-col class="no-padding">
-        <div (click)="presentActionSheet()"><ion-icon name="camera-outline"></ion-icon></div>
+      <div (click)="presentActionSheet()">
+          <div class="bookmark-box">
+          <div class="bookmark-icon">
+            <ion-icon name="camera-outline"></ion-icon>
+          </div>
+        </div>
+      </div>
         <div>
           <img class="img-thumb" [src]="imagePath" *ngIf="imagePath else placeholderImage">
           <ng-template #placeholderImage>

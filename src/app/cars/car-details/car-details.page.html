@@ -1,4 +1,4 @@
-<div class="car-details">
+
 <ion-header class="inner-header py-2">
   <ion-toolbar class="ion-no-padding bg-dark">
     <ion-buttons slot="start">
@@ -13,6 +13,7 @@
 </ion-header>
 
 <ion-content class="bg-grey" [fullscreen]="true">
+  <div class="car-details">
   <section *ngIf="vehicle; else noProduct">
     <div class="top-banner">
       <ion-row>
@@ -20,7 +21,7 @@
           <div class="bookmark-box">
             <div class="bookmark-icon"><ion-icon name="bookmark"></ion-icon></div>
           </div>
-          <img [src]="(vehicleImage) ? vehicleImage : '../assets/images/car-ex-lg.jpg' " >
+          <img [src]="(vehicleImage) ? vehicleImage : '../assets/images/ford-car-01.png' " >
         </ion-col>
       </ion-row>
       <div class="car-price">
@@ -34,7 +35,7 @@
           </ion-col>
           <ion-col class="ion-no-padding ion-text-end" size="4">
             <ion-text><h5>$41,999 </h5></ion-text>
-            <p>10,682 miles</p>
+            <p color="primary">10,682 miles</p>
           </ion-col>
         </ion-row>
        
@@ -107,8 +108,9 @@
   <ng-template #noProduct>
 
   </ng-template>
-</ion-content>
 </div>
+</ion-content>
+
 
 <ion-footer>
   <ion-toolbar>

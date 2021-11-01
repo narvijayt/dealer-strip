@@ -16,6 +16,7 @@ input.native-input.sc-ion-input-md{border-radius: 15px;border: 2px solid #f6f6f6
 .primary-text{color:#ee2489;}
 .primary-button{--background: var(--ion-color-btn); font-size: 0.938rem; font-family: Montserrat-SemiBold; text-transform: uppercase;}
 .color-black{color:#000000;}
+.color-light{color:#b5b5b5;}
 .border-light{ border-color: #e88441;}
 .border-dark{ border-color: #7f7f7f;}
 .bg-gradient{ background: -webkit-linear-gradient(top right, #ee2489 0%, #ee2489 51%, #e88442 100%);}
@@ -27,7 +28,8 @@ input.native-input.sc-ion-input-md{border-radius: 15px;border: 2px solid #f6f6f6
 .bg-white{ --background: #ffffff; background: #ffffff;}
 
 .ion-no-radius{ border-radius: 0;}
-
+img{width: 100%;}
+ion-header.ios.header-ios img{ width: auto;}
 h1{font-size: 1.25rem; font-weight: bold; margin: 0px;}
 h6{ margin: 0px !important;}
 p{font-size:0.813rem;font-family: Montserrat-Medium;color: #999999;margin: 0px;}
@@ -54,5 +56,14 @@ p{font-size:0.813rem;font-family: Montserrat-Medium;color: #999999;margin: 0px;}
     margin-right: 0.625rem; font-family: "Montserrat-SemiBold";}
     .avatar-img img{ object-fit: cover;object-position: center;width: 1.875rem;
         height: 100%;border-radius: 100%;}
-        .avatar-box{display: flex;align-items: center;  color: #fff; font-size: 11px;font-weight: 500;}
- 
+  .avatar-box{display: flex;align-items: center;  color: #fff; font-size: 11px;font-weight: 500;}
+.action-sheet-group.sc-ion-action-sheet-ios{ background: #1b1b1b; color:#fff}
+  button.action-sheet-button.ion-activatable.ion-focusable.action-sheet-cancel.sc-ion-action-sheet-ios{ background: linear-gradient(
+            90deg, #ee2b86 0%, #e88145 78%); font-size: 0.938rem; font-family: Montserrat-SemiBold; text-transform: uppercase;}
+  .action-sheet-cancel.sc-ion-action-sheet-ios::after{ background: transparent;}
+   .action-sheet-title.sc-ion-action-sheet-ios{ font-size: 14px;font-family: Montserrat-SemiBold;}
+   .action-sheet-title.sc-ion-action-sheet-ios { font-size: 15px;font-family: 'Montserrat-Bold'; color: #fff;}
+ .brands ion-item{--padding-start: 0px !important;--inner-padding-end: 0px !important;
+                --inner-border-width: 0px !important;}
+on-tab-button { --color: var(--ion-color-medium); --color-selected: var(--ion-color-primary);}
+                  
