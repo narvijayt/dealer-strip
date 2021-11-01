@@ -28,7 +28,7 @@ input.native-input.sc-ion-input-md{border-radius: 15px;border: 2px solid #f6f6f6
 .bg-white{ --background: #ffffff; background: #ffffff;}
 
 .ion-no-radius{ border-radius: 0;}
-img{width: 100%;}
+ion-card.card img{width: 100%;}
 ion-header.ios.header-ios img{ width: auto;}
 h1{font-size: 1.25rem; font-weight: bold; margin: 0px;}
 h6{ margin: 0px !important;}
