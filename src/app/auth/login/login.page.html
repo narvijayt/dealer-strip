@@ -7,30 +7,28 @@
 <ion-content [fullscreen]="true">
   <div class="login-screen">
   <div id="container">
-    <ion-col class="ion-padding-bottom">
+    <ion-col class="ion-padding-bottom ion-margin-bottom">
     <div><ion-text color="primary"><h1>Welcome Back!</h1></ion-text></div>
    <div><ion-text color="dark"><p>Login to your existing account of dealerstrip</p></ion-text></div>
   </ion-col>
     <section>
       <form>
         <ion-grid>
+
           <ion-row>
-            <ion-col>
-              <div class="input-icon">
-                <ion-icon name="person-outline" color="dark"></ion-icon>
-              </div>
-              <ion-input class="pl" [(ngModel)]="postData.username" required autocomplete="off" type="email" name="username" placeholder="Email"></ion-input>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col>
-              <div class="input-icon">
-                <ion-icon name="lock-closed-outline" color="dark"></ion-icon>
-                </div>
-              <ion-input class="pl" [(ngModel)]="postData.password" required autocomplete="off" type="password" name="password" placeholder="Password"></ion-input>
-            </ion-col>
+            <ion-item lines="none" class="ion-margin-bottom">
+              <ion-label> <ion-icon name="person-outline"></ion-icon></ion-label>
+              <ion-input clearInput [(ngModel)]="postData.username" required autocomplete="off" type="email" name="username" placeholder="Email"></ion-input>
+            </ion-item>
           </ion-row>
 
+          <ion-row>
+            <ion-item lines="none" class="ion-margin-bottom">
+              <ion-label> <ion-icon name="lock-closed-outline"></ion-icon></ion-label>
+              <ion-input clearInput [(ngModel)]="postData.password" required autocomplete="off" type="password" name="password" placeholder="Password"></ion-input>
+            </ion-item>
+          </ion-row>
+          
 
           <ion-row>
             <ion-col>

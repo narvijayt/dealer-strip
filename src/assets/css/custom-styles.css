@@ -4,8 +4,59 @@
 #container a {text-decoration: none;}
 #container { padding: 0px 20px;}
 
-input.native-input.sc-ion-input-md{border-radius: 15px;border: 2px solid #f6f6f6;padding: 10px 20px;margin-bottom: 15px;}
 
+
+ion-item {
+  position: relative;
+  box-shadow:0 2px 4px 0 rgba(255,255,255,0.30) ;
+  -webkit-box-shadow:0 2px 4px 0 rgba(255,255,255,0.30);
+  -moz-box-shadow:0 2px 4px 0 rgba(255,255,255,0.30);
+width:100%;
+border-radius: 50px;
+outline: none !important;
+}
+ion-item:focus{
+  box-shadow:0 2px 4px 0 rgba(255,255,255,0.60) ;
+  -webkit-box-shadow:0 2px 4px 0 rgba(255,255,255,0.60);
+  -moz-box-shadow:0 2px 4px 0 rgba(255,255,255,0.60);
+}
+
+ion-label {  
+  position: absolute;
+  top: 5px;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  z-index: 9;
+  box-sizing: border-box;  
+  margin:0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+ion-icon{
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  -webkit-transform:translate(-50%,-50%);
+}
+
+input {
+  border: none !important;
+  height: 40px;
+  width: 100%;
+  max-width: 100%;
+  display: block;
+  box-sizing: border-box;
+  padding-left: 40px !important;
+  text-align: center;
+}
+.button{
+  height:46px;
+}
 
 /************* Custom Global Styles **************/
 .search-container{ padding: 15px 20px; background: #343434;}
