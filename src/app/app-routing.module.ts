@@ -38,6 +38,10 @@ const routes: Routes = [
   {
     path: 'brands',
     loadChildren: () => import('./cars/brands/brands.module').then( m => m.BrandsPageModule)
+  },
+  {
+    path: 'forgot-password',
+    loadChildren: () => import('./auth/forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
   }
 ];
 
