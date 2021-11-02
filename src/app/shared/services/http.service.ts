@@ -32,8 +32,8 @@ export class HttpService {
     return this.http.put(url, JSON.stringify(data), this.httpOptions);
   }
 
-  delete(serviceName: string, data: any) {
-    let url = environment.apiUrl + serviceName + '/' + data;
+  delete(serviceName: string, data: any = '') {
+    let url = (data!='') ? environment.apiUrl + serviceName + '/' + data : environment.apiUrl + serviceName;
     return this.http.delete(url, this.httpOptions);
   }
 

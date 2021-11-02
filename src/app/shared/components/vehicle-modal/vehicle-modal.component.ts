@@ -24,6 +24,13 @@ export class VehicleModalComponent implements OnInit {
   @ViewChild(IonContent, { static: true }) ionContent: IonContent;
   @ViewChild(IonSlides, { static: false }) ionSlides: IonSlides;
 
+  cameraOptions: CameraOptions = {
+    quality: 20,
+    destinationType: this.camera.DestinationType.DATA_URL,
+    encodingType: this.camera.EncodingType.JPEG,
+    mediaType: this.camera.MediaType.PICTURE
+  }
+
   public imagePath: SafeResourceUrl;
   public slidesOpts = {
     allowTouchMove: false,
@@ -228,6 +235,23 @@ export class VehicleModalComponent implements OnInit {
       this.ionSlides.slideNext();
       this.ionContent.scrollToTop();
     }
+  }
+
+  captureImage() {
+    this.camera.getPicture(this.cameraOptions).then((imageData) => {
+      // this.camera.DestinationType.FILE_URI gives file URI saved in local
+      // this.camera.DestinationType.DATA_URL gives base64 URI
+      
+      // let base64Image = 'data:image/jpeg;base64,' + imageData;
+      // this.capturedSnapURL = base64Image;
+
+      this.postData.vehicleImage = imageData;
+      this.imagePath = 'data:image/jpeg;base64,' + this.postData.vehicleImage;
+    }, (err) => {
+      
+      console.log(err);
+      // Handle error
+    });
   }
 
   convertBlobToBase64 = (blob: Blob) => new Promise((resolve, reject) => {

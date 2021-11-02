@@ -5,6 +5,7 @@ import { NavController } from '@ionic/angular';
 import { ModalService } from '../../shared/services/modal.service';
 import { VehicleService } from '../../shared/services/vehicle.service';
 import { ToastService } from '../../shared/services/toast.service';
+import { LoaderService } from '../../shared/services/loader.service';
 
 @Component({
   selector: 'app-car-details',
@@ -22,7 +23,8 @@ export class CarDetailsPage implements OnInit {
     private navCtrl: NavController,
     private _modalService: ModalService,
     public VehicleService: VehicleService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private loaderService: LoaderService,
   ) { }
   
   ionViewWillEnter(){
@@ -35,6 +37,7 @@ export class CarDetailsPage implements OnInit {
   }
 
   getVehicleDetails(){
+    this.loaderService.showLoader();
     this.VehicleService.getVehicleByID(this.ID).subscribe((result) => {
       if(result.data){
         this.vehicle = result.data;
@@ -43,12 +46,14 @@ export class CarDetailsPage implements OnInit {
       }else{
         this.toastService.presentToast(result.message);
       }
+      this.loaderService.dismissLoader();
     },(error: any) => {
       if(error.error){
         this.toastService.presentToast(error.error.message);
       }else{
         this.toastService.presentToast(error.message);
       }
+      this.loaderService.dismissLoader();
     });
   }
 

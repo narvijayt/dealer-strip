@@ -6,6 +6,7 @@ import { HttpService } from './services/http.service';
 import { StorageService } from './services/storage.service';
 import { ToastService } from './services/toast.service';
 import { LoaderService } from './services/loader.service';
+import { BookmarkService } from './services/bookmark.service';
 import { IonicModule } from '@ionic/angular';
 import { VehicleService } from './services/vehicle.service';
 
@@ -17,7 +18,7 @@ import { VehicleModalComponent } from './components/vehicle-modal/vehicle-modal.
 @NgModule({
   declarations: [ModalComponent, VehicleModalComponent],
   entryComponents: [ModalComponent, VehicleModalComponent],
-  providers: [ModalService, AuthService, HttpService, StorageService, ToastService, LoaderService, VehicleService],
+  providers: [ModalService, AuthService, HttpService, StorageService, ToastService, LoaderService, VehicleService, BookmarkService],
   imports: [
     CommonModule,
     IonicModule,

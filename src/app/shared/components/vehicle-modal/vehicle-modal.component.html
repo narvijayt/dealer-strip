@@ -12,13 +12,12 @@
   <div class="vehicle-modal">
     <ion-row class="no-padding">
       <ion-col class="no-padding">
-      <div (click)="presentActionSheet()">
+        <div (click)="captureImage()">
           <div class="bookmark-box">
-          <div class="bookmark-icon">
-            <ion-icon name="camera-outline"></ion-icon>
+            <div class="bookmark-icon"><ion-icon name="camera-outline"></ion-icon></div>
           </div>
         </div>
-      </div>
+        
         <div>
           <img class="img-thumb" [src]="imagePath" *ngIf="imagePath else placeholderImage">
           <ng-template #placeholderImage>

@@ -27,15 +27,15 @@
       <div class="car-price">
         <ion-row class="ion-padding-horizontal">
           <ion-col class="ion-no-padding" size="8">
-            <ion-card-subtitle><h5>2016 FORD F-150</h5></ion-card-subtitle>
+            <ion-card-subtitle><h5>{{ vehicle.vehicle_make_year }} {{ vehicle.model.model_title }}</h5></ion-card-subtitle>
             <div class="location-text">
               <ion-icon name="location-outline" color="color-black"></ion-icon> 
-              <p>4980 Vanderbilt St, Ontario, CA 91761 </p>
+              <p>{{ vehicle.vehicle_location }} </p>
             </div>
           </ion-col>
           <ion-col class="ion-no-padding ion-text-end" size="4">
-            <ion-text><h5>$41,999 </h5></ion-text>
-            <p color="primary">10,682 miles</p>
+            <ion-text><h5>${{ vehicle.retail_price }} </h5></ion-text>
+            <p color="primary">{{ (vehicle.vehicle_travelled) ? " - "+vehicle.vehicle_travelled + " KM" : "" }}</p>
           </ion-col>
         </ion-row>
        
@@ -97,10 +97,11 @@
           <ion-col size="6" class="ion-text-start"><ion-text>Mileage</ion-text></ion-col>
           <ion-col size="6" class="ion-text-end text-bold"><ion-text>{{ vehicle.vehicle_mileage }}</ion-text></ion-col>
         </ion-row>
-        <ion-row class="ion-border-bottom border-dark">
+        
+        <!--<ion-row class="ion-border-bottom border-dark">
           <ion-col size="6" class="ion-text-start"><ion-text>Trim</ion-text></ion-col>
           <ion-col size="6" class="ion-text-end text-bold"><ion-text> XLT SuperCrew LB 4WD </ion-text></ion-col>
-        </ion-row>
+        </ion-row>-->
       </ion-card-content>
     </ion-card>
   </section>

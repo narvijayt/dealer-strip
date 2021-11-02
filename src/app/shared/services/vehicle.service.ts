@@ -16,7 +16,8 @@ export class VehicleService {
   ) { }
 
   getVehiclesList(postData: any = ''): Observable<any> {
-    if(postData){
+    console.log("Get Vehicle List ", postData);
+    if((postData) && (postData.toString()!='')){
       return this.httpService.get('vehicles?' + postData.toString());
     }else{
       return this.httpService.get('vehicles');
@@ -31,9 +32,15 @@ export class VehicleService {
     return this.httpService.post('vehicles', postData);
   }
 
+  getVehicleDetails(postData: any = ''): Observable<any> {
+    if((postData) && (postData.toString()!='')){
+      return this.httpService.get('vehicles-details?' + postData.toString());
+    }
+  }
+
   // Vehicle Make API Requests
   getVehiclesMakeList(postData: any = ''): Observable<any> {
-    if(postData){
+    if((postData) && (postData.toString()!='')){
       return this.httpService.get('makes?' + postData.toString());
     }else{
       return this.httpService.get('makes');
@@ -46,7 +53,7 @@ export class VehicleService {
   
   // Vehicle Models API Requests
   getVehiclesModelList(postData: any = ''): Observable<any> {
-    if(postData){
+    if((postData) && (postData.toString()!='')){
       return this.httpService.get('models?' + postData.toString() );
     }else{
       return this.httpService.get('models');
@@ -64,7 +71,7 @@ export class VehicleService {
    * 
    */
   getVehiclesBodyStyleList(postData: any = ''): Observable<any> {
-    if(postData){
+    if((postData) && (postData.toString()!='')){
       return this.httpService.get('bodystyles?' + postData.toString() );
     }else{
       return this.httpService.get('bodystyles');
@@ -81,7 +88,7 @@ export class VehicleService {
    * 
    */
    getVehiclesColorsList(postData: any = ''): Observable<any> {
-    if(postData){
+    if((postData) && (postData.toString()!='')){
       return this.httpService.get('vehicle-colors?' + postData.toString() );
     }else{
       return this.httpService.get('vehicle-colors');
@@ -98,7 +105,7 @@ export class VehicleService {
    * 
    */
    getVehiclesTypesList(postData: any = ''): Observable<any> {
-    if(postData){
+    if((postData) && (postData.toString()!='')){
       return this.httpService.get('vehicle-types?' + postData.toString() );
     }else{
       return this.httpService.get('vehicle-types');
@@ -115,7 +122,7 @@ export class VehicleService {
    * 
    */
    getTransmissionsList(postData: any = ''): Observable<any> {
-    if(postData){
+    if((postData) && (postData.toString()!='')){
       return this.httpService.get('vehicle-transmissions?' + postData.toString() );
     }else{
       return this.httpService.get('vehicle-transmissions');
