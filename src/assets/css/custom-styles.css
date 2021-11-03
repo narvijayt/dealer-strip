@@ -6,7 +6,7 @@
 
 
 
-ion-item {
+ion-item.fieldGroupItem {
   position: relative;
   box-shadow:0 2px 4px 0 rgba(255,255,255,0.30) ;
   -webkit-box-shadow:0 2px 4px 0 rgba(255,255,255,0.30);
@@ -15,13 +15,13 @@ width:100%;
 border-radius: 50px;
 outline: none !important;
 }
-ion-item:focus{
+ion-item.fieldGroupItem:focus{
   box-shadow:0 2px 4px 0 rgba(255,255,255,0.60) ;
   -webkit-box-shadow:0 2px 4px 0 rgba(255,255,255,0.60);
   -moz-box-shadow:0 2px 4px 0 rgba(255,255,255,0.60);
 }
 
-ion-label {  
+ion-item.fieldGroupItem ion-label {  
   position: absolute;
   top: 5px;
   left: 0;
@@ -34,7 +34,7 @@ ion-label {
   align-items: center;
   justify-content: center;
 }
-ion-icon{
+ion-item.fieldGroupItem ion-icon{
   display: flex;
   align-items: center;
   position: absolute;
@@ -44,7 +44,7 @@ ion-icon{
   -webkit-transform:translate(-50%,-50%);
 }
 
-input {
+ion-item.fieldGroupItem input {
   border: none !important;
   height: 40px;
   width: 100%;

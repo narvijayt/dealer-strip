@@ -30,16 +30,19 @@
       <div class="search-form-section">
         <form>
           <ion-grid>
+
             <ion-row>
-              <ion-col class="search-top">
-                <ion-icon class="search-icon" color="dark" name="search-outline"></ion-icon>
-                <ion-input [(ngModel)]="postData.search_text" name="search_text" class="pl" required type="text" name="s" placeholder="Search by name"></ion-input>
-              </ion-col>
-            </ion-row>
+              <ion-item lines="none" class="ion-margin-bottom ion-margin-top fieldGroupItem">
+                <ion-label> <ion-icon name="search-outline"></ion-icon></ion-label>
+                <ion-input clearInput [(ngModel)]="postData.search_text" name="search_text" class="pl" required type="text" name="s" placeholder="Search by name"></ion-input>
+              </ion-item>
+            </ion-row> 
+
+            
             <ion-row class="select-outer-box">
               <ion-col>
                 <ion-select [(ngModel)]="postData.vehicle_make_year" name="vehicle_make_year" class="select-input" placeholder="Year">
-                  <ion-select-option value=""> Select Make Year </ion-select-option>
+                  <ion-select-option value=""> Year </ion-select-option>
                   <ion-select-option value="2021">2021</ion-select-option>
                   <ion-select-option value="2020">2020</ion-select-option>
                   <ion-select-option value="2019">2019</ion-select-option>
@@ -47,24 +50,24 @@
               </ion-col>
               <ion-col>
                 <ion-select *ngIf="vehicleMake" [(ngModel)]="postData.vehicle_make_id" name="vehicle_make_id" class="select-input" placeholder="Select Make" (ionChange)="vehicleModels()">
-                  <ion-select-option value=""> Select Make </ion-select-option>
+                  <ion-select-option value=""> Make </ion-select-option>
                   <ion-select-option *ngFor="let make of vehicleMake" [value]="make.make_id"> {{make.make_title}}</ion-select-option>
                 </ion-select>
               </ion-col>
               <ion-col>
                 <ion-select *ngIf="vehicleModel else modelPlaceholder" [(ngModel)]="postData.vehicle_model_id" name="vehicle_model_id" class="select-input" placeholder="Select Model">
-                  <ion-select-option value=""> Select Model </ion-select-option>
+                  <ion-select-option value=""> Model </ion-select-option>
                   <ion-select-option *ngFor="let model of vehicleModel" [value]="model.model_id"> {{model.model_title}}</ion-select-option>
                 </ion-select>
 
                 <ng-template #modelPlaceholder>
                   <ion-select [(ngModel)]="postData.vehicle_model_id" name="vehicle_model_id" class="select-input" placeholder="Select Model">
-                    <ion-select-option value=""> Select Model </ion-select-option>
+                    <ion-select-option value=""> Model </ion-select-option>
                   </ion-select>
                 </ng-template>
               </ion-col>
               <ion-col>
-                <ion-button (click)="getVehicles()" type="submit" class="primary-button"shape="round" >Search</ion-button>
+                <ion-button (click)="getVehicles()" type="submit" class="primary-button button"shape="round" >Search</ion-button>
               </ion-col>
             </ion-row>
           </ion-grid>
@@ -73,20 +76,14 @@
     </div>
 
     <div class="content-view-options">
-      <ion-row class="ion-text-center ion-border-bottom border-primary list-view">
-        <!--<ion-col class="ion-padding">
-          <ion-text color="primary"><h5>Grid View</h5></ion-text>
-        </ion-col>
-        <ion-col class="ion-border-bottom border-secondary ion-padding">
-          <ion-text color="secondary"><h5>List View</h5></ion-text>
-        </ion-col>-->
+
         <ion-segment 
         value="all" 
         color="tertiary" 
         scrollable="true"
         mode="ios"
         [(ngModel)]="layoutModel" 
-        (ionChange)="layoutChanged($event)" class="ion-no-padding ion-padding-top segment-tab bg-dark">
+        (ionChange)="layoutChanged($event)" class="ion-no-padding ion-padding-top ">
 
           <ion-segment-button value="grid">
             <ion-label>Grid View</ion-label>
@@ -96,7 +93,7 @@
             <ion-label>List View</ion-label>
           </ion-segment-button>
         </ion-segment>
-      </ion-row>
+     
     </div>
 
     <div class="content-container">

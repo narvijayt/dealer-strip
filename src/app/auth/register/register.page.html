@@ -15,7 +15,7 @@
       <ion-grid>
 
         <ion-row>
-          <ion-item lines="none" class="ion-margin-bottom">
+          <ion-item lines="none" class="ion-margin-bottom fieldGroupItem">
             <ion-label> <ion-icon name="briefcase-outline"></ion-icon></ion-label>
             <ion-input clearInput [(ngModel)]="postData.business_name" required type="text" autocomplete="off" name="business_name" placeholder="Business Name"></ion-input>
           </ion-item>
@@ -23,7 +23,7 @@
 
 
         <ion-row>
-          <ion-item lines="none" class="ion-margin-bottom">
+          <ion-item lines="none" class="ion-margin-bottom fieldGroupItem">
             <ion-label> <ion-icon name="person-outline"></ion-icon></ion-label>
             <ion-input clearInput [(ngModel)]="postData.user_name" required type="text" autocomplete="off" name="username" placeholder="Name"></ion-input>
           </ion-item>
@@ -31,14 +31,14 @@
 
 
         <ion-row>
-          <ion-item lines="none" class="ion-margin-bottom">
+          <ion-item lines="none" class="ion-margin-bottom fieldGroupItem">
             <ion-label> <ion-icon name="mail-outline"></ion-icon></ion-label>
             <ion-input clearInput [(ngModel)]="postData.user_email" required type="email" autocomplete="off" name="user_email" placeholder="Email"></ion-input>
           </ion-item>
         </ion-row>
 
         <ion-row>
-          <ion-item lines="none" class="ion-margin-bottom">
+          <ion-item lines="none" class="ion-margin-bottom fieldGroupItem">
             <ion-label> <ion-icon name="lock-closed-outline"></ion-icon></ion-label>
             <ion-input clearInput [(ngModel)]="postData.password" required type="password" autocomplete="off" name="password" placeholder="********"></ion-input>
           </ion-item>
@@ -46,7 +46,7 @@
 
 
         <ion-row>
-          <ion-item lines="none" class="ion-margin-bottom">
+          <ion-item lines="none" class="ion-margin-bottom fieldGroupItem">
             <ion-label> <ion-icon name="phone-portrait-outline"></ion-icon></ion-label>
             <ion-input clearInput [(ngModel)]="postData.user_phone" required type="text" autocomplete="off" name="user_phone" placeholder="Phone"></ion-input>
           </ion-item>
@@ -54,21 +54,21 @@
 
 
         <ion-row>
-          <ion-item lines="none" class="ion-margin-bottom">
+          <ion-item lines="none" class="ion-margin-bottom fieldGroupItem">
             <ion-label> <ion-icon name="location-outline"></ion-icon></ion-label>
             <ion-input clearInput [(ngModel)]="postData.city" required type="text" autocomplete="off" name="city" placeholder="City"></ion-input>
           </ion-item>
         </ion-row>
 
         <ion-row>
-          <ion-item lines="none" class="ion-margin-bottom">
+          <ion-item lines="none" class="ion-margin-bottom fieldGroupItem">
             <ion-label> <ion-icon name="location-outline"></ion-icon></ion-label>
             <ion-input clearInput [(ngModel)]="postData.state" required type="text" autocomplete="off" name="state" placeholder="State"></ion-input>
           </ion-item>
         </ion-row>
 
         <ion-row>
-          <ion-item lines="none" class="ion-margin-bottom">
+          <ion-item lines="none" class="ion-margin-bottom fieldGroupItem" >
             <ion-label> <ion-icon name="lock-closed-outline"></ion-icon></ion-label>
             <ion-input clearInput [[(ngModel)]="postData.zipcode" required type="text" autocomplete="off" name="zipcode" placeholder="Zip Code"></ion-input>
           </ion-item>

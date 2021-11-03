@@ -1,0 +1,22 @@
+.card {border-radius: 0px; margin-bottom: 0rem; margin-top: 0.813rem;}
+.card h2 {font-size: 1rem; font-family: 'Montserrat-SemiBold'; margin-top: 0.813rem;}
+.card-content-ios p{padding: 0px;font-family: 'Montserrat-Medium'; color:#000; font-size:0.75rem; margin-bottom: 0.375rem;}
+.card-content-ios {padding-top: 0;padding: 0px;color: #000; font-size: 12px;}
+.search-location{padding-top: 0.625rem;display: flex;align-items: center;}
+.search-location p{ margin-bottom: 0px; font-size: 0.688rem;}
+.card ion-icon.ios{font-size: 1.063rem;}
+.card  .search-address{display: flex; align-items: center;}
+.card .search-date{color: #999;font-family: "Montserrat-Medium";font-size: 0.688rem;}
+.list-text {padding-left:1.25rem; padding-right: 0.625rem;}
+.list-view h5{font-size: 0.813rem !important;font-family: 'Montserrat-SemiBold';margin: 0rem;}
+.bookmark-box{position: absolute;left: 0.5rem;top: 0.25rem;}
+ion-thumbnail{width: 100%;height: 100%;img{  width: 100%;height: 100%;}}
+span.bookmark-text {
+    background: linear-gradient(90deg, #ee2b86 0%, #e88145 78%);
+    font-size: 0.625rem;
+    text-transform: uppercase;padding: 0.25rem 0.75rem;border-radius:2.313rem;font-family: "Montserrat-Bold";
+    letter-spacing: 1px; color: #fff; font-size: 0.438rem;
+}
+.img-wrapper {width: 100%;background-size: cover;background-repeat: no-repeat;}
+.ion-col-width{ width: 100% !important; display: inline-block;max-width: 100% !important;}
+ion-card-content{ padding-left: 0; padding-right: 0;}
