@@ -275,6 +275,7 @@ export class VehicleModalComponent implements OnInit {
         // imageData is either a base64 encoded string or a file URI
         this.postData.vehicleImage = imageData;
         this.imagePath = 'data:image/jpeg;base64,' + this.postData.vehicleImage;
+        // this.imagePath = imageData;
       }, (err) => {
         // Handle error
         console.warn(err);
