@@ -3,9 +3,8 @@ import { ModalController, ActionSheetController, IonContent, IonSlides, NavContr
 import { AbstractControl, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
-// import { Plugins, CameraResultType, CameraSource } from '@capacitor/core';
-// const { Camera } = Plugins;
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { Crop } from '@ionic-native/crop/ngx';
 import { File } from '@ionic-native/file/ngx';
 
 import { Router } from '@angular/router';
@@ -13,6 +12,7 @@ import { VehicleService } from '../../services/vehicle.service';
 import { AuthConstants } from '../../../../../auth-constants';
 import { StorageService } from '../../../shared/services/storage.service';
 import { ToastService } from '../../../shared/services/toast.service';
+import { LoaderService } from '../../../shared/services/loader.service';
 
 @Component({
   selector: 'app-vehicle-modal',
@@ -23,13 +23,6 @@ export class VehicleModalComponent implements OnInit {
 
   @ViewChild(IonContent, { static: true }) ionContent: IonContent;
   @ViewChild(IonSlides, { static: false }) ionSlides: IonSlides;
-
-  cameraOptions: CameraOptions = {
-    quality: 20,
-    destinationType: this.camera.DestinationType.DATA_URL,
-    encodingType: this.camera.EncodingType.JPEG,
-    mediaType: this.camera.MediaType.PICTURE
-  }
 
   public imagePath: SafeResourceUrl;
   public slidesOpts = {
@@ -87,7 +80,9 @@ export class VehicleModalComponent implements OnInit {
     private storageService: StorageService,
     private toastService: ToastService,
     private camera: Camera,
-    private file: File
+    private file: File,
+    private crop: Crop,
+    private loaderService: LoaderService,
     ) {
       this.storageService.get(AuthConstants.AUTH).then( user => {
         if(!user){
@@ -204,14 +199,14 @@ export class VehicleModalComponent implements OnInit {
         this.ionSlides.slideNext();
         this.ionContent.scrollToTop();
     } else if (this.currentSlide === 'Pricing & Other Info') {
-      
+      this.loaderService.showLoader();
       // console.log(this.toolkit_flag);
       this.postData.vehicle_toolkit = (this.toolkit_flag === false) ? 0 : 1;
       this.postData.vehicle_damaged = (this.damaged_flag === false) ? 0 : 1;
       this.postData.call_for_price = (this.call_flag === false) ? 0 : 1;
       this.postData.vehicle_owner_manual = (this.manual_flag === false) ? 0 : 1;
       console.log(this.postData);
-
+      
       this.VehicleService.insertVehicle(this.postData).subscribe((result) => {
         // console.log(result);
         if(result.data){          
@@ -222,36 +217,20 @@ export class VehicleModalComponent implements OnInit {
           });
         }else{
           this.toastService.presentToast(result.message);
-        }          
+        }
+        this.loaderService.dismissLoader();        
       },(error: any) => {
         if(error.error){
           this.toastService.presentToast(error.error.message);
         }else{
           this.toastService.presentToast(error.message);
         }
+        this.loaderService.dismissLoader();
       });
     }  else {
-
       this.ionSlides.slideNext();
       this.ionContent.scrollToTop();
     }
-  }
-
-  captureImage() {
-    this.camera.getPicture(this.cameraOptions).then((imageData) => {
-      // this.camera.DestinationType.FILE_URI gives file URI saved in local
-      // this.camera.DestinationType.DATA_URL gives base64 URI
-      
-      // let base64Image = 'data:image/jpeg;base64,' + imageData;
-      // this.capturedSnapURL = base64Image;
-
-      this.postData.vehicleImage = imageData;
-      this.imagePath = 'data:image/jpeg;base64,' + this.postData.vehicleImage;
-    }, (err) => {
-      
-      console.log(err);
-      // Handle error
-    });
   }
 
   convertBlobToBase64 = (blob: Blob) => new Promise((resolve, reject) => {
@@ -261,25 +240,44 @@ export class VehicleModalComponent implements OnInit {
     reader.readAsDataURL(blob);
   });
 
-  async chooseImage(sourceType) {
+  async chooseImage(sourceType) {    
     try {
-      const options: CameraOptions = {
-        quality: 60,
-        sourceType: sourceType,
-        destinationType: this.camera.DestinationType.DATA_URL,
-        encodingType: this.camera.EncodingType.JPEG,
-        mediaType: this.camera.MediaType.PICTURE
-      }
 
-      this.camera.getPicture(options).then((imageData) => {
-        // imageData is either a base64 encoded string or a file URI
-        this.postData.vehicleImage = imageData;
-        this.imagePath = 'data:image/jpeg;base64,' + this.postData.vehicleImage;
-        // this.imagePath = imageData;
-      }, (err) => {
-        // Handle error
-        console.warn(err);
-      });
+      if(sourceType == 1){
+        const options: CameraOptions = {
+          quality: 100,
+          sourceType: sourceType,
+          destinationType: this.camera.DestinationType.FILE_URI,
+          encodingType: this.camera.EncodingType.JPEG,
+          mediaType: this.camera.MediaType.PICTURE,
+          correctOrientation: true
+        }
+  
+        this.camera.getPicture(options).then((imageURL) => {
+          this.cropImage(imageURL);
+        }, (err) => {
+          // Handle error
+          console.warn(err);
+        });
+      }else{
+        const options: CameraOptions = {
+          quality: 100,
+          sourceType: sourceType,
+          destinationType: this.camera.DestinationType.DATA_URL,
+          encodingType: this.camera.EncodingType.JPEG,
+          mediaType: this.camera.MediaType.PICTURE,
+          correctOrientation: true
+        }
+  
+        this.camera.getPicture(options).then((imageData) => {
+          // imageData is either a base64 encoded string or a file URI
+          this.postData.vehicleImage = imageData;
+          this.imagePath = 'data:image/jpeg;base64,' + this.postData.vehicleImage;
+        }, (err) => {
+          // Handle error
+          console.warn(err);
+        });
+      }
 
     } catch (error) {
       console.warn(error);
@@ -307,6 +305,33 @@ export class VehicleModalComponent implements OnInit {
     });
 
     return await actionSheet.present();
+  }
+
+  cropImage(fileUrl) {
+    this.crop.crop(fileUrl, { quality: 100, targetWidth: 1200, targetHeight: 1200 })
+      .then(
+        newPath => {
+          this.showCroppedImage(newPath.split('?')[0])
+        },
+        error => {
+          alert('Error cropping image' + error);
+        }
+      );
+  }
+
+  showCroppedImage(ImagePath) {
+    var copyPath = ImagePath;
+    var splitPath = copyPath.split('/');
+    var imageName = splitPath[splitPath.length - 1];
+    var filePath = ImagePath.split(imageName)[0];
+
+    this.file.readAsDataURL(filePath, imageName).then(base64 => {
+      this.postData.vehicleImage = base64.replace("data:image/jpeg;base64,", "");
+      console.log("Image Store Path ", this.postData.vehicleImage);
+      this.imagePath = base64;
+    }, error => {
+      console.warn('Error in showing image' + error);
+    });
   }
 
   

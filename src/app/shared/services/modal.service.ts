@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { ModalComponent } from '../components/modal/modal.component';
 import { VehicleModalComponent } from '../components/vehicle-modal/vehicle-modal.component';
+import { LoaderService } from '../../shared/services/loader.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,8 @@ import { VehicleModalComponent } from '../components/vehicle-modal/vehicle-modal
 export class ModalService {
 
   constructor(
-    private _modalController: ModalController
+    private _modalController: ModalController,
+    private loaderService: LoaderService,
     ) { }
 
   presentModal(): void {
@@ -24,9 +26,13 @@ export class ModalService {
   }
 
   openVehicleForm(): void {
+    this.loaderService.showLoader();
     this._modalController.create({
       component: VehicleModalComponent,
       cssClass: 'new-vehicle-form',
-    }).then(modal => modal.present());
+    }).then( (modal) => {
+      modal.present();
+      this.loaderService.dismissLoader();
+    });
   }
 }
