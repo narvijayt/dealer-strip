@@ -38,8 +38,8 @@ ion-item.fieldGroupItem ion-icon{
   display: flex;
   align-items: center;
   position: absolute;
-  top:50%;
-  left:50%;
+  top:43%;
+  left:33%;
   transform:translate(-50%,-50%);
   -webkit-transform:translate(-50%,-50%);
 }
@@ -51,11 +51,27 @@ ion-item.fieldGroupItem input {
   max-width: 100%;
   display: block;
   box-sizing: border-box;
-  padding-left: 40px !important;
+  padding-left: 32px !important;
   text-align: center;
+}
+ion-item.fieldGroupItem.pl-2 input{
+  padding-left: 21px !important;
+}
+ion-item.fieldGroupItem .select-placeholder{
+  color: #ddd !important;
+  opacity: 0.6 !important;
 }
 .button{
   height:46px;
+}
+.tool-list{
+  position: relative;
+  box-shadow:0 2px 4px 0 rgba(255,255,255,0.30) ;
+  -webkit-box-shadow:0 2px 4px 0 rgba(255,255,255,0.30);
+  -moz-box-shadow:0 2px 4px 0 rgba(255,255,255,0.30);
+width:100%;
+border-radius: 50px;
+outline: none !important; 
 }
 
 /************* Custom Global Styles **************/
@@ -84,9 +100,8 @@ ion-header.ios.header-ios img{ width: auto;}
 h1{font-size: 1.25rem; font-weight: bold; margin: 0px;}
 h6{ margin: 0px !important;}
 p{font-size:0.813rem;font-family: Montserrat-Medium;color: #999999;margin: 0px;}
-.native-input.sc-ion-input-ios {background: #fff;color: #242323;text-align: left;padding:0.875rem 1.25rem;
-    border-radius: 2.938rem; border: none; margin-top: 0.625rem;font-size: 0.813rem; font-family: 'Montserrat-Medium'; }
- .pl .native-input.sc-ion-input-ios{ padding-left: 40px !important;} 
+
+ .pl .native-input.sc-ion-input-ios{ padding-left: 25px !important;} 
  p.text-color{color: #fff;}
  .fs-6{ font-size: 11px;}
  .mt-0 .native-input.sc-ion-input-ios{margin-top: 0rem;}
@@ -94,10 +109,10 @@ p{font-size:0.813rem;font-family: Montserrat-Medium;color: #999999;margin: 0px;}
  .header-ios ion-toolbar:last-of-type{--border-width:0px;}
  .footer-ios ion-toolbar:first-of-type { --border-width: 0px;}
  ion-toggle {
-    --background: #dfe1e6;
+    --background: #606062;
     --background-checked: -webkit-linear-gradient(top right, #ee2489 0%, #ee2489 51%, #e88442 100%);
   
-    --handle-background: #fff;
+    --handle-background: #bdbaba;
     --handle-background-checked: #fff;
   }
   ion-toggle { width: 60px;height: 30px;}
@@ -117,4 +132,7 @@ p{font-size:0.813rem;font-family: Montserrat-Medium;color: #999999;margin: 0px;}
  .brands ion-item{--padding-start: 0px !important;--inner-padding-end: 0px !important;
                 --inner-border-width: 0px !important;}
 on-tab-button { --color: var(--ion-color-medium); --color-selected: var(--ion-color-primary);}
+ion-text.ion-color.ion-color-danger.ios.hydrated {
+  display: none;
+}
                   

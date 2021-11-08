@@ -1,4 +1,4 @@
-<ion-row class="search-list">
+<ion-row class="search-outer">
   <ion-col class="ion-no-padding" size="4">
     <div class="bookmark-box">
       <span class="bookmark-text">Featured</span>            
@@ -20,10 +20,10 @@
       <ion-card-subtitle><p>{{ vehicle.model.model_title }}</p></ion-card-subtitle>
       <ion-card-subtitle><p>{{ vehicle.vehicle_make_year }}{{ (vehicle.vehicle_travelled) ? " - "+vehicle.vehicle_travelled + " KM" : "" }}</p></ion-card-subtitle>
       <ion-row class="search-location">
-        <ion-col class="ion-no-padding search-address" size="9">
+        <ion-col class="ion-no-padding search-address" size="10">
           <ion-icon name="location-outline"></ion-icon><p>{{ vehicle.vehicle_location }}</p> 
         </ion-col>
-        <ion-col class="ion-no-padding ion-text-end search-date" size="3">
+        <ion-col class="ion-no-padding ion-text-end search-date" size="2">
           <p><ion-datetime color="primary" displayFormat="DD MMM" [value]="vehicle.created_at"></ion-datetime></p>
         </ion-col>
       </ion-row>

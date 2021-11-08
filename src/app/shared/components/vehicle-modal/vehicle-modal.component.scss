@@ -68,14 +68,13 @@ ion-item {
     display: block;
   }
   ion-select.select-input {
-    color: #000;
-    width: 100%;
+   width: 100%;
     padding-left: 10px;
     font-size: 12px;
     font-family: 'Montserrat-Medium'; 
-    background: #fff;
     border-radius: 30px;
-    padding: 14px 21px;
+    padding: 13px 21px;
+    padding-right: 17px;
 }
 
 .primary-button.button-back{
@@ -100,7 +99,7 @@ ion-icon.close-icon {
 .label-stacked.sc-ion-label-ios-h{ align-self: auto;margin-bottom: 0px; }
 .tool-list{display: flex; justify-content: space-between;
   align-items: center;
-  background: #fff;color: #999; text-align: left;padding: 0.438rem 1.25rem;
+  background: #1e1d1d;color: #999; text-align: left;padding: 0.438rem 1.25rem;
     border-radius: 2.938rem;border: none; margin-top: 0rem;font-size: 0.813rem;
     font-family: 'Montserrat-Medium';margin-bottom: 1.25rem;}
     .sc-ion-label-ios-s h5{font-size: 0.75rem;}
@@ -130,4 +129,5 @@ ion-icon.close-icon {
 .action-sheet-group.sc-ion-action-sheet-ios{ background: #1b1b1b; color:#fff}
 .vehicle-modal {
   padding-bottom: 1.25rem;
+  ion-item.fieldGroupItem input{padding-left: 21px !important;}
 }

@@ -12,7 +12,7 @@
   </ion-row>
 </ion-card-header>
 
-<ion-card-content class="ion-no-padding">
+<ion-card-content class="ion-no-padding dashboard ">
   <ion-row>
     <ion-col class="ion-no-padding">
       <div class="bookmark-box">
@@ -32,7 +32,7 @@
       <ion-card-title color="primary"><h2>${{ vehicle.retail_price }}</h2></ion-card-title>
     </ion-col>
     <ion-col class="ion-no-padding ion-text-end" size="5">
-      <ion-card-subtitle color="primary"><p>{{ vehicle.vehicle_make_year }}{{ (vehicle.vehicle_travelled) ? " - "+vehicle.vehicle_travelled + " KM" : "" }}</p></ion-card-subtitle>
+      <ion-card-subtitle color="primary">{{ vehicle.vehicle_make_year }}{{ (vehicle.vehicle_travelled) ? " - "+vehicle.vehicle_travelled + " KM" : "" }}</ion-card-subtitle>
     </ion-col>
   </ion-row>
 
@@ -43,10 +43,10 @@
   </ion-row>
   <ion-row class="ion-padding-horizontal ion-padding-bottom">
     <ion-col class="ion-no-padding card-location" size="8">
-      <ion-icon *ngIf="vehicle.vehicle_location" name="location-outline" ></ion-icon> <p>{{ vehicle.vehicle_location }}</p>
+      <ion-icon *ngIf="vehicle.vehicle_location" name="location-outline" ></ion-icon> <p >{{ vehicle.vehicle_location }}</p>
     </ion-col>
     <ion-col class="ion-no-padding ion-text-end" size="4">
-      <p><ion-datetime color="primary" displayFormat="DD MMM" [value]="vehicle.created_at"></ion-datetime></p>
+      <p class="text-color"><ion-datetime  displayFormat="DD MMM" [value]="vehicle.created_at"></ion-datetime></p>
     </ion-col>
   </ion-row>
   

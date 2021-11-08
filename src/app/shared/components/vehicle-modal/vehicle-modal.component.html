@@ -42,9 +42,11 @@
 
               <ion-row>
                 <ion-col>
+                  <ion-item lines="none" class="ion-margin-bottom fieldGroupItem">
                   <ion-select *ngIf="vehicleMake" [(ngModel)]="postData.vehicle_make_id" name="vehicle_make_id" class="select-input" placeholder="Select Make" (ionChange)="vehicleModels()">
                     <ion-select-option *ngFor="let make of vehicleMake" [value]="make.make_id"> {{make.make_title}}</ion-select-option>
                   </ion-select>
+                </ion-item>
                  
                   <ion-text color="danger">
                     <span class="text-tiny"
@@ -57,9 +59,11 @@
 
               <ion-row>
                 <ion-col>
+                  <ion-item lines="none" class="ion-margin-bottom fieldGroupItem">
                   <ion-select *ngIf="vehicleModel else modelPlaceholder" [(ngModel)]="postData.vehicle_model_id" name="vehicle_model_id" class="select-input" placeholder="Select Model">
                     <ion-select-option *ngFor="let model of vehicleModel" [value]="model.model_id"> {{model.model_title}}</ion-select-option>
                   </ion-select>
+                </ion-item>
 
                   <ng-template #modelPlaceholder>
                     <ion-select [(ngModel)]="postData.vehicle_model_id" name="vehicle_model_id" class="select-input" placeholder="Select Model">
@@ -77,11 +81,13 @@
 
               <ion-row>
                 <ion-col>
+                  <ion-item lines="none" class="ion-margin-bottom fieldGroupItem">
                   <ion-select [(ngModel)]="postData.vehicle_make_year" name="vehicle_make_year" class="select-input" placeholder="Select Year">
                     <ion-select-option value="2021">2021</ion-select-option>
                     <ion-select-option value="2020">2020</ion-select-option>
                     <ion-select-option value="2019">2019</ion-select-option>
                   </ion-select>
+                </ion-item>
                   
                   <ion-text color="danger">
                     <span class="text-tiny"
@@ -93,20 +99,22 @@
               </ion-row>
 
               <ion-row>
-                <ion-col class="mt-0">
+                <ion-item lines="none" class="ion-margin-bottom fieldGroupItem pl-2">
                   <ion-input type="text" placeholder="Mileage" [(ngModel)]="postData.vehicle_mileage" name="vehicle_mileage"></ion-input>
+                </ion-item>
                   <ion-text color="danger">
                     <span class="text-tiny"
                       [style.visibility]="vehicleMileage?.errors?.required && basicInformationFormRef.submitted ? '' : 'hidden'">
                       Field required
                     </span>
                   </ion-text>
-                </ion-col>
-              </ion-row>
+               </ion-row>
 
               <ion-row>
                 <ion-col class="mt-0">
+                  <ion-item lines="none" class="ion-margin-bottom fieldGroupItem pl-2">
                   <ion-input type="text" placeholder="Travelled" [(ngModel)]="postData.vehicle_travelled" name="vehicle_travelled"></ion-input>
+                </ion-item>
                   <ion-text color="danger">
                     <span class="text-tiny"
                       [style.visibility]="vehicleTravelled?.errors?.required && basicInformationFormRef.submitted ? '' : 'hidden'">
@@ -117,10 +125,12 @@
               </ion-row>
 
               <ion-row>
-                <ion-col>                  
+                <ion-col> 
+                  <ion-item lines="none" class="ion-margin-bottom fieldGroupItem">                  
                   <ion-select *ngIf="bodyStyles" [(ngModel)]="postData.vehicle_bodystyle_id" name="vehicle_bodystyle_id" class="select-input" placeholder="Body Style">
                     <ion-select-option *ngFor="let body of bodyStyles" [value]="body.body_id"> {{body.body_title}}</ion-select-option>
                   </ion-select>
+                </ion-item>
                   <ion-text color="danger">
                     <span class="text-tiny"
                       [style.visibility]="vehicleBodyStyle?.errors?.required && basicInformationFormRef.submitted ? '' : 'hidden'">
@@ -141,9 +151,11 @@
 
               <ion-row>
                 <ion-col>
+                  <ion-item lines="none" class="ion-margin-bottom fieldGroupItem ">
                   <ion-select *ngIf="exteriorColors" [(ngModel)]="postData.exterior_color_id" name="exterior_color_id" class="select-input" placeholder="Exterior Color">
                     <ion-select-option *ngFor="let color of exteriorColors" [value]="color.color_id"> {{color.color_title}}</ion-select-option>
                   </ion-select>
+                </ion-item>
                   <ion-text color="danger">
                     <span class="text-tiny"
                       [style.visibility]="engineExteriorColor?.errors?.required && engineFormRef.submitted ? '' : 'hidden'">
@@ -155,9 +167,11 @@
 
               <ion-row>
                 <ion-col>
+                  <ion-item lines="none" class="ion-margin-bottom fieldGroupItem ">
                   <ion-select *ngIf="interiorColors" [(ngModel)]="postData.interior_color_id" name="interior_color_id" class="select-input" placeholder="Interior Color">
                       <ion-select-option *ngFor="let color of interiorColors" [value]="color.color_id"> {{color.color_title}}</ion-select-option>
                   </ion-select>
+                </ion-item>
                   <ion-text color="danger">
                     <span class="text-tiny"
                       [style.visibility]="engineInteriorColor?.errors?.required && engineFormRef.submitted ? '' : 'hidden'">
@@ -169,9 +183,11 @@
 
               <ion-row>
                 <ion-col>
+                  <ion-item lines="none" class="ion-margin-bottom fieldGroupItem ">
                   <ion-select *ngIf="vehicleTypes" [(ngModel)]="postData.vehicle_type_id" name="vehicle_type_id" class="select-input" placeholder="Cylinder/ Elastic">
                       <ion-select-option *ngFor="let type of vehicleTypes" [value]="type.type_id"> {{type.type_title}}</ion-select-option>
                     </ion-select>
+                  </ion-item>
                   <ion-text color="danger">
                     <span class="text-tiny"
                       [style.visibility]="engineCylinder?.errors?.required && engineFormRef.submitted ? '' : 'hidden'">
@@ -180,12 +196,14 @@
                   </ion-text>
                 </ion-col>
               </ion-row>
-              
+            
               <ion-row>
                 <ion-col>
+                  <ion-item lines="none" class="ion-margin-bottom fieldGroupItem ">
                   <ion-select *ngIf="transmissions" [(ngModel)]="postData.vehicle_transmission_id" name="vehicle_transmission_id" class="select-input" placeholder="Transmission">
                       <ion-select-option *ngFor="let transmission of transmissions" [value]="transmission.transmission_id"> {{transmission.transmission_title}}</ion-select-option>
                     </ion-select>
+                  </ion-item>
                   <ion-text color="danger">
                     <span class="text-tiny"
                       [style.visibility]="engineTransmission?.errors?.required && engineFormRef.submitted ? '' : 'hidden'">
@@ -197,12 +215,13 @@
               
               <ion-row>
                 <ion-col>
+                  <ion-item lines="none" class="ion-margin-bottom fieldGroupItem ">
                   <ion-select [(ngModel)]="postData.vehicle_keys" name="vehicle_keys" class="select-input" placeholder="Number of Keys">
                       <ion-select-option value="2">2</ion-select-option>
                       <ion-select-option value="3">3</ion-select-option>
                       <ion-select-option value="4">4</ion-select-option>
                     </ion-select>
-                  
+                  </ion-item>
                   <ion-text color="danger">
                     <span class="text-tiny"
                       [style.visibility]="engineVehicleKeys?.errors?.required && engineFormRef.submitted ? '' : 'hidden'">
@@ -214,7 +233,9 @@
 
               <ion-row>
                 <ion-col class="mt-0">
+                  <ion-item lines="none" class="ion-margin-bottom fieldGroupItem pl-2">
                   <ion-input type="text" placeholder="Enter Address" [(ngModel)]="postData.vehicle_location" name="vehicle_location"></ion-input>
+                </ion-item>
                   <ion-text color="danger">
                     <span class="text-tiny"
                       [style.visibility]="vehicleLocation?.errors?.required && basicInformationFormRef.submitted ? '' : 'hidden'">
@@ -235,8 +256,10 @@
 
               <ion-row>
                 <ion-col class="vin-input">
+                  <ion-item lines="none" class="ion-margin-bottom fieldGroupItem pl-2">
                   <ion-input type="text" placeholder="Retail Price" name="retail_price" [(ngModel)]="postData.retail_price"></ion-input>
-                 <ion-text color="danger">
+                </ion-item>
+                  <ion-text color="danger">
                     <span class="text-tiny"
                       [style.visibility]="priceRetailPrice?.errors?.required && pricingFormRef.submitted ? '' : 'hidden'">
                       Field required
@@ -246,7 +269,7 @@
               </ion-row>
 
               <ion-row>
-                <ion-col class="tool-list">                  
+                <ion-col class="tool-list  ">                  
                   <ion-label position="stacked"><h5>Tool Kit</h5></ion-label>
                   <ion-toggle checked [(ngModel)]="toolkit_flag" name="toolkit_flag" value="1" (ionChange)="toggleOption('toolkit_flag')"></ion-toggle>                  
                 </ion-col>
@@ -275,8 +298,10 @@
 
               <ion-row>
                 <ion-col class="vin-input">
+                  <ion-item lines="none" class="ion-margin-bottom fieldGroupItem pl-2">
                   <ion-input type="text" placeholder="VIN" name="vehicle_vin" [(ngModel)]="postData.vehicle_vin"></ion-input>
-                 </ion-col>
+                </ion-item>
+                </ion-col>
               </ion-row>
 
             </form>
