@@ -14,7 +14,7 @@
 
 <ion-card-content class="ion-no-padding dashboard ">
   <ion-row>
-    <ion-col class="ion-no-padding">
+    <ion-col class="ion-no-padding dashboard-view-image">
       <div class="bookmark-box">
         <span class="bookmark-text">Gotta Go</span>
         <div *ngIf="!addedToBookMark" class="bookmark-icon inactive" (click)="handleAddToBookmark()"><ion-icon name="bookmark"></ion-icon></div>
@@ -43,7 +43,7 @@
   </ion-row>
   <ion-row class="ion-padding-horizontal ion-padding-bottom">
     <ion-col class="ion-no-padding card-location" size="8">
-      <ion-icon *ngIf="vehicle.vehicle_location" name="location-outline" ></ion-icon> <p >{{ vehicle.vehicle_location }}</p>
+      <ion-icon *ngIf="vehicle.vehicle_location" name="location-outline" ></ion-icon> <p class="text-color" >{{ vehicle.vehicle_location }}</p>
     </ion-col>
     <ion-col class="ion-no-padding ion-text-end" size="4">
       <p class="text-color"><ion-datetime  displayFormat="DD MMM" [value]="vehicle.created_at"></ion-datetime></p>

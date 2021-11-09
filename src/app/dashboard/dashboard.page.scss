@@ -22,6 +22,12 @@
         .dashboard .card {
             background: transparent;
         }
+        .card-content-md p{color: #ffffff !important;}
        body .dashboard .card-location p{color: #ffffff !important;}
         .dashboard .card-location{ margin-top:0px;}
+        ion-header{ padding: 0px;}
+        ion-header{
+            ion-row{padding-top: 0.188rem;padding-bottom: 0.188rem;}
+        }
+        
     

@@ -105,7 +105,14 @@ p{font-size:0.813rem;font-family: Montserrat-Medium;color: #999999;margin: 0px;}
  p.text-color{color: #fff;}
  .fs-6{ font-size: 11px;}
  .mt-0 .native-input.sc-ion-input-ios{margin-top: 0rem;}
- .alert-wrapper.sc-ion-alert-ios{background: #1b1b1b;font-family: 'Montserrat-Medium';    font-size: 14px;}
+ .alert-wrapper.sc-ion-alert-ios{background: #1b1b1b;font-family: 'Montserrat-Medium';font-size: 14px;}
+ .alert-radio-label.sc-ion-alert-md, .alert-radio-label.sc-ion-alert-ios{color:#fff;font-size: 14px;font-family: "Montserrat-Medium"}
+ [aria-checked=true].sc-ion-alert-md .alert-radio-label.sc-ion-alert-md{color:#fff;}
+ .alert-radio-label.sc-ion-alert-md{padding-inline-start: 43px;}
+ .alert-button.sc-ion-alert-md, .alert-button.sc-ion-alert-ios{color:#fff;font-size: 14px;font-family: "Montserrat-Medium"}
+ .ion-valid.item.md{ margin-right: 10px;}
+ 
+
  .header-ios ion-toolbar:last-of-type{--border-width:0px;}
  .footer-ios ion-toolbar:first-of-type { --border-width: 0px;}
  ion-toggle {
@@ -115,8 +122,12 @@ p{font-size:0.813rem;font-family: Montserrat-Medium;color: #999999;margin: 0px;}
     --handle-background: #bdbaba;
     --handle-background-checked: #fff;
   }
-  ion-toggle { width: 60px;height: 30px;}
+  ion-toggle { width: 60px;height: 30px; padding: 0px;}
+  ion-toggle.ng-untouched.ng-valid.md {
+    height: 28px;}
   .vin-input .native-input.sc-ion-input-ios{margin-top: 0rem;}
+  input.native-input.sc-ion-input-ios, input.native-input.sc-ion-input-md{font-family: "Montserrat-Medium";font-size: 12px;
+    color: #d9d9d9;}
   .ellipsis-icon{font-size: 1.875rem;}
   .avatar-img{  width: 1.875rem; height: 1.875rem;border-radius: 100%;
     margin-right: 0.625rem; font-family: "Montserrat-SemiBold";}
@@ -124,15 +135,40 @@ p{font-size:0.813rem;font-family: Montserrat-Medium;color: #999999;margin: 0px;}
         height: 100%;border-radius: 100%;}
   .avatar-box{display: flex;align-items: center;  color: #fff; font-size: 11px;font-weight: 500;}
 .action-sheet-group.sc-ion-action-sheet-ios{ background: #1b1b1b; color:#fff}
-  button.action-sheet-button.ion-activatable.ion-focusable.action-sheet-cancel.sc-ion-action-sheet-ios{ background: linear-gradient(
+button.action-sheet-button.ion-activatable.ion-focusable.action-sheet-cancel.sc-ion-action-sheet-ios,   button.action-sheet-button.ion-activatable.ion-focusable.action-sheet-cancel.sc-ion-action-sheet-md, button.action-sheet-button.ion-activatable.ion-focusable.action-sheet-logout.sc-ion-action-sheet-md, button.action-sheet-button.ion-activatable.ion-focusable.action-sheet-logout.sc-ion-action-sheet-ios{ background: linear-gradient(
             90deg, #ee2b86 0%, #e88145 78%); font-size: 0.938rem; font-family: Montserrat-SemiBold; text-transform: uppercase;}
+ion-icon.action-sheet-icon.sc-ion-action-sheet-md.md.hydrated,  ion-icon.action-sheet-icon.sc-ion-action-sheet-ios.ios.hydrated { color: #fff; }
+button.action-sheet-button.ion-activatable.ion-focusable.action-sheet-logout.sc-ion-action-sheet-md, button.action-sheet-button.ion-activatable.ion-focusable.action-sheet-logout.sc-ion-action-sheet-ios{height: 62px
+;}
+  .action-sheet-button-inner.sc-ion-action-sheet-md,  .action-sheet-button-inner.sc-ion-action-sheet-ios{ justify-content: center;font-family: "Montserrat-Medium";font-size: 14px;}
+  .action-sheet-button-inner.sc-ion-action-sheet-md, .action-sheet-title.sc-ion-action-sheet-md{font-family: "Montserrat-Medium";font-size: 14px; text-align: center;}
+  .action-sheet-icon.sc-ion-action-sheet-md, .action-sheet-icon.sc-ion-action-sheet-ios{margin-inline-end: 13px;}
+   .action-sheet-container.sc-ion-action-sheet-md { padding-left: unset;padding-right: unset;-webkit-padding-start: 8px;
+ padding-inline-start: 8px; -webkit-padding-end: 8px; padding-inline-end: 8px; }
+   .action-sheet-group.sc-ion-action-sheet-md:first-child { margin-top: 10px; margin-bottom: 10px; }
+  .action-sheet-group.sc-ion-action-sheet-md {border-radius: 13px ;margin-bottom: 8px;}
+ .action-sheet-button-inner.sc-ion-action-sheet-ios, .action-sheet-title.sc-ion-action-sheet-ios{font-family: "Montserrat-Medium";font-size: 14px; text-align: center;}
   .action-sheet-cancel.sc-ion-action-sheet-ios::after{ background: transparent;}
-   .action-sheet-title.sc-ion-action-sheet-ios{ font-size: 14px;font-family: Montserrat-SemiBold;}
-   .action-sheet-title.sc-ion-action-sheet-ios { font-size: 15px;font-family: 'Montserrat-Bold'; color: #fff;}
+   .action-sheet-title.sc-ion-action-sheet-ios{ font-size: 14px;font-family: "Montserrat-Medium";}
+   .action-sheet-title.sc-ion-action-sheet-ios { font-size: 15px;font-family: "Montserrat-Medium"; color: #fff;}
  .brands ion-item{--padding-start: 0px !important;--inner-padding-end: 0px !important;
                 --inner-border-width: 0px !important;}
 on-tab-button { --color: var(--ion-color-medium); --color-selected: var(--ion-color-primary);}
-ion-text.ion-color.ion-color-danger.ios.hydrated {
-  display: none;
+ion-text.ion-color.ion-color-danger.ios.hydrated { display: none;}
+button.action-sheet-button.ion-activatable.ion-focusable.action-sheet-cancel.sc-ion-action-sheet-md, button.action-sheet-button.ion-activatable.ion-focusable.action-sheet-cancel.sc-ion-action-sheet-ios {
+  height: 62px;}
+.action-sheet-button-inner.sc-ion-action-sheet-md, .action-sheet-title.sc-ion-action-sheet-md{color: #fff;}
+
+.native-input.sc-ion-input-md:-webkit-autofill{
+  transition: background-color 5000000s ease-in-out 0s;
+  -webkit-text-fill-color: #d9d9d9 !important;
 }
-                  
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+    transition: background-color 600000s 0s, color 600000s 0s;
+}
+input[data-autocompleted] {
+    background-color: transparent !important;
+}
+
+
