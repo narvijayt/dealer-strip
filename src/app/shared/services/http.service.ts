@@ -17,11 +17,24 @@ export class HttpService {
   };
 
   post(serviceName: string, data: any) {
-    // const headers = new HttpHeaders();
-    // const options = { headers: headers, withCredintials: false };
-    
     const url = environment.apiUrl + serviceName;    
     return this.http.post(url, JSON.stringify(data), this.httpOptions);
+  }
+
+  get(serviceName: string) {
+    let url = environment.apiUrl + serviceName;
+    console.log("Endpoint URL ", url);
+    return this.http.get(url, this.httpOptions);
+  }
+
+  put(serviceName: string, id:any, data: any) {
+    let url = environment.apiUrl + serviceName + '/' + id;
+    return this.http.put(url, JSON.stringify(data), this.httpOptions);
+  }
+
+  delete(serviceName: string, data: any = '') {
+    let url = (data!='') ? environment.apiUrl + serviceName + '/' + data : environment.apiUrl + serviceName;
+    return this.http.delete(url, this.httpOptions);
   }
 
 }

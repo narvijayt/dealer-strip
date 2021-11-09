@@ -3,8 +3,16 @@ import { ModalController, ActionSheetController, IonContent, IonSlides, NavContr
 import { AbstractControl, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
-// import { Plugins, CameraResultType, CameraSource } from '@capacitor/core';
-// const { Camera } = Plugins;
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { Crop } from '@ionic-native/crop/ngx';
+import { File } from '@ionic-native/file/ngx';
+
+import { Router } from '@angular/router';
+import { VehicleService } from '../../services/vehicle.service';
+import { AuthConstants } from '../../../../../auth-constants';
+import { StorageService } from '../../../shared/services/storage.service';
+import { ToastService } from '../../../shared/services/toast.service';
+import { LoaderService } from '../../../shared/services/loader.service';
 
 @Component({
   selector: 'app-vehicle-modal',
@@ -15,37 +23,8 @@ export class VehicleModalComponent implements OnInit {
 
   @ViewChild(IonContent, { static: true }) ionContent: IonContent;
   @ViewChild(IonSlides, { static: false }) ionSlides: IonSlides;
-  @ViewChild('basicInformationFormRef', { static: false }) basicInformationFormRef: NgForm;
-  @ViewChild('engineFormRef', { static: false }) engineFormRef: NgForm;
-  @ViewChild('pricingFormRef', { static: false }) pricingFormRef: NgForm;
-
-  public order: any = {
-    id: 1,
-    items: [{
-      id: 1,
-      name: 'Denim T-Shirt',
-      amount: 15.00,
-    }, {
-      id: 1,
-      name: 'Denim Pants',
-      amount: 5.00,
-    }, {
-      id: 1,
-      name: 'Black T-Shirt',
-      amount: 5.00,
-    }],
-    subtotal: 25.00,
-    shippingFee: 5.00,
-    total: 30.00, 
-  };
-
-  public basicInformationForm: FormGroup;
-  public pricingForm: FormGroup;
-  public engineForm: FormGroup;
 
   public imagePath: SafeResourceUrl;
-
-
   public slidesOpts = {
     allowTouchMove: false,
     autoHeight: true,
@@ -56,67 +35,66 @@ export class VehicleModalComponent implements OnInit {
   public isBeginning: boolean = true;
   public isEnd: boolean = false;
 
-  get basicVehicleMake(): AbstractControl {
-    return this.basicInformationForm.get('vehicle_make');
-  }
+  postData: any = {
+    user_id: '',
+    vehicle_make_id: '',
+    vehicle_model_id: '',
+    vehicle_make_year: '',
+    vehicle_mileage: '',
+    vehicle_bodystyle_id: '',
+    exterior_color_id: '',
+    interior_color_id: '',
+    vehicle_type_id: '',
+    vehicle_transmission_id: '',
+    vehicle_keys: '',
+    retail_price: '',
+    vehicle_toolkit:'',
+    vehicle_damaged: '',
+    call_for_price: '',
+    vehicle_owner_manual: '',
+    vehicle_vin: '',
+    vehicleImage:'',
+    vehicle_travelled:'',
+    vehicle_location:'',
+  };
+  public toolkit_flag:boolean;
+  public damaged_flag:boolean;
+  public call_flag:boolean;
+  public manual_flag:boolean;
 
-  get basicVehicleModel(): AbstractControl {
-    return this.basicInformationForm.get('vehicle_model');
-  }
+  public vehicleMake:any;
+  public vehicleModel:any;
+  public bodyStyles:any;
+  public interiorColors:any;
+  public exteriorColors:any;
+  public vehicleTypes:any;
+  public transmissions:any;
 
-  get vehicleYear(): AbstractControl {
-    return this.basicInformationForm.get('vehicle_year');
-  }
-
-  get vehicleMileage(): AbstractControl {
-    return this.basicInformationForm.get('mileage');
-  }
-
-  get vehicleBodyStyle(): AbstractControl {
-    return this.basicInformationForm.get('bodyStyle');
-  }
-
-  /*get billingState(): AbstractControl {
-    return this.basicInformationForm.get('state');
-  }
-
-  get billingZip(): AbstractControl {
-    return this.basicInformationForm.get('zip');
-  }
-
-  get billingCountryCode(): AbstractControl {
-    return this.basicInformationForm.get('country_code');
-  }*/
-
-  get engineExteriorColor(): AbstractControl {
-    return this.engineForm.get('exterior_color');
-  }
-  
-  get engineInteriorColor(): AbstractControl {
-    return this.engineForm.get('interior_color');
-  }
-
-  get engineCylinder(): AbstractControl {
-    return this.engineForm.get('vehicle_cylinder');
-  }
-
-  get engineTransmission(): AbstractControl {
-    return this.engineForm.get('transmission');
-  }
-  
-  get engineVehicleKeys(): AbstractControl {
-    return this.engineForm.get('vehicle_keys');
-  }
-
-  get priceRetailPrice(): AbstractControl {
-    return this.pricingForm.get('retail_price');
-  }
-
-  constructor(private actionSheetCtrl: ActionSheetController,
+  constructor(
+    public router: Router,
+    private actionSheetCtrl: ActionSheetController,
     private navCtrl: NavController,
     private sanitizer: DomSanitizer,
-    public modalController : ModalController
+    public modalController : ModalController,
+    public VehicleService: VehicleService,
+    private storageService: StorageService,
+    private toastService: ToastService,
+    private camera: Camera,
+    private file: File,
+    private crop: Crop,
+    private loaderService: LoaderService,
     ) {
+      this.storageService.get(AuthConstants.AUTH).then( user => {
+        if(!user){
+          this.router.navigate(['/login']);
+        }else{
+          this.postData.user_id = user.ID;
+        }
+      });
+      this.toolkit_flag = false;
+      this.damaged_flag = false;
+      this.call_flag = false;
+      this.manual_flag = false;
   }
 
   ngOnInit() {
@@ -135,29 +113,65 @@ export class VehicleModalComponent implements OnInit {
   }
 
   setupForm() {
-    this.basicInformationForm = new FormGroup({
-      vehicle_make: new FormControl('2021', Validators.required),
-      vehicle_model: new FormControl('2020', Validators.required),
-      vehicle_year: new FormControl('2019', Validators.required),
-      mileage: new FormControl('20', Validators.required),
-      bodyStyle: new FormControl('Sedan', Validators.required),
-    });
+    this.VehicleService.getVehiclesMakeList().subscribe((result) => {
+      if(result.data)
+        this.vehicleMake = result.data;
+    })
 
-    this.engineForm = new FormGroup({
-      exterior_color: new FormControl('Black', Validators.required),
-      interior_color: new FormControl('White', Validators.required),
-      vehicle_cylinder: new FormControl('V6', Validators.required),
-      transmission: new FormControl('Automatic', Validators.required),
-      vehicle_keys: new FormControl('2', Validators.required),
-    });
+    this.VehicleService.getVehiclesBodyStyleList().subscribe((result) => {
+      if(result.data)
+        this.bodyStyles = result.data;
+    })
 
-    this.pricingForm = new FormGroup({
-      retail_price: new FormControl('', Validators.required),
-      toolkit:  new FormControl(''),
-      damaged_vehicle:  new FormControl(''),
-      price_call:  new FormControl(''),
-      owner_manual:  new FormControl(''),
-    });
+    let exteriorParams = new URLSearchParams();
+    exteriorParams.append('color_type', 'Exterior');
+    this.VehicleService.getVehiclesColorsList(exteriorParams).subscribe((result) => {
+      if(result.data)
+        this.exteriorColors = result.data;
+    })
+
+    let interiorParams = new URLSearchParams();
+    interiorParams.append('color_type', 'Interior');
+    this.VehicleService.getVehiclesColorsList(interiorParams).subscribe((result) => {
+      if(result.data)
+        this.interiorColors = result.data;
+    })
+    
+    this.VehicleService.getVehiclesTypesList().subscribe((result) => {
+      if(result.data)
+        this.vehicleTypes = result.data;
+    })
+    
+    this.VehicleService.getTransmissionsList().subscribe((result) => {
+      if(result.data)
+        this.transmissions = result.data;
+    })
+  }
+
+  vehicleModels(){
+    this.postData.vehicle_model_id = null;
+    let modelParams = new URLSearchParams();
+    modelParams.append('model_make_id', this.postData.vehicle_make_id);
+    this.VehicleService.getVehiclesModelList(modelParams).subscribe((result) => {
+      if(result.data)
+        this.vehicleModel = result.data;
+    })
+  }
+
+  toggleOption(toggleType){
+    if(toggleType == "toolkit_flag"){
+      this.toolkit_flag;
+      // console.log("toolkit_flag Toggle ", this.toolkit_flag);
+    }else if(toggleType == "damaged_flag"){
+      this.damaged_flag;
+      // console.log("damaged_flag Toggle ", this.damaged_flag);
+    }else if(toggleType == "call_flag"){
+      this.call_flag;
+      // console.log("call_flag Toggle ", this.call_flag);
+    }else if(toggleType == "manual_flag"){
+      this.manual_flag;
+      // console.log("manual_flag Toggle ", this.manual_flag);
+    }
   }
 
   async onSlidesChanged() {
@@ -179,37 +193,41 @@ export class VehicleModalComponent implements OnInit {
   onNextButtonTouched() {
     
     if (this.currentSlide === 'Vehicle Information') {
-
-      this.basicInformationFormRef.onSubmit(undefined);
-
-      if (this.basicInformationForm.valid) {
         this.ionSlides.slideNext();
         this.ionContent.scrollToTop();
-      }
-
-    } else if (this.currentSlide === 'Engine, Interior & Exterior') {
-      
-      this.engineFormRef.onSubmit(undefined);
-
-      if (this.engineForm.valid) {
+    } else if (this.currentSlide === 'Engine, Interior & Exterior') {      
         this.ionSlides.slideNext();
         this.ionContent.scrollToTop();
-      }
-
     } else if (this.currentSlide === 'Pricing & Other Info') {
-
-      this.pricingFormRef.onSubmit(undefined);
-
-      if (this.pricingForm.valid) {
-        this.dismiss();
-        this.navCtrl.navigateRoot('profile', {
-          animated: true,
-          animationDirection: 'forward',
-        });
-      }
-
+      this.loaderService.showLoader();
+      // console.log(this.toolkit_flag);
+      this.postData.vehicle_toolkit = (this.toolkit_flag === false) ? 0 : 1;
+      this.postData.vehicle_damaged = (this.damaged_flag === false) ? 0 : 1;
+      this.postData.call_for_price = (this.call_flag === false) ? 0 : 1;
+      this.postData.vehicle_owner_manual = (this.manual_flag === false) ? 0 : 1;
+      console.log(this.postData);
+      
+      this.VehicleService.insertVehicle(this.postData).subscribe((result) => {
+        // console.log(result);
+        if(result.data){          
+          this.dismiss();
+          this.navCtrl.navigateRoot('/car-details/'+result.data, {
+            animated: true,
+            animationDirection: 'forward',
+          });
+        }else{
+          this.toastService.presentToast(result.message);
+        }
+        this.loaderService.dismissLoader();        
+      },(error: any) => {
+        if(error.error){
+          this.toastService.presentToast(error.error.message);
+        }else{
+          this.toastService.presentToast(error.message);
+        }
+        this.loaderService.dismissLoader();
+      });
     }  else {
-
       this.ionSlides.slideNext();
       this.ionContent.scrollToTop();
     }
@@ -222,30 +240,44 @@ export class VehicleModalComponent implements OnInit {
     reader.readAsDataURL(blob);
   });
 
-  /*async chooseImage(source: CameraSource) {
-
+  async chooseImage(sourceType) {    
     try {
 
-      const image = await Camera.getPhoto({
-        quality: 70,
-        width: 600,
-        height: 600,
-        preserveAspectRatio: true,
-        allowEditing: true,
-        correctOrientation: true,
-        source: source,
-        resultType: CameraResultType.Uri,
-      });
-
-      const safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(image.webPath);
-      this.imagePath = safeUrl;
-
-      const response = await fetch(image.webPath);
-      const blob = await response.blob();
-
-      const base64 = await this.convertBlobToBase64(blob) as string;
-
-      // Send encoded string to server...
+      if(sourceType == 1){
+        const options: CameraOptions = {
+          quality: 100,
+          sourceType: sourceType,
+          destinationType: this.camera.DestinationType.FILE_URI,
+          encodingType: this.camera.EncodingType.JPEG,
+          mediaType: this.camera.MediaType.PICTURE,
+          correctOrientation: true
+        }
+  
+        this.camera.getPicture(options).then((imageURL) => {
+          this.cropImage(imageURL);
+        }, (err) => {
+          // Handle error
+          console.warn(err);
+        });
+      }else{
+        const options: CameraOptions = {
+          quality: 100,
+          sourceType: sourceType,
+          destinationType: this.camera.DestinationType.DATA_URL,
+          encodingType: this.camera.EncodingType.JPEG,
+          mediaType: this.camera.MediaType.PICTURE,
+          correctOrientation: true
+        }
+  
+        this.camera.getPicture(options).then((imageData) => {
+          // imageData is either a base64 encoded string or a file URI
+          this.postData.vehicleImage = imageData;
+          this.imagePath = 'data:image/jpeg;base64,' + this.postData.vehicleImage;
+        }, (err) => {
+          // Handle error
+          console.warn(err);
+        });
+      }
 
     } catch (error) {
       console.warn(error);
@@ -254,18 +286,17 @@ export class VehicleModalComponent implements OnInit {
   }
 
   async presentActionSheet() {
-
     const actionSheet = await this.actionSheetCtrl.create({
       header: 'Choose an option',
       buttons: [{
         text: 'Photo Library',
         handler: () => {
-          this.chooseImage(CameraSource.Photos);
+          this.chooseImage(this.camera.PictureSourceType.PHOTOLIBRARY);
         }
       }, {
         text: 'Camera',
         handler: () => {
-          this.chooseImage(CameraSource.Camera);
+          this.chooseImage(this.camera.PictureSourceType.CAMERA);
         }
       }, {
         text: 'Cancel',
@@ -274,7 +305,35 @@ export class VehicleModalComponent implements OnInit {
     });
 
     return await actionSheet.present();
-  }*/
+  }
+
+  cropImage(fileUrl) {
+    this.crop.crop(fileUrl, { quality: 100, targetWidth: 1200, targetHeight: 1200 })
+      .then(
+        newPath => {
+          this.showCroppedImage(newPath.split('?')[0])
+        },
+        error => {
+          alert('Error cropping image' + error);
+        }
+      );
+  }
+
+  showCroppedImage(ImagePath) {
+    var copyPath = ImagePath;
+    var splitPath = copyPath.split('/');
+    var imageName = splitPath[splitPath.length - 1];
+    var filePath = ImagePath.split(imageName)[0];
+
+    this.file.readAsDataURL(filePath, imageName).then(base64 => {
+      this.postData.vehicleImage = base64.replace("data:image/jpeg;base64,", "");
+      console.log("Image Store Path ", this.postData.vehicleImage);
+      this.imagePath = base64;
+    }, error => {
+      console.warn('Error in showing image' + error);
+    });
+  }
+
   
   originalOrder = (): number => {
     return 0;

@@ -1,0 +1,32 @@
+.user-profile {padding-top: 1.688rem;
+    .user-img { width: 5.313rem; height: 5.25rem;border-radius: 100%;
+    img{ width: 5.313rem; height: 100%;object-fit: cover;
+            object-position: center center;border-radius: 100%;}
+    }
+    ion-button.primary-button{height: 2.25rem;font-size: 0.75rem;}
+    h6{ color:#fff; font-size: 0.875rem;font-family: 'Montserrat-Bold';}
+    p{font-size: 0.75rem; color:#fff;}
+    h2{ font-size: 1.25rem; color: #fff;font-family: 'Montserrat-Bold';margin-top: 0.313rem;
+        margin-bottom: 0.125rem;}
+    .profile-date {display: flex;align-items: center;gap: 0.188rem;
+        p{ font-size: 0.688rem; text-transform: uppercase;}
+        ion-datetime.ios.hydrated {padding: 0rem;}
+        }
+        .profile-read-more{ padding-top: 0.375rem; padding-bottom: 1.5rem; }
+        .border-right:after {position: absolute; height: 1.938rem;width: 0.063rem;
+            content: "";background: #7a7878;right: 0.313rem; top: 0;
+        }
+        ion-segment-button {
+            font-size: 0.813rem !important;
+            font-family: 'Montserrat-SemiBold'; 
+        } 
+        .segment-button-checked{--indicator-height: 0px !important;    color: #f30f72 !important;}
+        .segment-button-checked:after{ position: absolute;
+            content: "";background: #f30f72;width: 5rem; height: 2px;bottom: -1px;
+            left: 0px;right: 0px; margin: 0 auto;}
+            ion-segment.ion-no-padding.ion-padding-top.segment-tab.bg-dark{ border-radius: 0px;}
+}
+ion-toolbar.bg-dark.px-2.ios.in-toolbar {
+    padding: 0rem 0.688rem;
+}
+

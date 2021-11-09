@@ -1,0 +1,17 @@
+<div *ngIf="!addedToBookMark" class="list-bookmark inactive" (click)="handleAddToBookmark()">
+  <ion-icon name="bookmark"></ion-icon>
+</div>
+
+<div *ngIf="addedToBookMark" class="list-bookmark active" (click)="handleRemoveFromBookmark()">
+  <ion-icon name="bookmark" color="secondary"></ion-icon>
+</div>
+
+<ion-thumbnail>
+  <img *ngIf="vehicle.vehicle_image else placeholderImage" class="img-wrapper" [routerLink]="['/','car-details', vehicle.vehicle_id]" src="{{'data:image/jpeg;base64,' + vehicle.vehicle_image}}">
+
+  <ng-template #placeholderImage>
+    <img class="img-wrapper" [routerLink]="['/','car-details', vehicle.vehicle_id]" src="../assets/images/car-lg.png">
+  </ng-template>
+</ion-thumbnail>
+
+<div class="list-title"><h6>{{ vehicle.model.model_title }}</h6></div>

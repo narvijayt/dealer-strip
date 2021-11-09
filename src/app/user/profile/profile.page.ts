@@ -6,6 +6,7 @@ import { ModalService } from '../../shared/services/modal.service';
 import { AuthService } from './../../shared/services/auth.service';
 import { AuthConstants } from '../../../../auth-constants';
 import { StorageService } from './../../shared/services/storage.service';
+import { VehicleService } from '../../shared/services/vehicle.service';
 
 @Component({
   selector: 'app-profile',
@@ -17,6 +18,9 @@ export class ProfilePage implements OnInit {
   userData : any;
   segmentModel = "viso";
 
+  totalVehicles: any;;
+  soldVehicles: any;
+
   constructor(
     public router: Router,
     private navCtrl: NavController,
@@ -24,6 +28,7 @@ export class ProfilePage implements OnInit {
     private storageService: StorageService,
     private auth: AuthService,
     public actionSheetController: ActionSheetController,
+    public vehicleService: VehicleService,
   ) { 
     this.storageService.get(AuthConstants.AUTH).then( user => {
       if(!user){
@@ -35,7 +40,19 @@ export class ProfilePage implements OnInit {
   }
 
   ionViewWillEnter(){
+   this.getVehicleDetails(); 
+  }
 
+  getVehicleDetails(){
+    console.log("Call getVehicleDetails");
+    let modelParams = new URLSearchParams();
+    modelParams.append('user_id', this.userData.ID);
+    this.vehicleService.getVehicleDetails(modelParams).subscribe(result => {
+      if(result.data){
+        this.totalVehicles = result.data.total_vehicles;
+        this.soldVehicles = result.data.sold_vehicles;
+      }
+    });
   }
 
   backRedirect(){
@@ -48,7 +65,7 @@ export class ProfilePage implements OnInit {
 
   async openActionSheetController(){
     const actionSheet = await this.actionSheetController.create({
-      header: 'Setting',
+      // header: 'Setting',
       cssClass: 'profile-actions',
       buttons: [
         {
@@ -77,7 +94,7 @@ export class ProfilePage implements OnInit {
   ngOnInit() {
   }
 
-  segmentChanged(event){    
+  layoutChanged(event){    
     console.log(event);
   }
 

@@ -1,1 +1,5 @@
 .footer-layout {text-align: center;position: absolute;left: 0;right: 0;bottom: 5%;transform: translateY(-50%);}
+.login-screen {margin-top:6rem; display: flex; align-items: center; flex-direction: column; justify-content: center; padding-left: 0.625rem; padding-right: 0.625rem;}
+.login-screen .primary-button {margin-top:1.25rem;}
+.login-screen #container .input-icon ion-icon[name="person"]{ color: #999 }
+
