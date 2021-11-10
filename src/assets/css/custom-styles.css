@@ -170,5 +170,9 @@ input:-webkit-autofill:focus {
 input[data-autocompleted] {
     background-color: transparent !important;
 }
-
+.bookmark-icon.inactive {
+  background: transparent ! important;
+  color: #fff;
+}
+.bookmark-icon.active{ color: #fff !important;}
 
