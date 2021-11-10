@@ -81,14 +81,13 @@
       </ion-segment-button>
     </ion-segment>
 
-    <ion-card *ngIf="segmentModel === 'viso'" class="ion-no-padding ion-no-margin">
-      <!-- <ion-card-header>
-        <ion-card-subtitle>Segment Content</ion-card-subtitle>
-        <ion-card-title>Viso</ion-card-title>
-      </ion-card-header> -->
-    
+    <ion-card *ngIf="segmentModel === 'viso'" class="ion-no-padding ion-no-margin">    
       <ion-card-content class="ion-no-padding">
-        <img src="../../../assets/images/profile-listing.png">
+        <ion-row >
+          <ion-col sizeLg="4" sizeMd="4" sizeXs="6" *ngFor="let vehicle of vehicles" class="ion-no-padding ion-col-width">
+            <app-product-grid-view [vehicle]="vehicle" [showBookmarkIcon]="false" ></app-product-grid-view>
+          </ion-col>
+        </ion-row>
       </ion-card-content>
     </ion-card>
     
@@ -106,6 +105,7 @@
     
   </div>
 </div>
+<!--
 <div class="profile-grid-outer">
   <div class="grid-list">
   <ion-row class="ion-padding-horizontal ">
@@ -191,7 +191,7 @@
     </ion-row>
   </div>
   </div>
- 
+-->
 </ion-content>
 
 

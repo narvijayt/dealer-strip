@@ -18,8 +18,11 @@
     <div class="top-banner">
       <ion-row>
         <ion-col class="ion-no-padding">
-          <div class="bookmark-box">
-            <div class="bookmark-icon"><ion-icon name="bookmark"></ion-icon></div>
+          <div *ngIf="addedToBookMark" class="bookmark-box">
+            <div class="bookmark-icon" (click)="handleRemoveFromBookmark()"><ion-icon name="bookmark"></ion-icon></div>
+          </div>
+          <div *ngIf="!addedToBookMark" class="bookmark-box">
+            <div class="bookmark-icon" (click)="handleAddToBookmark()" color="primary"><ion-icon name="bookmark"></ion-icon></div>
           </div>
           <img [src]="(vehicleImage) ? vehicleImage : '../assets/images/ford-car-01.png' " >
         </ion-col>

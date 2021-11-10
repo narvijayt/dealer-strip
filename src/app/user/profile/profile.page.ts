@@ -17,6 +17,7 @@ export class ProfilePage implements OnInit {
 
   userData : any;
   segmentModel = "viso";
+  vehicles: any;
 
   totalVehicles: any;;
   soldVehicles: any;
@@ -41,16 +42,26 @@ export class ProfilePage implements OnInit {
 
   ionViewWillEnter(){
    this.getVehicleDetails(); 
+   this.getUserVehicles(); 
   }
 
   getVehicleDetails(){
-    console.log("Call getVehicleDetails");
     let modelParams = new URLSearchParams();
     modelParams.append('user_id', this.userData.ID);
     this.vehicleService.getVehicleDetails(modelParams).subscribe(result => {
       if(result.data){
         this.totalVehicles = result.data.total_vehicles;
         this.soldVehicles = result.data.sold_vehicles;
+      }
+    });
+  }
+
+  getUserVehicles(){
+    let modelParams = new URLSearchParams();
+    modelParams.append('user_id', this.userData.ID);
+    this.vehicleService.getUserVehicles(modelParams).subscribe(result => {
+      if(result.data){
+        this.vehicles = result.data;
       }
     });
   }

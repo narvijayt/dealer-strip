@@ -16,13 +16,14 @@
       
     </ion-col>
   </ion-row>
-  <div class="brands-list">
+  <div class="brands-list" *ngIf="brands">
   
-    <ion-item >
-      <ion-label class="check-button">Acura</ion-label>
-      <ion-checkbox [(ngModel)]="acura" ></ion-checkbox>
+    <ion-item *ngFor="let brand of brands">
+      <ion-label class="check-button">{{brand.make_title}}</ion-label>
+      <ion-checkbox (click)="selectMember(brand)" [(ngModel)]="brand.checked" value="{{brand.make_id}}" ></ion-checkbox>
     </ion-item>
-
+    
+    <!--
     <ion-item >
       <ion-label>Airbus</ion-label>
       <ion-checkbox [(ngModel)]="airbus" ></ion-checkbox>
@@ -61,19 +62,12 @@
       <ion-label>Austin Healey</ion-label>
       <ion-checkbox [(ngModel)]="austin-healey" ></ion-checkbox>
     </ion-item>
+    -->
   </div>
-
-  <!-- <ion-row lass="ion-pading ion-text-center">
-    <ion-col>
-      <div *ngFor="let brand of brands" class="brand-outer">
-        <ion-text class="brand-title" [innerHTML]="brand"></ion-text>
-      </div>
-    </ion-col>
-  </ion-row> -->
 
   <ion-row class="ion-padding brand-button">
     <ion-col>
-      <ion-button type="submit" (click)="openRequestedPage('dashboard')"  class="primary-button" shape="round" expand="full">Submit</ion-button>
+      <ion-button type="submit" (click)="saveBrandChoices()"  class="primary-button" shape="round" expand="full">Submit</ion-button>
     </ion-col>
   </ion-row>
   </div>
