@@ -2,10 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router} from '@angular/router';
 import { NavController } from '@ionic/angular';
 
+import { AuthConstants } from '../../../../auth-constants';
 import { ModalService } from '../../shared/services/modal.service';
 import { VehicleService } from '../../shared/services/vehicle.service';
 import { ToastService } from '../../shared/services/toast.service';
 import { LoaderService } from '../../shared/services/loader.service';
+import { StorageService } from '../../shared/services/storage.service';
+import { BookmarkService } from '../../shared/services/bookmark.service';
 
 @Component({
   selector: 'app-car-details',
@@ -15,7 +18,10 @@ import { LoaderService } from '../../shared/services/loader.service';
 export class CarDetailsPage implements OnInit {
   ID:any;
   vehicle:any;
+  user:any;
   vehicleImage: any;
+  addedToBookMark: boolean;
+  wishList: any;
 
   constructor(
     private route : ActivatedRoute, 
@@ -25,9 +31,19 @@ export class CarDetailsPage implements OnInit {
     public VehicleService: VehicleService,
     private toastService: ToastService,
     private loaderService: LoaderService,
+    private storageService: StorageService,
+    private bookmarkService: BookmarkService,
   ) { }
   
   ionViewWillEnter(){
+    this.storageService.get(AuthConstants.AUTH).then( user => {
+      if(!user){
+        this.router.navigate(['/login']);
+      }else{
+        this.user = user;
+      }
+    });
+
     this.ID = '';
     this.route.paramMap.subscribe(params => {
       this.ID = params.get('id');
@@ -54,6 +70,60 @@ export class CarDetailsPage implements OnInit {
         this.toastService.presentToast(error.message);
       }
       this.loaderService.dismissLoader();
+    });
+  }
+
+  loadWishList(){
+    let modelParams = new URLSearchParams();
+    modelParams.append('user_id', this.user.ID);
+    this.bookmarkService.getBookmark(modelParams).subscribe( result =>{
+      if(result.data){
+        this.wishList = result.data;
+        if(this.wishList.indexOf(this.vehicle.vehicle_id) >= 0){
+          this.addedToBookMark = true;
+        }
+      }
+    })
+  }
+
+  handleAddToBookmark(){
+    var postData = {
+      item_id : this.vehicle.vehicle_id,
+      user_id : this.user.ID
+    }
+    this.bookmarkService.addToBookmark(postData).subscribe((result) => {
+      if(result.data){
+        this.addedToBookMark = true;
+      }else{
+        this.toastService.presentToast(result.message);
+      }
+    },(error: any) => {
+      if(error.error){
+        this.toastService.presentToast(error.error.message);
+      }else{
+        // this.toastService.presentToast('Network Issue.');
+        this.toastService.presentToast(error.message);
+      }
+    });
+  }
+
+  handleRemoveFromBookmark(){
+    let modelParams = new URLSearchParams();
+    modelParams.append('user_id', this.user.ID);
+    modelParams.append('item_id', this.vehicle.vehicle_id);
+    this.bookmarkService.removeFromBookmark(modelParams).subscribe((result) => {
+      if(result.data){
+        this.addedToBookMark = false;
+      }else{
+        this.toastService.presentToast(result.message);
+      }
+    },(error: any) => {
+      if(error.error){
+        this.toastService.presentToast(error.error.message);
+      }else{
+        // this.toastService.presentToast('Network Issue.');
+        this.toastService.presentToast(error.message);
+      }
     });
   }
 

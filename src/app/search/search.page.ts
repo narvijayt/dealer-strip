@@ -73,7 +73,7 @@ export class SearchPage implements OnInit {
     if(this.postData.vehicle_model_id){
       modelParams.append('vehicle_model_id', this.postData.vehicle_model_id);
     }
-
+    modelParams.append('user_id', this.user.ID);
     this.VehicleService.getVehiclesList(modelParams).subscribe((result) => {
       if(result.data){
         this.vehicles = result.data;

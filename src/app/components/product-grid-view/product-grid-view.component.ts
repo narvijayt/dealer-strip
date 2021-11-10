@@ -14,6 +14,7 @@ export class ProductGridViewComponent implements OnInit {
 
   @Input() vehicle;
   @Input() addedToBookMark: boolean;
+  @Input() showBookmarkIcon: boolean;
 
   private user;
 

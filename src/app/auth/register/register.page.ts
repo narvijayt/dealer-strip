@@ -76,7 +76,7 @@ export class RegisterPage implements OnInit {
             this.router.navigate(['/brands']);
           });
         } else {
-          this.toastService.presentToast('Data alreay exists, please enter new details.');
+          this.toastService.presentToast('Something went wrong, please try again Later!');
         }
       },(error: any) => {
         // this.toastService.presentToast('Network Issue.');

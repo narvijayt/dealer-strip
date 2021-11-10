@@ -1,9 +1,11 @@
-<div *ngIf="!addedToBookMark" class="list-bookmark inactive" (click)="handleAddToBookmark()">
-  <ion-icon name="bookmark"></ion-icon>
-</div>
+<div *ngIf="showBookmarkIcon">
+  <div *ngIf="!addedToBookMark" class="list-bookmark inactive" (click)="handleAddToBookmark()">
+    <ion-icon name="bookmark"></ion-icon>
+  </div>
 
-<div *ngIf="addedToBookMark" class="list-bookmark active" (click)="handleRemoveFromBookmark()">
-  <ion-icon name="bookmark" color="secondary"></ion-icon>
+  <div *ngIf="addedToBookMark" class="list-bookmark active" (click)="handleRemoveFromBookmark()">
+    <ion-icon name="bookmark" color="secondary"></ion-icon>
+  </div>
 </div>
 
 <ion-thumbnail>

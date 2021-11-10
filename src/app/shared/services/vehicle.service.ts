@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { HttpService } from './http.service';
-import { StorageService } from './storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +9,6 @@ export class VehicleService {
 
   constructor(
     private httpService: HttpService,
-    private storageService: StorageService,
-    private router: Router
   ) { }
 
   getVehiclesList(postData: any = ''): Observable<any> {
@@ -37,6 +33,12 @@ export class VehicleService {
       return this.httpService.get('vehicles-details?' + postData.toString());
     }
   }
+  
+  getUserVehicles(postData: any = ''): Observable<any> {
+    if((postData) && (postData.toString()!='')){
+      return this.httpService.get('user-vehicles?' + postData.toString());
+    }
+  }
 
   // Vehicle Make API Requests
   getVehiclesMakeList(postData: any = ''): Observable<any> {
@@ -49,6 +51,10 @@ export class VehicleService {
 
   getVehiclesMakeByID(postData: any): Observable<any> {
     return this.httpService.get('makes/'+postData);
+  }
+
+  insertUserBrands(postData: any): Observable<any> {
+    return this.httpService.post('brands', postData);
   }
   
   // Vehicle Models API Requests

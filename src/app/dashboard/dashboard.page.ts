@@ -29,6 +29,11 @@ export class DashboardPage implements OnInit {
     private loaderService: LoaderService,
     private bookmarkService: BookmarkService,
   ) { 
+
+  }
+
+  ionViewWillEnter(){
+    this.vehicles = '';
     this.storageService.get(AuthConstants.AUTH).then( user => {
       if(!user){
         this.router.navigate(['/login']);
@@ -39,17 +44,16 @@ export class DashboardPage implements OnInit {
       }
     });
   }
-
-  ionViewWillEnter(){
-    // this.getVehicles();
-  }
   
   getVehicles(){
     this.loaderService.showLoader();
-    this.VehicleService.getVehiclesList().subscribe((result) => {
+    let modelParams = new URLSearchParams();
+    modelParams.append('user_id', this.user.ID);
+    
+    this.VehicleService.getVehiclesList(modelParams).subscribe((result) => {
       if(result.data){
         this.vehicles = result.data;
-        // console.log(this.vehicles);
+        // console.log(result.data);
       }else{
         this.toastService.presentToast(result.message);
       }
