@@ -19,10 +19,10 @@
       <ion-row>
         <ion-col class="ion-no-padding">
           <div *ngIf="addedToBookMark" class="bookmark-box">
-            <div class="bookmark-icon" (click)="handleRemoveFromBookmark()"><ion-icon name="bookmark"></ion-icon></div>
+            <div class="bookmark-icon active" (click)="handleRemoveFromBookmark()"><ion-icon name="bookmark"></ion-icon></div>
           </div>
           <div *ngIf="!addedToBookMark" class="bookmark-box">
-            <div class="bookmark-icon" (click)="handleAddToBookmark()" color="primary"><ion-icon name="bookmark"></ion-icon></div>
+            <div class="bookmark-icon inactive" (click)="handleAddToBookmark()" color="primary"><ion-icon name="bookmark-outline"></ion-icon></div>
           </div>
           <img [src]="(vehicleImage) ? vehicleImage : '../assets/images/ford-car-01.png' " >
         </ion-col>

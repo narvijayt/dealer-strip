@@ -1,11 +1,15 @@
+<div class="grid-list-view">
 <div *ngIf="showBookmarkIcon">
-  <div *ngIf="!addedToBookMark" class="list-bookmark inactive" (click)="handleAddToBookmark()">
-    <ion-icon name="bookmark"></ion-icon>
+  <div class="bookmark-box">
+  <div *ngIf="!addedToBookMark" class="bookmark-icon inactive" (click)="handleAddToBookmark()">
+    <ion-icon name="bookmark-outline"></ion-icon>
   </div>
-
-  <div *ngIf="addedToBookMark" class="list-bookmark active" (click)="handleRemoveFromBookmark()">
-    <ion-icon name="bookmark" color="secondary"></ion-icon>
+</div>
+<div class="bookmark-box">
+  <div *ngIf="addedToBookMark" class="bookmark-icon active" (click)="handleRemoveFromBookmark()">
+    <ion-icon name="bookmark" ></ion-icon>
   </div>
+</div>
 </div>
 
 <ion-thumbnail>
@@ -17,3 +21,4 @@
 </ion-thumbnail>
 
 <div class="list-title"><h6>{{ vehicle.model.model_title }}</h6></div>
+</div>
