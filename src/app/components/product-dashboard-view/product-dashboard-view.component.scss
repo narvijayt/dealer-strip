@@ -21,3 +21,6 @@ body .dashboard .chat-number p{ color: #ffffff !important;}
     ion-card-header+.card-content-ios{margin-bottom:10px;}
     ion-card-header{padding: 4px 9px; }
     .dashboard .card{border-bottom: 1px solid #ddd;}
+    .dashboard-view-image{
+        img{width: 100%; max-height: 287px; object-fit: cover;object-position: center center;}
+    }

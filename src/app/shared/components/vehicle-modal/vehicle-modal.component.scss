@@ -38,10 +38,13 @@ ion-item {
       visibility: hidden;
     }
     ion-slide.ios.swiper-slide.swiper-zoom-container.hydrated.swiper-slide-active{padding: 4px 23px !important; display: block !important;}
-  
+    .swiper-slide.swiper-zoom-container.hydrated.swiper-slide-active{padding: 4px 23px !important; display: block !important;}
     .swiper-slide.swiper-slide-active {
       visibility: visible;
     }
+    ion-text.ion-color.ion-color-danger.md.hydrated {
+      display: none;
+  }
   }
  
   
@@ -97,13 +100,16 @@ ion-icon.close-icon {
 }
 .inner-header h5{ margin: 0px; font-size: 0.938rem; padding-left:10px;font-family: 'Montserrat-SemiBold'; }
 .label-stacked.sc-ion-label-ios-h{ align-self: auto;margin-bottom: 0px; }
+.label-stacked{ align-self: auto;margin-bottom: 0px; font-size: 14px; }
+.label-stacked.sc-ion-label-md-h{-webkit-transform: inherit;}
 .tool-list{display: flex; justify-content: space-between;
   align-items: center;
   background: #1e1d1d;color: #999; text-align: left;padding: 0.438rem 1.25rem;
     border-radius: 2.938rem;border: none; margin-top: 0rem;font-size: 0.813rem;
     font-family: 'Montserrat-Medium';margin-bottom: 1.25rem;}
-    .sc-ion-label-ios-s h5{font-size: 0.75rem;}
-    .tool-list h5{color:#999999;}
+    .sc-ion-label-ios-s h5, .sc-ion-label-md-s h5{font-size: 0.75rem;}
+    .tool-list h5{color:#898787;}
+    
   
   .vehicle-modal .bookmark-icon{
     background: linear-gradient(
