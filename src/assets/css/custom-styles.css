@@ -194,4 +194,9 @@ input[data-autocompleted] {
   color: #fff;
   align-items: center;
 }
-
+.chat-icon.md{
+  font-size: 1.625rem;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
