@@ -23,14 +23,14 @@
       <ion-col class="ion-text-center">
         <ion-row>
           <ion-col class="ion-no-padding border-right">
-            <p>
-              <ion-text><strong><h6>{{totalVehicles ? totalVehicles : '0'}}</h6></strong></ion-text>
+            <p class="text-color">
+              <ion-text><h6>{{totalVehicles ? totalVehicles : '0'}}</h6></ion-text>
               <ion-text><p>Vehicle</p></ion-text>
             </p>
           </ion-col>
           <ion-col class="ion-no-padding">
-            <p>
-              <ion-text><strong><h6>{{soldVehicles ? soldVehicles : '0'}}</h6></strong></ion-text>
+            <p >
+              <ion-text><h6>{{soldVehicles ? soldVehicles : '0'}}</h6></ion-text>
               <ion-text><p>Sold Vehicles</p></ion-text>
             </p>
           </ion-col>
@@ -80,7 +80,8 @@
         <ion-label>Gotta Go</ion-label>
       </ion-segment-button>
     </ion-segment>
-
+<div class="profile-grid-view">
+  <div class="grid-list">
     <ion-card *ngIf="segmentModel === 'viso'" class="ion-no-padding ion-no-margin">    
       <ion-card-content class="ion-no-padding">
         <ion-row >
@@ -102,7 +103,14 @@
         <img class="img-wrapper" src="../../../assets/images/profile-listing.png">
       </ion-card-content>
     </ion-card>
+    <ion-card *ngIf="segmentModel === 'gottago'" class="ion-no-padding ion-no-margin">    
+      <ion-card-content class="ion-no-padding">
+        <img class="img-wrapper" src="../../../assets/images/profile-listing.png">
+      </ion-card-content>
+    </ion-card>
     
+  </div>
+</div>
   </div>
 </div>
 <!--

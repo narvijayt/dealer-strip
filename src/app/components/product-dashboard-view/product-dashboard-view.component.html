@@ -17,8 +17,8 @@
     <ion-col class="ion-no-padding dashboard-view-image">
       <div class="bookmark-box">
         <span class="bookmark-text">Gotta Go</span>
-        <div *ngIf="!addedToBookMark" class="bookmark-icon inactive" (click)="handleAddToBookmark()"><ion-icon name="bookmark"></ion-icon></div>
-        <div *ngIf="addedToBookMark" class="bookmark-icon active" (click)="handleRemoveFromBookmark()"><ion-icon name="bookmark" color="secondary"></ion-icon></div>
+        <div *ngIf="!addedToBookMark" class="bookmark-icon inactive" (click)="handleAddToBookmark()"><ion-icon name="bookmark-outline"></ion-icon></div>
+        <div *ngIf="addedToBookMark" class="bookmark-icon active" (click)="handleRemoveFromBookmark()"><ion-icon name="bookmark"></ion-icon></div>
       </div>
       <img *ngIf="vehicle.vehicle_image else placeholderImage" [routerLink]="['/','car-details', vehicle.vehicle_id]" src="{{'data:image/jpeg;base64,' + vehicle.vehicle_image}}">
 
