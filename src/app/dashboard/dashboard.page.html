@@ -19,7 +19,7 @@
 
   <div *ngIf="vehicles" class="bg-grey content-container dashboard">
     <ion-card *ngFor="let vehicle of vehicles" class="card ion-no-margin ion-no-radius">
-      <app-product-dashboard-view [vehicle]="vehicle" [addedToBookMark]="wishList.indexOf(vehicle.vehicle_id) >= 0"></app-product-dashboard-view>
+      <app-product-dashboard-view [vehicle]="vehicle" [addedToBookMark]="wishList ? wishList.indexOf(vehicle.vehicle_id) >= 0: false"></app-product-dashboard-view>
     </ion-card>
   </div>
 </ion-content>

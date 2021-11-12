@@ -30,7 +30,7 @@ export class VehicleModalComponent implements OnInit {
     autoHeight: true,
   };
 
-  private listingTypes: ['Viso','Hand Holding','Gotta Go'];
+  private listingTypes: any = ['Viso','Hand Holding','Gotta Go'];
   public slides: string[];
   public currentSlide: string;
   public isBeginning: boolean = true;
@@ -248,7 +248,7 @@ export class VehicleModalComponent implements OnInit {
 
       if(sourceType == 1){
         const options: CameraOptions = {
-          quality: 100,
+          quality: 75,
           sourceType: sourceType,
           destinationType: this.camera.DestinationType.FILE_URI,
           encodingType: this.camera.EncodingType.JPEG,

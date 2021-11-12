@@ -9,7 +9,7 @@
 .brand-title{ color: #adadad; font-size: 0.938rem;}
  
 .brands .skip-arrow{
-    display: flex;
+    display: -webkit-inline-box;
     align-items: center;
     justify-content: end;
     font-size: 0.875rem;
@@ -18,6 +18,8 @@
     margin-bottom: 1.25rem;
     gap: 2px;
 }
+
+.brands .skip-arrow-icon{ vertical-align: middle;}
 
 
 .brands .item-checkbox-checked ion-label{

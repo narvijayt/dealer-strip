@@ -100,7 +100,7 @@
 
               <ion-row>
                 <ion-item lines="none" class="ion-margin-bottom fieldGroupItem pl-2">
-                  <ion-input type="text" placeholder="Mileage" [(ngModel)]="postData.vehicle_mileage" name="vehicle_mileage"></ion-input>
+                  <ion-input type="number" placeholder="Mileage" [(ngModel)]="postData.vehicle_mileage" name="vehicle_mileage"></ion-input>
                 </ion-item>
                 <ion-text color="danger">
                   <span class="text-tiny"
@@ -113,7 +113,7 @@
               <ion-row>
                 <ion-col class="mt-0">
                   <ion-item lines="none" class="ion-margin-bottom fieldGroupItem pl-2">
-                  <ion-input type="text" placeholder="Travelled" [(ngModel)]="postData.vehicle_travelled" name="vehicle_travelled"></ion-input>
+                  <ion-input type="number" placeholder="Travelled (KM)" [(ngModel)]="postData.vehicle_travelled" name="vehicle_travelled"></ion-input>
                 </ion-item>
                   <ion-text color="danger">
                     <span class="text-tiny"
@@ -142,7 +142,7 @@
               
               <ion-row>
                 <ion-item lines="none" class="ion-margin-bottom fieldGroupItem pl-2">
-                  <ion-input type="text" placeholder="Trim" [(ngModel)]="postData.vehicle_trim" name="vehicle_trim"></ion-input>
+                  <ion-input type="text" placeholder="Vehicle Trim" [(ngModel)]="postData.vehicle_trim" name="vehicle_trim"></ion-input>
                 </ion-item>
               </ion-row>
             </form>
@@ -263,7 +263,7 @@
               <ion-row>
                 <ion-col class="vin-input">
                   <ion-item lines="none" class="ion-margin-bottom fieldGroupItem pl-2">
-                  <ion-input type="text" placeholder="Retail Price" name="retail_price" [(ngModel)]="postData.retail_price"></ion-input>
+                  <ion-input type="number" placeholder="Retail Price" name="retail_price" [(ngModel)]="postData.retail_price"></ion-input>
                 </ion-item>
                   <ion-text color="danger">
                     <span class="text-tiny"

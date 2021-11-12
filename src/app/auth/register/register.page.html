@@ -48,7 +48,7 @@
         <ion-row>
           <ion-item lines="none" class="ion-margin-bottom fieldGroupItem">
             <ion-label> <ion-icon name="phone-portrait-outline"></ion-icon></ion-label>
-            <ion-input clearInput [(ngModel)]="postData.user_phone" required type="text" autocomplete="off" name="user_phone" placeholder="Phone"></ion-input>
+            <ion-input clearInput [(ngModel)]="postData.user_phone" required type="number" autocomplete="off" name="user_phone" placeholder="Phone"></ion-input>
           </ion-item>
         </ion-row>
 
@@ -68,9 +68,9 @@
         </ion-row>
 
         <ion-row>
-          <ion-item lines="none" class="ion-margin-bottom fieldGroupItem" >
+          <ion-item lines="none" class="ion-margin-bottom fieldGroupItem">
             <ion-label> <ion-icon name="lock-closed-outline"></ion-icon></ion-label>
-            <ion-input clearInput [[(ngModel)]="postData.zipcode" required type="text" autocomplete="off" name="zipcode" placeholder="Zip Code"></ion-input>
+            <ion-input clearInput [(ngModel)]="postData.zipcode" required type="number" autocomplete="off" name="zipcode" placeholder="Zip Code"></ion-input>
           </ion-item>
         </ion-row>
 
