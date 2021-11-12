@@ -100,7 +100,7 @@
       <div *ngIf="layoutModel === 'grid'" class="grid-list">
           <ion-row >
             <ion-col sizeLg="4" sizeMd="4" sizeXs="6" *ngFor="let vehicle of vehicles" class="ion-no-padding ion-col-width">
-              <app-product-grid-view [vehicle]="vehicle" [showBookmarkIcon]="true" [addedToBookMark]="wishList.indexOf(vehicle.vehicle_id) >= 0" ></app-product-grid-view>
+              <app-product-grid-view [vehicle]="vehicle" [showBookmarkIcon]="true" [addedToBookMark]="wishList? wishList.indexOf(vehicle.vehicle_id) >= 0 : false" ></app-product-grid-view>
             </ion-col>
           </ion-row>
       </div>

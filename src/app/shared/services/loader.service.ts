@@ -15,7 +15,7 @@ export class LoaderService {
     this.loadingController.create({
       message: 'Please wait...',
       cssClass:'loader-css-class',
-      backdropDismiss:true
+      backdropDismiss:false
     }).then((response) => {
       response.present();
     });

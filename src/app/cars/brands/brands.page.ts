@@ -31,6 +31,10 @@ export class BrandsPage implements OnInit {
     private toastService: ToastService,
     private loaderService: LoaderService,
   ) { 
+    
+  }
+
+  ionViewWillEnter(){
     this.storageService.get(AuthConstants.AUTH).then( user => {
       if(!user){
         this.router.navigate(['/register']);
@@ -45,6 +49,7 @@ export class BrandsPage implements OnInit {
   saveBrandChoices(){
     this.loaderService.showLoader();
     this.postData.brands = this.selectedArray;
+    console.log(this.postData);
     this.VehicleService.insertUserBrands(this.postData).subscribe((result) => {
       if(result.data){
         this.navCtrl.navigateRoot('/dashboard', {
