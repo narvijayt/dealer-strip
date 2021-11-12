@@ -88,6 +88,10 @@ export class BrandsPage implements OnInit {
       this.selectedArray = newArray;
     }
     console.log(this.selectedArray);
-   }
+  }
+
+  openRequestedPage(pageLink){
+    this.navCtrl.navigateForward(pageLink);
+  }
 
 }
