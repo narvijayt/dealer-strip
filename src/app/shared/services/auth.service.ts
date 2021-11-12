@@ -21,13 +21,13 @@ export class AuthService {
   }
   
   signup(postData: any): Observable<any> {
-    return this.httpService.post('/register', postData);
+    return this.httpService.post('register', postData);
   }
   
   logout() {
     this.storageService.removeStorageItem(AuthConstants.AUTH).then(res => {
       console.log("Logged Out");
-      this.router.navigate(['/login']);
+      this.router.navigate(['login']);
     });
   }
 }
