@@ -102,13 +102,13 @@
                 <ion-item lines="none" class="ion-margin-bottom fieldGroupItem pl-2">
                   <ion-input type="text" placeholder="Mileage" [(ngModel)]="postData.vehicle_mileage" name="vehicle_mileage"></ion-input>
                 </ion-item>
-                  <ion-text color="danger">
-                    <span class="text-tiny"
-                      [style.visibility]="vehicleMileage?.errors?.required && basicInformationFormRef.submitted ? '' : 'hidden'">
-                      Field required
-                    </span>
-                  </ion-text>
-               </ion-row>
+                <ion-text color="danger">
+                  <span class="text-tiny"
+                    [style.visibility]="vehicleMileage?.errors?.required && basicInformationFormRef.submitted ? '' : 'hidden'">
+                    Field required
+                  </span>
+                </ion-text>
+              </ion-row>
 
               <ion-row>
                 <ion-col class="mt-0">
@@ -133,11 +133,17 @@
                 </ion-item>
                   <ion-text color="danger">
                     <span class="text-tiny"
-                      [style.visibility]="vehicleBodyStyle?.errors?.required && basicInformationFormRef.submitted ? '' : 'hidden'">
+                      [style.visibility]="vehicleTravelled?.errors?.required && basicInformationFormRef.submitted ? '' : 'hidden'">
                       Field required
                     </span>
                   </ion-text>
                 </ion-col>
+              </ion-row>
+              
+              <ion-row>
+                <ion-item lines="none" class="ion-margin-bottom fieldGroupItem pl-2">
+                  <ion-input type="text" placeholder="Trim" [(ngModel)]="postData.vehicle_trim" name="vehicle_trim"></ion-input>
+                </ion-item>
               </ion-row>
             </form>
 
@@ -295,7 +301,17 @@
                   <ion-toggle checked [(ngModel)]="manual_flag" name="manual_flag" value="1" (ionChange)="toggleOption('manual_flag')"></ion-toggle>
                 </ion-col>
               </ion-row>              
-
+              
+              <ion-row>
+                <ion-col> 
+                  <ion-item lines="none" class="ion-margin-bottom fieldGroupItem">                  
+                    <ion-select *ngIf="listingTypes" [(ngModel)]="postData.vehicle_list_type" name="vehicle_list_type" class="select-input" placeholder="Listing Type">
+                      <ion-select-option *ngFor="let listType of listingTypes" [value]="listType"> {{listType}}</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+              
               <ion-row>
                 <ion-col class="vin-input">
                   <ion-item lines="none" class="ion-margin-bottom fieldGroupItem pl-2">

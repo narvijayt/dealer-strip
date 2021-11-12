@@ -30,6 +30,7 @@ export class VehicleModalComponent implements OnInit {
     autoHeight: true,
   };
 
+  private listingTypes: ['Viso','Hand Holding','Gotta Go'];
   public slides: string[];
   public currentSlide: string;
   public isBeginning: boolean = true;
@@ -45,6 +46,8 @@ export class VehicleModalComponent implements OnInit {
     exterior_color_id: '',
     interior_color_id: '',
     vehicle_type_id: '',
+    vehicle_list_type: '',
+    vehicle_trim: '',
     vehicle_transmission_id: '',
     vehicle_keys: '',
     retail_price: '',
