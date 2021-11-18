@@ -16,7 +16,7 @@
   <ion-row>
     <ion-col class="ion-no-padding dashboard-view-image">
       <div class="bookmark-box">
-        <span class="bookmark-text">Gotta Go</span>
+        <span class="bookmark-text">{{vehicle.vehicle_list_type}}</span>
         <div *ngIf="!addedToBookMark" class="bookmark-icon inactive" (click)="handleAddToBookmark()"><ion-icon name="bookmark-outline"></ion-icon></div>
         <div *ngIf="addedToBookMark" class="bookmark-icon active" (click)="handleRemoveFromBookmark()"><ion-icon name="bookmark"></ion-icon></div>
       </div>

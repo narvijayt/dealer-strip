@@ -148,7 +148,7 @@ export class VehicleModalComponent implements OnInit {
     this.VehicleService.getTransmissionsList().subscribe((result) => {
       if(result.data)
         this.transmissions = result.data;
-    })
+    });
   }
 
   vehicleModels(){

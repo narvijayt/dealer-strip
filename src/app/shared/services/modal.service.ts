@@ -26,13 +26,11 @@ export class ModalService {
   }
 
   openVehicleForm(): void {
-    this.loaderService.showLoader();
     this._modalController.create({
       component: VehicleModalComponent,
       cssClass: 'new-vehicle-form',
     }).then( (modal) => {
       modal.present();
-      this.loaderService.dismissLoader();
     });
   }
 }

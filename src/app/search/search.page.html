@@ -1,25 +1,53 @@
 
 <ion-header class="search-header">
   <ion-toolbar>
+    <!--
     <ion-tabs class="top-tab">
       <ion-tab-bar slot="top">
-        <ion-tab-button tab="viso">
+        <ion-tab-button tab="Viso">
           <ion-label color="primary">Viso</ion-label>
         </ion-tab-button>
     
-        <ion-tab-button tab="number-now">
-          <ion-label color="primary">Number Now</ion-label>
+        <ion-tab-button tab="Hand Holding">
+          <ion-label color="primary">Hand Holding</ion-label>
         </ion-tab-button>
     
-        <ion-tab-button tab="gotta-go">
+        <ion-tab-button tab="Gotta Go">
           <ion-label color="primary">Gotta Go</ion-label>
         </ion-tab-button>
     
-        <ion-tab-button tab="saved">
+        <ion-tab-button tab="Bookmark">
           <ion-label color="primary">Saved</ion-label>
         </ion-tab-button>
       </ion-tab-bar>
     </ion-tabs>
+    -->
+
+    <ion-segment 
+      value="all" 
+      color="tertiary" 
+      scrollable="true"
+      mode="ios"
+      [(ngModel)]="listingType" 
+      (ionChange)="listingTypeChanged($event)" class="ion-no-padding ion-padding-top segment-tab bg-dark">
+
+        <ion-segment-button value="Viso"> 
+          <ion-label>Viso</ion-label>
+        </ion-segment-button>
+
+        <ion-segment-button value="Hand Holding">
+          <ion-label>Hand Holdings</ion-label>
+        </ion-segment-button>
+
+        <ion-segment-button value="Gotta Go">
+          <ion-label>Gotta Go</ion-label>
+        </ion-segment-button>
+        
+        <ion-segment-button value="Bookmark">
+          <ion-label>Saved</ion-label>
+        </ion-segment-button>
+
+      </ion-segment>
   </ion-toolbar>
 </ion-header>
 
@@ -98,17 +126,27 @@
 
     <div class="content-container">
       <div *ngIf="layoutModel === 'grid'" class="grid-list">
-          <ion-row >
+          <ion-row *ngIf="vehicles else gridNoVehicleView">
             <ion-col sizeLg="4" sizeMd="4" sizeXs="6" *ngFor="let vehicle of vehicles" class="ion-no-padding ion-col-width">
               <app-product-grid-view [vehicle]="vehicle" [showBookmarkIcon]="true" [addedToBookMark]="wishList? wishList.indexOf(vehicle.vehicle_id) >= 0 : false" ></app-product-grid-view>
             </ion-col>
           </ion-row>
+
+          <ng-template #gridNoVehicleView> 
+            <ion-text class="ion-padding">Select Above filters to Search the Vehicles</ion-text>
+          </ng-template>
       </div>
     
       <div *ngIf="layoutModel === 'list'">
-        <ion-card *ngFor="let vehicle of vehicles" class="card">
-          <app-product-list-view [vehicle]="vehicle" [addedToBookMark]="wishList.indexOf(vehicle.vehicle_id) >= 0"></app-product-list-view>
-        </ion-card> 
+        <div *ngIf="vehicles else listNoVehicleView">
+          <ion-card *ngFor="let vehicle of vehicles" class="card">
+            <app-product-list-view [vehicle]="vehicle" [addedToBookMark]="wishList? wishList.indexOf(vehicle.vehicle_id) >= 0 : false"></app-product-list-view>
+          </ion-card> 
+        </div>
+        <ng-template #listNoVehicleView> 
+          <ion-text class="ion-padding">Select Above filters to Search the Vehicles</ion-text>
+        </ng-template>
+
       </div> 
 
     </div>    

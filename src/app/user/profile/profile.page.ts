@@ -16,8 +16,10 @@ import { VehicleService } from '../../shared/services/vehicle.service';
 export class ProfilePage implements OnInit {
 
   userData : any;
-  segmentModel = "viso";
-  vehicles: any;
+  segmentModel = "Viso";
+  visoVehicles: any;
+  handVehicles: any;
+  gottaGoVehicles: any;
 
   totalVehicles: any;;
   soldVehicles: any;
@@ -59,9 +61,24 @@ export class ProfilePage implements OnInit {
   getUserVehicles(){
     let modelParams = new URLSearchParams();
     modelParams.append('user_id', this.userData.ID);
+    modelParams.append('vehicle_list_type', this.segmentModel);
     this.vehicleService.getUserVehicles(modelParams).subscribe(result => {
       if(result.data){
-        this.vehicles = result.data;
+        if(this.segmentModel == "Viso"){
+          this.visoVehicles = result.data;
+        }else if(this.segmentModel == "Hand Holding"){
+          this.handVehicles = result.data;
+        }else if(this.segmentModel == "Gotta Go"){
+          this.gottaGoVehicles = result.data;
+        }
+      }else{
+        if(this.segmentModel == "Viso"){
+          this.visoVehicles = '';
+        }else if(this.segmentModel == "Hand Holding"){
+          this.handVehicles = '';
+        }else if(this.segmentModel == "Gotta Go"){
+          this.gottaGoVehicles = '';
+        }
       }
     });
   }
@@ -105,8 +122,9 @@ export class ProfilePage implements OnInit {
   ngOnInit() {
   }
 
-  layoutChanged(event){    
+  segmentChanged(event){    
     console.log(event);
+    this.getUserVehicles();
   }
 
 }

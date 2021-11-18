@@ -17,6 +17,7 @@ import { BookmarkService } from '../shared/services/bookmark.service';
 })
 export class SearchPage implements OnInit {
 
+  listingType = "Viso";
   layoutModel = "grid";
   private vehicles:any;
   postData: any = {
@@ -74,6 +75,8 @@ export class SearchPage implements OnInit {
       modelParams.append('vehicle_model_id', this.postData.vehicle_model_id);
     }
     modelParams.append('user_id', this.user.ID);
+    modelParams.append('vehicle_list_type', this.listingType);
+    
     this.VehicleService.getVehiclesList(modelParams).subscribe((result) => {
       if(result.data){
         this.vehicles = result.data;
@@ -129,6 +132,11 @@ export class SearchPage implements OnInit {
         this.wishList = result.data;
       }
     })
+  }
+
+  listingTypeChanged(event){    
+    console.log(this.listingType);
+    this.getVehicles();
   }
 
 }
